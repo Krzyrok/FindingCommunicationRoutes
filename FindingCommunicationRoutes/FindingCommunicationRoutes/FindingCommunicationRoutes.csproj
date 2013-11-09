@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BusStop.cs" />
     <Compile Include="Controller\Controller.cs" />
+    <Compile Include="ReaderCHM.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
