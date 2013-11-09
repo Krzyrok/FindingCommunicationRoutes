@@ -16,8 +16,7 @@ namespace FindingCommunicationRoutes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            // new test 2 for merge
-            // new test 1 for merge
+            // test for git gui - commit 1
         }
     }
 }
