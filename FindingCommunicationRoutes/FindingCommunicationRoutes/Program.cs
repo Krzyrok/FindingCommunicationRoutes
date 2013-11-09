@@ -16,7 +16,7 @@ namespace FindingCommunicationRoutes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            // test 1 for merge
+            // new test 2 for merge
         }
     }
 }
