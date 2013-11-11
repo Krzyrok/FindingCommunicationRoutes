@@ -7,29 +7,23 @@ namespace FindingCommunicationRoutes
 {
     public class SearcherOfRoutes
     {
-        #region "Constructors"
+        #region Constructors
 
-        public SearcherOfRoutes(Repository repository)
+        public SearcherOfRoutes()
         {
-            _repository = repository;
         }
 
         #endregion
 
-        #region "Public methods"
+        #region Public methods
 
-        public SearchResultDirectConnection FindDirectConnection(SoughtConnection soughtConnection)
+        public SearchResultDirectConnection FindDirectConnection(Repository repository, SoughtConnection soughtConnection)
         {
             TimeOfArrival time = new TimeOfArrival(0, 0);
             SearchResultDirectConnection result = new SearchResultDirectConnection("", time, time);
+
             return result;
         }
-
-        #endregion
-
-        #region "Private fields"
-
-        Repository _repository;
 
         #endregion
     }
