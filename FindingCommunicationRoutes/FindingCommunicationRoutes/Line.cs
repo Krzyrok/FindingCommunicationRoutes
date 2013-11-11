@@ -10,7 +10,7 @@ namespace FindingCommunicationRoutes
     /// </summary>
     public class Line
     {
-        public int Number
+        public string Number
         {
             get { return _number; }
         }
@@ -35,7 +35,7 @@ namespace FindingCommunicationRoutes
             get { return _newYearEveTracks; }
         }
 
-        public Line(int lineNumber,
+        public Line(string lineNumber,
             List<Track> WorkingDaysTracks,
             List<Track> SaturdayTracks,
             List<Track> HolidaysTracks,
@@ -66,7 +66,7 @@ namespace FindingCommunicationRoutes
             }
         }
 
-        private int _number;
+        private string _number;
 
         private List<Track> _workingDaysTracks;
         private List<Track> _saturdayTracks;
