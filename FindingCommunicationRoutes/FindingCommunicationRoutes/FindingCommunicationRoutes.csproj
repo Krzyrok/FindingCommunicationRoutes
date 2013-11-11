@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="BusStop.cs" />
     <Compile Include="Controller\CommunicationRoutesController.cs" />
+    <Compile Include="Model\Data\DayTypes\DayTypes.cs" />
+    <Compile Include="Model\Data\DayTypes\GeneratorOfDayTypes.cs" />
+    <Compile Include="Model\Data\DayTypes\EnumDescription.cs" />
     <Compile Include="ReaderCHM.cs" />
     <Compile Include="View\CommunicationRoutesGui.cs">
       <SubType>Form</SubType>

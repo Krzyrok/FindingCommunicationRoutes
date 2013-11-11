@@ -17,6 +17,14 @@ namespace FindingCommunicationRoutes
             InitializeComponent();
         }
 
+        public void DisplayDayTypes(List<string> listOfDayTypes)
+        {      
+            foreach (string typeOfDay in listOfDayTypes)
+            {
+                typeOfDayComboBox.Items.Add(typeOfDay);
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();

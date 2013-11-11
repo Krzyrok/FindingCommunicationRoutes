@@ -81,7 +81,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -105,18 +105,20 @@
             // 
             // startBusStopComboBox
             // 
+            this.startBusStopComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.startBusStopComboBox.FormattingEnabled = true;
             this.startBusStopComboBox.Location = new System.Drawing.Point(90, 43);
             this.startBusStopComboBox.Name = "startBusStopComboBox";
-            this.startBusStopComboBox.Size = new System.Drawing.Size(121, 21);
+            this.startBusStopComboBox.Size = new System.Drawing.Size(148, 21);
             this.startBusStopComboBox.TabIndex = 4;
             // 
             // destinationBusStopComboBox
             // 
+            this.destinationBusStopComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.destinationBusStopComboBox.FormattingEnabled = true;
             this.destinationBusStopComboBox.Location = new System.Drawing.Point(90, 73);
             this.destinationBusStopComboBox.Name = "destinationBusStopComboBox";
-            this.destinationBusStopComboBox.Size = new System.Drawing.Size(121, 21);
+            this.destinationBusStopComboBox.Size = new System.Drawing.Size(148, 21);
             this.destinationBusStopComboBox.TabIndex = 5;
             // 
             // directConnectionsCheckBox
@@ -143,10 +145,11 @@
             // 
             // typeOfDayComboBox
             // 
+            this.typeOfDayComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeOfDayComboBox.FormattingEnabled = true;
             this.typeOfDayComboBox.Location = new System.Drawing.Point(90, 100);
             this.typeOfDayComboBox.Name = "typeOfDayComboBox";
-            this.typeOfDayComboBox.Size = new System.Drawing.Size(121, 21);
+            this.typeOfDayComboBox.Size = new System.Drawing.Size(148, 21);
             this.typeOfDayComboBox.TabIndex = 8;
             // 
             // label4

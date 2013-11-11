@@ -7,5 +7,6 @@ namespace FindingCommunicationRoutes
 {
     public interface ICommunicationRoutesGui
     {
+        void DisplayDayTypes(List<string> listOfDayTypes);
     }
 }

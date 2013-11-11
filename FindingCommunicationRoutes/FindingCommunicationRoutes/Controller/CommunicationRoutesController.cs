@@ -13,10 +13,17 @@ namespace FindingCommunicationRoutes
         {
             _communicationRoutesGui = communicationRoutesGui;
             SetEventHandler();
+            SetDayTypesToGui();
         }
 
         private void SetEventHandler()
         {
+        }
+
+        private void SetDayTypesToGui()
+        {
+            Data.GeneratorOfDayTypes generatorOfDataTypes = new Data.GeneratorOfDayTypes();
+            _communicationRoutesGui.DisplayDayTypes(generatorOfDataTypes.GenerateListOfDayTypes());
         }
     }
 }
