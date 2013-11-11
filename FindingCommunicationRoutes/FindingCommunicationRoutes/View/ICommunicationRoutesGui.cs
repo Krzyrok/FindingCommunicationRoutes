@@ -8,5 +8,6 @@ namespace FindingCommunicationRoutes
     public interface ICommunicationRoutesGui
     {
         void DisplayDayTypes(List<string> listOfDayTypes);
+        void DisplayBusStops(List<string> listOfBusStopsNames);
     }
 }

@@ -25,6 +25,15 @@ namespace FindingCommunicationRoutes
             }
         }
 
+        public void DisplayBusStops(List<string> listOfBusStopsNames)
+        {
+            foreach (string busStopName in listOfBusStopsNames)
+            {
+                startBusStopComboBox.Items.Add(busStopName);
+                destinationBusStopComboBox.Items.Add(busStopName);
+            }
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
