@@ -9,11 +9,17 @@ using System.Windows.Forms;
 
 namespace FindingCommunicationRoutes
 {
-    public partial class Form1 : Form
+    public partial class CommunicationRoutesGui : Form, ICommunicationRoutesGui
     {
-        public Form1()
+
+        public CommunicationRoutesGui()
         {
             InitializeComponent();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

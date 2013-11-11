@@ -32,6 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,13 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusStop.cs" />
-    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\CommunicationRoutesController.cs" />
     <Compile Include="ReaderCHM.cs" />
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\CommunicationRoutesGui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\CommunicationRoutesGui.Designer.cs">
+      <DependentUpon>CommunicationRoutesGui.cs</DependentUpon>
     </Compile>
     <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Repository.cs" />
     <Compile Include="TimeOfArrival.cs" />
     <Compile Include="Track.cs" />
+    <Compile Include="View\ICommunicationRoutesGui.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,6 +71,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\CommunicationRoutesGui.resx">
+      <DependentUpon>CommunicationRoutesGui.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

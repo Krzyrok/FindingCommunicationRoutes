@@ -15,9 +15,9 @@ namespace FindingCommunicationRoutes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            // test for git gui - commit 1
-            // test git gui - commit 2
+            CommunicationRoutesGui gui = new CommunicationRoutesGui();
+            CommunicationRoutesController controller = new CommunicationRoutesController(gui);
+            Application.Run(gui);
         }
     }
 }

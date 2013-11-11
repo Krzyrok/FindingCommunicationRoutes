@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
-    public class Controller
+    public interface ICommunicationRoutesGui
     {
     }
 }
