@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +50,9 @@
     <Compile Include="BusStop.cs" />
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="ReaderCHM.cs" />
+    <Compile Include="ReaderHTML.cs" />
+    <Compile Include="TemporaryTrackNode.cs" />
+    <Compile Include="TrackBuilder.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
