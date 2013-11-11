@@ -15,8 +15,14 @@ namespace FindingCommunicationRoutes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             CommunicationRoutesGui gui = new CommunicationRoutesGui();
-            CommunicationRoutesController controller = new CommunicationRoutesController(gui);
+
+            Repository repository = new Repository(new List<BusStop>());
+            CommunicationRoutesModel model = new CommunicationRoutesModel(repository);
+
+
+            CommunicationRoutesController controller = new CommunicationRoutesController(gui, model);
             Application.Run(gui);
         }
     }
