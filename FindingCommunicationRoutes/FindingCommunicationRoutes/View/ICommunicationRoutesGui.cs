@@ -5,7 +5,8 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
-    public class Controller
+    public interface ICommunicationRoutesGui
     {
+        void DisplayDayTypes(List<string> listOfDayTypes);
     }
 }

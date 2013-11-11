@@ -15,8 +15,9 @@ namespace FindingCommunicationRoutes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            // test 1 for merge
+            CommunicationRoutesGui gui = new CommunicationRoutesGui();
+            CommunicationRoutesController controller = new CommunicationRoutesController(gui);
+            Application.Run(gui);
         }
     }
 }
