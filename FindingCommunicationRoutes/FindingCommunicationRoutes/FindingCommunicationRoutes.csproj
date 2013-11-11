@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Net40\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -51,11 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusStop.cs" />
+    <Compile Include="Model\Data\SoughtConnection.cs" />
     <Compile Include="Controller\CommunicationRoutesController.cs" />
     <Compile Include="Model\Data\DayTypes\DayTypes.cs" />
     <Compile Include="Model\Data\DayTypes\GeneratorOfDayTypes.cs" />
     <Compile Include="Model\Data\DayTypes\EnumDescription.cs" />
     <Compile Include="ReaderCHM.cs" />
+    <Compile Include="Model\Search\SearcherOfRoutes.cs" />
+    <Compile Include="Model\Data\SearchResultDirectConnection.cs" />
     <Compile Include="ReaderHTML.cs" />
     <Compile Include="TemporaryTrackNode.cs" />
     <Compile Include="TrackBuilder.cs" />
