@@ -22,8 +22,15 @@ namespace FindingCommunicationRoutes
 
         public TimeOfArrival(int hour, int minutes)
         {
-            _hour = hour;
-            _minutes = minutes;
+            if (hour <= 23 && hour >= 0 && minutes <= 59 && minutes >= 0)
+            {
+                _hour = hour;
+                _minutes = minutes;
+            }
+            else
+            {
+                throw new ArgumentException("Bad value for 'hour' or 'minutes'");
+            }
         }
 
         public static bool operator >(TimeOfArrival arg1, TimeOfArrival arg2)
