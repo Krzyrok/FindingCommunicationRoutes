@@ -7,23 +7,31 @@ namespace FindingCommunicationRoutes
 {
     public class CommunicationRoutesController
     {
-        private ICommunicationRoutesGui _communicationRoutesGui;
-
-        public CommunicationRoutesController(ICommunicationRoutesGui communicationRoutesGui)
+        public CommunicationRoutesController(ICommunicationRoutesGui communicationRoutesGui, CommunicationRoutesModel communicationRoutesModel)
         {
             _communicationRoutesGui = communicationRoutesGui;
+            _communicationRoutesModel = communicationRoutesModel;
             SetEventHandler();
-            SetDayTypesToGui();
+            SetDayTypesInGui();
+            SetBusStops();
         }
+
+        private ICommunicationRoutesGui _communicationRoutesGui;
+        private CommunicationRoutesModel _communicationRoutesModel;
 
         private void SetEventHandler()
         {
         }
 
-        private void SetDayTypesToGui()
+        private void SetDayTypesInGui()
         {
             Data.GeneratorOfDayTypes generatorOfDataTypes = new Data.GeneratorOfDayTypes();
             _communicationRoutesGui.DisplayDayTypes(generatorOfDataTypes.GenerateListOfDayTypes());
         }
+
+        private void SetBusStops()
+        {
+            _communicationRoutesGui.DisplayBusStops(_communicationRoutesModel.GiveListOfBusStopsNames());
+        }     
     }
 }
