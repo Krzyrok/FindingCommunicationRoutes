@@ -15,15 +15,23 @@ namespace FindingCommunicationRoutes
             get { return _linesPlyingThroughBusStop; }
         }
 
-        public BusStop(List<Line> LinesPlyingThroughBusStop)
+        public string BusStopName
+        {
+            get { return _busStopName; }
+        }
+
+        public BusStop(List<Line> LinesPlyingThroughBusStop, string busStopName)
         {
             if (LinesPlyingThroughBusStop != null)
             {
                 _linesPlyingThroughBusStop = new List<Line>();
                 _linesPlyingThroughBusStop.AddRange(LinesPlyingThroughBusStop);
             }
+
+            _busStopName = busStopName;
         }
 
         private List<Line> _linesPlyingThroughBusStop;
+        private string _busStopName;
     }
 }
