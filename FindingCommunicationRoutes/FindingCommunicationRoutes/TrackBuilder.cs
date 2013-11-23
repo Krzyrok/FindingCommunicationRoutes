@@ -47,12 +47,35 @@ namespace FindingCommunicationRoutes
             return tracks;
         }
 
+        public void Sort()
+        {
+            TimeOfArrival tmp = new TimeOfArrival(0,0);
+            List<TemporaryTrackNode> o = new List<TemporaryTrackNode>();
+            List<List<TemporaryTrackNode>> _tracksData2 = new List<List<TemporaryTrackNode>>();
+            do
+            {
+                foreach (List<TemporaryTrackNode> t in _tracksData)
+                {
+                    if (t.First().Hour > tmp)
+                    {
+                        tmp = new TimeOfArrival(t.First().Hour);
+                        o = t;
+                    }
+                }
+                _tracksData2.Add(o);
+                _tracksData.Remove(o);
+                tmp = new TimeOfArrival(0, 0);
+            } while (_tracksData.Count > 0);
+            _tracksData.AddRange(_tracksData2);
+        }
+
         public void AddListOfNodes(List<TemporaryTrackNode> list)
         {
             foreach (TemporaryTrackNode tmp in list)
             {
                 AddNode(tmp);
             }
+            Sort();
         }
 
         public void AddNode(TemporaryTrackNode node)
@@ -63,32 +86,39 @@ namespace FindingCommunicationRoutes
                 Line = node.Line;
             }
             bool flag = true;
-            int place = 0;
+            int place = 0; // 0;
+            int bestPosition = -1;
             for ( int i = _tracksData.Count-1; i >= 0 ; --i )
+            //for (int i = 0; i < _tracksData.Count; ++i)
             {
                 TemporaryTrackNode tmp = _tracksData.ElementAt(i).Last();
+
                 if (node.DayType.Equals(DayType) &&
                     node.Line.Equals(tmp.Line) &&
                     node.BusStop.Equals(tmp.NextBusStop))
                 {
-                    if (flag && node.Hour > tmp.Hour)
-                    {
-                        flag = false;
-                        place = i + 1;
-                    }
+                    
                     if (node.Hour > tmp.Hour &&
                         node.Letter.Equals(tmp.Letter))
                     {
-                        _tracksData.ElementAt(i).Add(node);
-                        return;
+                        bestPosition = i;
+                        //_tracksData.ElementAt(i).Add(node);
+                        //return;
                     }
                 }
-                else
-                    return;
+                else ;
+                    //break;
             }
-            List<TemporaryTrackNode> tmp2 = new List<TemporaryTrackNode>();
-            tmp2.Add(node);
-            _tracksData.Insert(place, tmp2);
+            if (bestPosition != -1)
+            {
+                _tracksData.ElementAt(bestPosition).Add(node);
+            }
+            else
+            {
+                List<TemporaryTrackNode> tmp2 = new List<TemporaryTrackNode>();
+                tmp2.Add(node);
+                _tracksData.Insert(0, tmp2);
+            }
         }
     }
 }
