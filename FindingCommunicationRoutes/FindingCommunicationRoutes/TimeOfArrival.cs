@@ -20,6 +20,12 @@ namespace FindingCommunicationRoutes
             get { return _minutes; }
         }
 
+        public TimeOfArrival(TimeOfArrival toa)
+        {
+            _hour = toa.Hour;
+            _minutes = toa.Minutes;
+        }
+
         public TimeOfArrival(int hour, int minutes)
         {
             if (hour <= 23 && hour >= 0 && minutes <= 59 && minutes >= 0)

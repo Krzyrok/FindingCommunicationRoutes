@@ -10,67 +10,54 @@ namespace FindingCommunicationRoutes
     /// </summary>
     public class Line
     {
+
+        #region properties
+
         public string Number
         {
             get { return _number; }
         }
 
-        public List<Track> WorkingDaysTracks
+        public List<Track>[] DayTypeTracks
         {
-            get { return _workingDaysTracks; }
+            get { return _dayTypeTracks; }
         }
 
-        public List<Track> SaturdayTracks
-        {
-            get { return _saturdayTracks; }
-        }
+        
+        #endregion
 
-        public List<Track> HolidaysTracks
-        {
-            get { return _holidaysTracks; }
-        }
-
-        public List<Track> NewYearEveTracks
-        {
-            get { return _newYearEveTracks; }
-        }
+        #region constructors
 
         public Line(string lineNumber,
-            List<Track> WorkingDaysTracks,
-            List<Track> SaturdayTracks,
-            List<Track> HolidaysTracks,
-            List<Track> NewYearEveTracks)
+            List<Track>[] DayTypeTracks)
         {
 
             _number = lineNumber;
+            _dayTypeTracks = new List<Track>[DayTypeTracks.Length];
 
-            if (WorkingDaysTracks != null)
+            for (int i = 0; i < DayTypeTracks.Length; ++i)
             {
-                _workingDaysTracks = new List<Track>();
-                _workingDaysTracks.AddRange(WorkingDaysTracks);
+                if (DayTypeTracks[i] != null)
+                {
+                    _dayTypeTracks[i] = new List<Track>();
+                    _dayTypeTracks[i].AddRange(DayTypeTracks[i]);
+                }
             }
-            if (SaturdayTracks != null)
-            {
-                _saturdayTracks = new List<Track>();
-                _saturdayTracks.AddRange(SaturdayTracks);
-            }
-            if (HolidaysTracks != null)
-            {
-                _holidaysTracks = new List<Track>();
-                _holidaysTracks.AddRange(HolidaysTracks);
-            }
-            if (NewYearEveTracks != null)
-            {
-                _newYearEveTracks = new List<Track>();
-                _newYearEveTracks.AddRange(NewYearEveTracks);
-            }
+           
         }
+        #endregion
+
+        #region private fields
 
         private string _number;
 
-        private List<Track> _workingDaysTracks;
-        private List<Track> _saturdayTracks;
-        private List<Track> _holidaysTracks;
-        private List<Track> _newYearEveTracks;
+        private List<Track>[] _dayTypeTracks;
+        //private List<Track> _saturdayTracks;
+        //private List<Track> _holidaysTracks;
+        //private List<Track> _newYearEveTracks;
+        //private List<Track> _soulDayTracks;
+        //private List<Track> _changeSummerTimeTracks;
+        //private List<Track> _christmasEveTracks;
+        #endregion
     }
 }
