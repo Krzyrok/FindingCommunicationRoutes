@@ -39,7 +39,11 @@ namespace FindingCommunicationRoutes
                 Dictionary<string, TimeOfArrival> track = new Dictionary<string, TimeOfArrival>();
                 foreach (TemporaryTrackNode tmp in list)
                 {
-                    track.Add(tmp.BusStop, tmp.Hour);
+                    try
+                    {
+                        track.Add(tmp.BusStop, tmp.Hour);
+                    }
+                    catch { }
                 }
                 tracks.Add(new Track(track));
             }
@@ -85,11 +89,8 @@ namespace FindingCommunicationRoutes
                 DayType = node.DayType;
                 Line = node.Line;
             }
-            bool flag = true;
-            int place = 0; // 0;
             int bestPosition = -1;
             for ( int i = _tracksData.Count-1; i >= 0 ; --i )
-            //for (int i = 0; i < _tracksData.Count; ++i)
             {
                 TemporaryTrackNode tmp = _tracksData.ElementAt(i).Last();
 
@@ -106,8 +107,6 @@ namespace FindingCommunicationRoutes
                         //return;
                     }
                 }
-                else ;
-                    //break;
             }
             if (bestPosition != -1)
             {

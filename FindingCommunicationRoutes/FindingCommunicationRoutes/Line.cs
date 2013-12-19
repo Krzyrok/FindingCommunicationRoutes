@@ -10,7 +10,6 @@ namespace FindingCommunicationRoutes
     /// </summary>
     public class Line
     {
-
         #region properties
 
         public string Number
@@ -28,19 +27,34 @@ namespace FindingCommunicationRoutes
 
         #region constructors
 
+        public Line(Line lineToCopy)
+        {
+            _number = lineToCopy.Number;
+            _dayTypeTracks = new List<Track>[lineToCopy.DayTypeTracks.Length];
+
+            for (int i = 0; i < lineToCopy.DayTypeTracks.Length; ++i)
+            {
+                if (lineToCopy.DayTypeTracks[i] != null)
+                {
+                    _dayTypeTracks[i] = new List<Track>();
+                    _dayTypeTracks[i].AddRange(lineToCopy.DayTypeTracks[i]);
+                }
+            }
+        }
+
         public Line(string lineNumber,
-            List<Track>[] DayTypeTracks)
+            List<Track>[] DayTypeTracksArg)
         {
 
             _number = lineNumber;
-            _dayTypeTracks = new List<Track>[DayTypeTracks.Length];
+            _dayTypeTracks = new List<Track>[DayTypeTracksArg.Length];
 
-            for (int i = 0; i < DayTypeTracks.Length; ++i)
+            for (int i = 0; i < DayTypeTracksArg.Length; ++i)
             {
-                if (DayTypeTracks[i] != null)
+                if (DayTypeTracksArg[i] != null)
                 {
                     _dayTypeTracks[i] = new List<Track>();
-                    _dayTypeTracks[i].AddRange(DayTypeTracks[i]);
+                    _dayTypeTracks[i].AddRange(DayTypeTracksArg[i]);
                 }
             }
            
