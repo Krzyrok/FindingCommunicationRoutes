@@ -45,7 +45,7 @@ namespace FindingCommunicationRoutes
                     }
                     catch { }
                 }
-                tracks.Add(new Track(track));
+                tracks.Add(new Track(track,list.First().DayType));
             }
 
             return tracks;
