@@ -8,6 +8,9 @@ using HtmlAgilityPack;
 
 namespace FindingCommunicationRoutes
 {
+    /// <summary>
+    /// Class used for load html file generated from chm with timetables and collect informations from it.
+    /// </summary>
     public class ReaderHTML
     {
         #region private fields

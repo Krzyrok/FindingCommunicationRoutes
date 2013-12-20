@@ -10,26 +10,48 @@ namespace FindingCommunicationRoutes
     /// </summary>
     public class TrackBuilder
     {
+        /// <summary>
+        /// Structure to store information about tracks before building.
+        /// </summary>
         private List<List<TemporaryTrackNode>> _tracksData;
 
+        /// <summary>
+        /// Gets the type of the day for tracks.
+        /// </summary>
+        /// <value>
+        /// The type of the day for tracks.
+        /// </value>
         public string DayType
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets the bus line.
+        /// </summary>
+        /// <value>
+        /// The bus line.
+        /// </value>
         public string Line
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TrackBuilder"/> class.
+        /// </summary>
         public TrackBuilder()
         {
             DayType = "";
             _tracksData = new List<List<TemporaryTrackNode>>();
         }
 
+        /// <summary>
+        /// Builds the tracks from stored data.
+        /// </summary>
+        /// <returns>List of builded tracks.</returns>
         public List<Track> BuildTracks()
         {
             List<Track> tracks = new List<Track>();
@@ -51,7 +73,10 @@ namespace FindingCommunicationRoutes
             return tracks;
         }
 
-        public void Sort()
+        /// <summary>
+        /// Sorts stored data for correct building process.
+        /// </summary>
+        private void Sort()
         {
             TimeOfArrival tmp = new TimeOfArrival(0,0);
             List<TemporaryTrackNode> o = new List<TemporaryTrackNode>();
@@ -73,6 +98,10 @@ namespace FindingCommunicationRoutes
             _tracksData.AddRange(_tracksData2);
         }
 
+        /// <summary>
+        /// Adds the list of nodes.
+        /// </summary>
+        /// <param name="list">The list of nodes.</param>
         public void AddListOfNodes(List<TemporaryTrackNode> list)
         {
             foreach (TemporaryTrackNode tmp in list)
@@ -82,6 +111,10 @@ namespace FindingCommunicationRoutes
             Sort();
         }
 
+        /// <summary>
+        /// Adds the node.
+        /// </summary>
+        /// <param name="node">The node.</param>
         public void AddNode(TemporaryTrackNode node)
         {
             if (_tracksData.Count == 0)

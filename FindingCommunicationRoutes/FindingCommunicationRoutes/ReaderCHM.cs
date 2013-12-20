@@ -8,21 +8,39 @@ using System.Windows.Forms;
 
 namespace FindingCommunicationRoutes
 {
+    /// <summary>
+    /// Class used for load chm file, decompile it and localize the index.html file.
+    /// </summary>
     public class ReaderCHM
     {
-        private String _filePath;
+        /// <summary>
+        /// The chm file path
+        /// </summary>
+        private String _chmFilePath;
 
+        /// <summary>
+        /// The output path for decompile.
+        /// </summary>
         private String _outputPath;
 
-        public ReaderCHM(String filePathCHM, String outputPathForStoringHTML)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReaderCHM"/> class.
+        /// </summary>
+        /// <param name="CHMfilePath">The CHM file path.</param>
+        /// <param name="outputPathForStoringHTML">The output path for storing HTML.</param>
+        public ReaderCHM(String CHMfilePath, String outputPathForStoringHTML)
         {
-            if (filePathCHM.EndsWith(".chm"))
+            if (CHMfilePath.EndsWith(".chm"))
             {
-                _filePath = filePathCHM;
+                _chmFilePath = CHMfilePath;
                 _outputPath = outputPathForStoringHTML;
             }
         }
 
+        /// <summary>
+        /// Decompiles loaded chm file. To do so uses windows application hh.exe
+        /// </summary>
+        /// <returns>Exit Code of hh.exe</returns>
         public int Decompile()
         {
             Process proc = new Process();
@@ -30,7 +48,7 @@ namespace FindingCommunicationRoutes
             try
             {
                 proc.StartInfo.FileName = "hh.exe";
-                proc.StartInfo.Arguments = "-decompile " + _outputPath + " " + _filePath;
+                proc.StartInfo.Arguments = "-decompile " + _outputPath + " " + _chmFilePath;
                 proc.Start();
                 proc.WaitForExit();
             }
@@ -42,6 +60,10 @@ namespace FindingCommunicationRoutes
             return proc.ExitCode;
         }
 
+        /// <summary>
+        /// Gets the index file from output path.
+        /// </summary>
+        /// <returns>Index.html paths</returns>
         public string[] GetIndexFileFromOutputPath()
         {
             if(_outputPath != null)
