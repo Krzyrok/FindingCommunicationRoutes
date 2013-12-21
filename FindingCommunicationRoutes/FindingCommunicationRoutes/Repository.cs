@@ -15,6 +15,8 @@ namespace FindingCommunicationRoutes
     [Serializable]
     public class Repository
     {
+        #region public fields
+
         /// <summary>
         /// Gets the list of bus stops.
         /// </summary>
@@ -26,6 +28,10 @@ namespace FindingCommunicationRoutes
             get { return LoadDataAboutBusStops(); }
         }
 
+        #endregion
+
+        #region constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Repository"/> class.
         /// </summary>
@@ -34,14 +40,31 @@ namespace FindingCommunicationRoutes
         {
         }
 
-        public void ActualizeFromChm(string chmFilePath, string outPath)
+        #endregion
+
+        #region public methods
+
+        /// <summary>
+        /// Actualizes binary file with data from CHM file.
+        /// </summary>
+        /// <param name="chmFilePath">The CHM file path.</param>
+        /// <param name="outputPath">The output path for html files.</param>
+        public void ActualizeFromChm(string chmFilePath, string outputPath)
         {
-            ReaderCHM chm = new ReaderCHM(chmFilePath, outPath);
+            ReaderCHM chm = new ReaderCHM(chmFilePath, outputPath);
             chm.Decompile();
             ReaderHTML html = new ReaderHTML(chm.GetIndexFileFromOutputPath().First());
             SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines()));
         }
 
+        #endregion
+
+        #region private methods
+
+        /// <summary>
+        /// Saves the data about bus stops in binary file.
+        /// </summary>
+        /// <param name="BusStops">The list of bus stops.</param>
         private void SaveDataAboutBusStops(List<BusStop> BusStops)
         {
             _fs = new FileStream(_repositoryPath, FileMode.Create);
@@ -50,6 +73,10 @@ namespace FindingCommunicationRoutes
             _fs.Close();
         }
 
+        /// <summary>
+        /// Loads the data about bus stops from binary file.
+        /// </summary>
+        /// <returns>List with loaded bus stops</returns>
         private List<BusStop> LoadDataAboutBusStops()
         {
             try
@@ -66,8 +93,20 @@ namespace FindingCommunicationRoutes
             return busStopsList;
         }
 
+        #endregion
+
+        #region private fields
+
+        /// <summary>
+        /// The path to the binary file with repository data.
+        /// </summary>
         private string _repositoryPath = @"repository.bin";
 
+        /// <summary>
+        /// The file stream to binary file.
+        /// </summary>
         private FileStream _fs;
+
+        #endregion
     }
 }

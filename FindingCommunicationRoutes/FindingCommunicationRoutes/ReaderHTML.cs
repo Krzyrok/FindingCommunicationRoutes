@@ -54,7 +54,7 @@ namespace FindingCommunicationRoutes
         /// </value>
         public Repository Repository
         {
-            get { return new Repository(/*GetBusStops(GetBusLines())*/); }
+            get { return new Repository(); }
         }
 
         #endregion
