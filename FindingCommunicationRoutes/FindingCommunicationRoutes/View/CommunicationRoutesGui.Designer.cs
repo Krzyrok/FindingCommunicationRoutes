@@ -197,6 +197,7 @@
             // departureRadioButton
             // 
             this.departureRadioButton.AutoSize = true;
+            this.departureRadioButton.Checked = true;
             this.departureRadioButton.Location = new System.Drawing.Point(88, 153);
             this.departureRadioButton.Name = "departureRadioButton";
             this.departureRadioButton.Size = new System.Drawing.Size(72, 17);
@@ -212,7 +213,6 @@
             this.arrivalRadioButton.Name = "arrivalRadioButton";
             this.arrivalRadioButton.Size = new System.Drawing.Size(54, 17);
             this.arrivalRadioButton.TabIndex = 19;
-            this.arrivalRadioButton.TabStop = true;
             this.arrivalRadioButton.Text = "Arrival";
             this.arrivalRadioButton.UseVisualStyleBackColor = true;
             // 

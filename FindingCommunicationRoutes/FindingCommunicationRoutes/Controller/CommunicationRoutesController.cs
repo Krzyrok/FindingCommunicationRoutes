@@ -5,8 +5,10 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
+    public delegate void InformationAboutActualization(double value);
     public class CommunicationRoutesController
     {
+        private InformationAboutActualization ShowNewTimeForActualization = null;
         public CommunicationRoutesController(ICommunicationRoutesGui communicationRoutesGui, CommunicationRoutesModel communicationRoutesModel)
         {
             _communicationRoutesGui = communicationRoutesGui;
@@ -14,6 +16,9 @@ namespace FindingCommunicationRoutes
             SetEventHandler();
             SetDayTypesInGui();
             SetBusStops();
+            SetDelagete();
+
+
         }
 
         private ICommunicationRoutesGui _communicationRoutesGui;
@@ -27,6 +32,15 @@ namespace FindingCommunicationRoutes
         {
             Data.GeneratorOfDayTypes generatorOfDataTypes = new Data.GeneratorOfDayTypes();
             _communicationRoutesGui.DisplayDayTypes(generatorOfDataTypes.GenerateListOfDayTypes());
+        }
+
+        private void SetDelagete()
+        {
+            ShowNewTimeForActualization += ShowNewTime;
+        }
+        private void ShowNewTime(double value)
+        {
+
         }
 
         private void SetBusStops()
