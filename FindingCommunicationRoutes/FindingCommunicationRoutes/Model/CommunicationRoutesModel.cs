@@ -34,9 +34,9 @@ namespace FindingCommunicationRoutes
         {
             string path = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
             path += "\\HtmlSchedule";
-            _repository.ActualizeFromChm(@"2013-12-18.chm", path);
+            //_repository.ActualizeFromChm(@"2013-12-18.chm", path);
             // should be
-            //_repository.ActualizeFromChm(@"2013-12-18.chm", path, updateDelegate);
+            _repository.ActualizeFromChm(@"2013-12-18.chm", path, updateDelegate);
         }
 
         #endregion
