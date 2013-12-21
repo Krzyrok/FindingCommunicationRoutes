@@ -57,6 +57,31 @@ namespace FindingCommunicationRoutes
             get { return new Repository(); }
         }
 
+        /// <summary>
+        /// Gets the bus stops from list of lines and prerepository (private variable).
+        /// </summary>
+        /// <param name="lines">The list of lines.</param>
+        /// <returns>List of Bus Stops</returns>
+        public List<BusStop> GetBusStops(List<Line> lines)
+        {
+            List<BusStop> busStops = new List<BusStop>();
+
+            foreach (KeyValuePair<string, List<string>> pair in _preRepository)
+            {
+                List<Line> tmplst = new List<Line>();
+                foreach (Line line in lines)
+                {
+                    if (pair.Value.Contains(line.Number))
+                    {
+                        tmplst.Add(new Line(line));
+                    }
+                }
+                busStops.Add(new BusStop(tmplst, pair.Key));
+            }
+
+            return busStops;
+        }
+
         #endregion
 
         #region public methods
@@ -202,31 +227,6 @@ namespace FindingCommunicationRoutes
             }
 
             return busStopsLinksAndNamesx2Directions;
-        }
-
-        /// <summary>
-        /// Gets the bus stops from list of lines and prerepository (private variable).
-        /// </summary>
-        /// <param name="lines">The list of lines.</param>
-        /// <returns>List of Bus Stops</returns>
-        public List<BusStop> GetBusStops(List<Line> lines)
-        {
-            List<BusStop> busStops = new List<BusStop>();
-
-            foreach (KeyValuePair<string, List<string>> pair in _preRepository)
-            {
-                List<Line> tmplst = new List<Line>();
-                foreach (Line line in lines)
-                {
-                    if (pair.Value.Contains(line.Number))
-                    {
-                        tmplst.Add(new Line(line));
-                    }
-                }
-                busStops.Add(new BusStop(tmplst, pair.Key));
-            }
-
-            return busStops;
         }
 
         /// <summary>
