@@ -54,7 +54,7 @@ namespace FindingCommunicationRoutes
         /// </value>
         public Repository Repository
         {
-            get { return new Repository(GetBusStops(GetBusLines())); }
+            get { return new Repository(/*GetBusStops(GetBusLines())*/); }
         }
 
         #endregion
@@ -209,7 +209,7 @@ namespace FindingCommunicationRoutes
         /// </summary>
         /// <param name="lines">The list of lines.</param>
         /// <returns>List of Bus Stops</returns>
-        private List<BusStop> GetBusStops(List<Line> lines)
+        public List<BusStop> GetBusStops(List<Line> lines)
         {
             List<BusStop> busStops = new List<BusStop>();
 

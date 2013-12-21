@@ -8,6 +8,7 @@ namespace FindingCommunicationRoutes
     /// <summary>
     /// Represents the hour and minutes when bus is arriving at the bus stop.
     /// </summary>
+    [Serializable]
     public class TimeOfArrival
     {
         public int Hour

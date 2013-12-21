@@ -8,6 +8,7 @@ namespace FindingCommunicationRoutes
     /// <summary>
     /// Represents the particular bus line (bus number).
     /// </summary>
+    [Serializable]
     public class Line
     {
         #region properties

@@ -8,6 +8,7 @@ namespace FindingCommunicationRoutes
     /// <summary>
     /// Represents a single bus stop.
     /// </summary>
+    [Serializable]
     public class BusStop
     {
         #region public fields

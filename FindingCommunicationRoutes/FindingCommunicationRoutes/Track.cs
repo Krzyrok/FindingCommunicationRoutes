@@ -8,6 +8,7 @@ namespace FindingCommunicationRoutes
     /// <summary>
     /// Represents a single track of a bus line.
     /// </summary>
+    [Serializable]
     public class Track
     {
         public string DayType
