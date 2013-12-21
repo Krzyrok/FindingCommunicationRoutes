@@ -12,11 +12,23 @@ namespace FindingCommunicationRoutes
     {
         #region properties
 
+        /// <summary>
+        /// Gets the number of bus line.
+        /// </summary>
+        /// <value>
+        /// The number of bus line.
+        /// </value>
         public string Number
         {
-            get { return _number; }
+            get { return _busLineNumber; }
         }
 
+        /// <summary>
+        /// Gets the lists of tracks for every specified day type.
+        /// </summary>
+        /// <value>
+        /// The lists of tracks.
+        /// </value>
         public List<Track>[] DayTypeTracks
         {
             get { return _dayTypeTracks; }
@@ -27,9 +39,13 @@ namespace FindingCommunicationRoutes
 
         #region constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Line"/> class from another instance.
+        /// </summary>
+        /// <param name="lineToCopy">The line to copy.</param>
         public Line(Line lineToCopy)
         {
-            _number = lineToCopy.Number;
+            _busLineNumber = lineToCopy.Number;
             _dayTypeTracks = new List<Track>[lineToCopy.DayTypeTracks.Length];
 
             for (int i = 0; i < lineToCopy.DayTypeTracks.Length; ++i)
@@ -42,11 +58,16 @@ namespace FindingCommunicationRoutes
             }
         }
 
-        public Line(string lineNumber,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Line"/> class.
+        /// </summary>
+        /// <param name="busLineNumber">The bus line number.</param>
+        /// <param name="DayTypeTracksArg">Lists of tracks for every specified day type to store.</param>
+        public Line(string busLineNumber,
             List<Track>[] DayTypeTracksArg)
         {
 
-            _number = lineNumber;
+            _busLineNumber = busLineNumber;
             _dayTypeTracks = new List<Track>[DayTypeTracksArg.Length];
 
             for (int i = 0; i < DayTypeTracksArg.Length; ++i)
@@ -63,15 +84,15 @@ namespace FindingCommunicationRoutes
 
         #region private fields
 
-        private string _number;
+        /// <summary>
+        /// The bul line number.
+        /// </summary>
+        private string _busLineNumber;
 
+        /// <summary>
+        /// Lists of tracks for every specified day type stored in Line class.
+        /// </summary>
         private List<Track>[] _dayTypeTracks;
-        //private List<Track> _saturdayTracks;
-        //private List<Track> _holidaysTracks;
-        //private List<Track> _newYearEveTracks;
-        //private List<Track> _soulDayTracks;
-        //private List<Track> _changeSummerTimeTracks;
-        //private List<Track> _christmasEveTracks;
         #endregion
     }
 }

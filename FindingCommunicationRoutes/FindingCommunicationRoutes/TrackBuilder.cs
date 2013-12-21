@@ -63,7 +63,7 @@ namespace FindingCommunicationRoutes
                 {
                     try
                     {
-                        track.Add(tmp.BusStop, tmp.Hour);
+                        track.Add(tmp.BusStopName, tmp.Hour);
                     }
                     catch { }
                 }
@@ -120,7 +120,7 @@ namespace FindingCommunicationRoutes
             if (_tracksData.Count == 0)
             {
                 DayType = node.DayType;
-                Line = node.Line;
+                Line = node.BusLineNumber;
             }
             int bestPosition = -1;
             for ( int i = _tracksData.Count-1; i >= 0 ; --i )
@@ -128,8 +128,8 @@ namespace FindingCommunicationRoutes
                 TemporaryTrackNode tmp = _tracksData.ElementAt(i).Last();
 
                 if (node.DayType.Equals(DayType) &&
-                    node.Line.Equals(tmp.Line) &&
-                    node.BusStop.Equals(tmp.NextBusStop))
+                    node.BusLineNumber.Equals(tmp.BusLineNumber) &&
+                    node.BusStopName.Equals(tmp.NextBusStopName))
                 {
                     
                     if (node.Hour > tmp.Hour &&

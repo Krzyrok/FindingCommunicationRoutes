@@ -10,11 +10,21 @@ namespace FindingCommunicationRoutes
     /// </summary>
     public class Repository
     {
+        /// <summary>
+        /// Gets the list of bus stops.
+        /// </summary>
+        /// <value>
+        /// The bus stops list.
+        /// </value>
         public List<BusStop> BusStops
         {
             get { return _busStops; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Repository"/> class.
+        /// </summary>
+        /// <param name="BusStops">The bus stops list to store.</param>
         public Repository(List<BusStop> BusStops)
         {
             if (BusStops != null)
@@ -24,6 +34,9 @@ namespace FindingCommunicationRoutes
             }
         }
 
+        /// <summary>
+        /// The stored bus stops list.
+        /// </summary>
         private List<BusStop> _busStops;
     }
 }

@@ -13,6 +13,7 @@ namespace FindingCommunicationRoutes
     /// </summary>
     public class ReaderCHM
     {
+        #region private fields
         /// <summary>
         /// The chm file path
         /// </summary>
@@ -22,7 +23,9 @@ namespace FindingCommunicationRoutes
         /// The output path for decompile.
         /// </summary>
         private String _outputPath;
+        #endregion
 
+        #region constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="ReaderCHM"/> class.
         /// </summary>
@@ -36,7 +39,9 @@ namespace FindingCommunicationRoutes
                 _outputPath = outputPathForStoringHTML;
             }
         }
+        #endregion
 
+        #region public methods
         /// <summary>
         /// Decompiles loaded chm file. To do so uses windows application hh.exe
         /// </summary>
@@ -71,5 +76,6 @@ namespace FindingCommunicationRoutes
             else
                 return new string[0];
         }
+        #endregion
     }
 }
