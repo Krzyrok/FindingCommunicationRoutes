@@ -438,7 +438,8 @@ namespace FindingCommunicationRoutes
             HtmlDocument doc = new HtmlDocument();
             int counterOfDayTypes = 0;
 
-            HtmlNodeCollection[] daysTypeNamesAndHours = SelectNodesWithDaysTypeNamesAndHoursFromBusStopSite(doc);         
+            HtmlNodeCollection[] daysTypeNamesAndHours = SelectNodesWithDaysTypeNamesAndHoursFromBusStopSite(doc);
+            if (daysTypeNamesAndHours == null) return null;
             HtmlNodeCollection daysTypeNames = daysTypeNamesAndHours[0];
             HtmlNodeCollection daysTypeHours = daysTypeNamesAndHours[1];
 

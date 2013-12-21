@@ -60,6 +60,23 @@ namespace FindingCommunicationRoutes
             }
         }
 
+        public static TimeOfArrival operator +(TimeOfArrival arg1, TimeOfArrival arg2)
+        {
+            TimeOfArrival tmpTime = new TimeOfArrival(0,0);
+            tmpTime._minutes += arg1._minutes + arg2._minutes;
+            if (tmpTime.Minutes > 59)
+            {
+                tmpTime._minutes -= 60;
+                ++tmpTime._hour;
+            }
+            tmpTime._hour += arg1._hour + arg2._hour;
+            if (tmpTime._hour > 23)
+            {
+                tmpTime._hour -= 24;
+            }
+            return tmpTime;
+        }
+
         public static bool operator <(TimeOfArrival arg1, TimeOfArrival arg2)
         {
             if (arg1.Hour < arg2.Hour)
