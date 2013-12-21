@@ -71,7 +71,7 @@ namespace FindingCommunicationRoutes
         /// <returns>Index.html paths</returns>
         public string[] GetIndexFileFromOutputPath()
         {
-            if(_outputPath != null)
+            if(_outputPath != null && !_outputPath.Equals(""))
                 return Directory.GetFiles(_outputPath,"index.html");
             else
                 return new string[0];

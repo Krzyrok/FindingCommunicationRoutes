@@ -129,15 +129,22 @@ namespace FindingCommunicationRoutes
 
                 if (node.DayType.Equals(DayType) &&
                     node.BusLineNumber.Equals(tmp.BusLineNumber) &&
-                    node.BusStopName.Equals(tmp.NextBusStopName))
+                    !node.BusStopName.Equals(tmp.BusStopName))
+
+                    // OLD WORKING LAST LINE OF IF CONDITION
+
+                    //node.BusStopName.Equals(tmp.NextBusStopName))
                 {
-                    
-                    if (node.Hour > tmp.Hour &&
+                    // OLD WORKING VERSION OF IF
+
+                    //if (node.Hour > tmp.Hour &&
+                    //    node.Letter.Equals(tmp.Letter))
+
+                    // Hour of node must be later than tmp hour, but not more than 14 minutes! (example value)
+                    if (node.Hour > tmp.Hour && node.Hour < tmp.Hour + new TimeOfArrival(0,14) &&
                         node.Letter.Equals(tmp.Letter))
                     {
                         bestPosition = i;
-                        //_tracksData.ElementAt(i).Add(node);
-                        //return;
                     }
                 }
             }
