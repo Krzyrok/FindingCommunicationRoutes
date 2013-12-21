@@ -18,9 +18,8 @@ namespace FindingCommunicationRoutes
             
             CommunicationRoutesGui gui = new CommunicationRoutesGui();
 
-            Repository repository = new Repository(new List<BusStop>());
+            Repository repository = new Repository();
             CommunicationRoutesModel model = new CommunicationRoutesModel(repository);
-
 
             CommunicationRoutesController controller = new CommunicationRoutesController(gui, model);
             Application.Run(gui);

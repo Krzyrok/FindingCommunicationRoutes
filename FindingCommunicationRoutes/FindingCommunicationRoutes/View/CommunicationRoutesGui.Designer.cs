@@ -53,6 +53,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.informationAboutActualizationProgressBar = new System.Windows.Forms.ProgressBar();
+            this.updateScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upperMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hourTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minuteTimeNumericUpDown)).BeginInit();
@@ -72,6 +74,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateScheduleToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -81,7 +84,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -285,11 +288,28 @@
             this.textBox3.Size = new System.Drawing.Size(47, 20);
             this.textBox3.TabIndex = 27;
             // 
+            // informationAboutActualizationProgressBar
+            // 
+            this.informationAboutActualizationProgressBar.Location = new System.Drawing.Point(369, 227);
+            this.informationAboutActualizationProgressBar.Name = "informationAboutActualizationProgressBar";
+            this.informationAboutActualizationProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.informationAboutActualizationProgressBar.TabIndex = 28;
+            this.informationAboutActualizationProgressBar.Visible = false;
+            // 
+            // updateScheduleToolStripMenuItem
+            // 
+            this.updateScheduleToolStripMenuItem.Name = "updateScheduleToolStripMenuItem";
+            this.updateScheduleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.updateScheduleToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.updateScheduleToolStripMenuItem.Text = "&Update schedule";
+            this.updateScheduleToolStripMenuItem.Click += new System.EventHandler(this.updateScheduleToolStripMenuItem_Click);
+            // 
             // CommunicationRoutesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 262);
+            this.Controls.Add(this.informationAboutActualizationProgressBar);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -350,6 +370,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ProgressBar informationAboutActualizationProgressBar;
+        private System.Windows.Forms.ToolStripMenuItem updateScheduleToolStripMenuItem;
 
     }
 }

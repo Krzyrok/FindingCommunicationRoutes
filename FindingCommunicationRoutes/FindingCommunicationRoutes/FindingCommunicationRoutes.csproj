@@ -50,31 +50,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusStop.cs" />
+    <Compile Include="Model\Repository\Data\BusStop.cs" />
     <Compile Include="Model\CommunicationRoutesModel.cs" />
     <Compile Include="Model\Data\SoughtConnection.cs" />
     <Compile Include="Controller\CommunicationRoutesController.cs" />
     <Compile Include="Model\Data\DayTypes\DayTypes.cs" />
     <Compile Include="Model\Data\DayTypes\GeneratorOfDayTypes.cs" />
     <Compile Include="Model\Data\DayTypes\EnumDescription.cs" />
-    <Compile Include="ReaderCHM.cs" />
+    <Compile Include="Model\Repository\Reader\ReaderCHM.cs" />
     <Compile Include="Model\Search\SearcherOfRoutes.cs" />
     <Compile Include="Model\Data\SearchResultDirectConnection.cs" />
-    <Compile Include="ReaderHTML.cs" />
-    <Compile Include="TemporaryTrackNode.cs" />
-    <Compile Include="TrackBuilder.cs" />
+    <Compile Include="Model\Repository\Reader\ReaderHTML.cs" />
+    <Compile Include="Model\Repository\Builder\TemporaryTrackNode.cs" />
+    <Compile Include="Model\Repository\Builder\TrackBuilder.cs" />
     <Compile Include="View\CommunicationRoutesGui.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\CommunicationRoutesGui.Designer.cs">
       <DependentUpon>CommunicationRoutesGui.cs</DependentUpon>
     </Compile>
-    <Compile Include="Line.cs" />
+    <Compile Include="Model\Repository\Data\Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="TimeOfArrival.cs" />
-    <Compile Include="Track.cs" />
+    <Compile Include="Model\Repository\Repository.cs" />
+    <Compile Include="Model\Repository\Data\TimeOfArrival.cs" />
+    <Compile Include="Model\Repository\Data\Track.cs" />
     <Compile Include="View\ICommunicationRoutesGui.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,9 +98,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
