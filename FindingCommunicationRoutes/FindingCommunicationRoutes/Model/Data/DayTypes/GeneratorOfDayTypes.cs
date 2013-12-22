@@ -7,6 +7,8 @@ namespace FindingCommunicationRoutes.Data
 {
     public class GeneratorOfDayTypes
     {
+        #region Public methods
+
         public List<string> GenerateListOfDayTypes()
         {
             List<string> listOfDayTypes = new List<string>();
@@ -17,5 +19,7 @@ namespace FindingCommunicationRoutes.Data
 
             return listOfDayTypes;
         }
+
+        #endregion
     }
 }

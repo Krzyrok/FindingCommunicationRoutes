@@ -9,6 +9,8 @@ namespace FindingCommunicationRoutes.Data
 {
     public class EnumDescription
     {
+        #region Public methods
+
         public static string GetEnumDescription(Enum enumValue)
         {
             FieldInfo info = enumValue.GetType().GetField(enumValue.ToString());
@@ -21,5 +23,7 @@ namespace FindingCommunicationRoutes.Data
             else
                 return enumValue.ToString();
         }
+
+        #endregion
     }
 }

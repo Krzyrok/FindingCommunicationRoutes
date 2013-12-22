@@ -7,7 +7,8 @@ namespace FindingCommunicationRoutes
 {
     public class SoughtConnection
     {
-        #region "Properties"
+        #region Properties
+
         public string StartBusStop
         {
             get { return _startBusStop; }
@@ -37,9 +38,10 @@ namespace FindingCommunicationRoutes
         {
             get { return _isDirectConnection; }
         }
+
         #endregion
 
-        #region "Constructors"
+        #region Constructors
 
         public SoughtConnection(string startBusStop, string endBusStop, string typeOfDay,
             int hour, int minutes, bool isDeparture, bool isDirectConnection) 
@@ -61,7 +63,7 @@ namespace FindingCommunicationRoutes
 
         #endregion
 
-        #region "Private fields"
+        #region Private fields
 
         private string _startBusStop;
         private string _endBusStop;

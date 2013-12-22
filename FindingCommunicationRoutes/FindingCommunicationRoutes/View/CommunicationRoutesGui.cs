@@ -11,19 +11,16 @@ namespace FindingCommunicationRoutes
 {
     public partial class CommunicationRoutesGui : Form, ICommunicationRoutesGui
     {
+        #region Constructors
 
         public CommunicationRoutesGui()
         {
             InitializeComponent();
         }
 
-        public void DisplayDayTypes(List<string> listOfDayTypes)
-        {      
-            foreach (string typeOfDay in listOfDayTypes)
-            {
-                typeOfDayComboBox.Items.Add(typeOfDay);
-            }
-        }
+        #endregion
+
+        #region Public methods
 
         public void DisplayBusStops(List<string> listOfBusStopsNames)
         {
@@ -34,6 +31,17 @@ namespace FindingCommunicationRoutes
             }
         }
 
+        public void SetDateAndTime(DateTime dateTime)
+        {
+            dateOfJourneyDateTimePicker.Value = dateTime.Date;
+            hourTimeNumericUpDown.Value = dateTime.Hour;
+            minuteTimeNumericUpDown.Value = dateTime.Minute;
+        }
+
+        #endregion
+
+        #region Private methods
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -43,5 +51,7 @@ namespace FindingCommunicationRoutes
         {
 
         }
+
+        #endregion
     }
 }

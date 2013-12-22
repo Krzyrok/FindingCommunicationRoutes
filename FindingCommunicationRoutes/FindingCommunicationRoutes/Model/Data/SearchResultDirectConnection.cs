@@ -7,7 +7,8 @@ namespace FindingCommunicationRoutes
 {
     public class SearchResultDirectConnection
     {
-        #region "Properties"
+        #region Properties
+
         public string LineNumber
         {
             get { return _lineNumber; }
@@ -25,7 +26,7 @@ namespace FindingCommunicationRoutes
 
         #endregion
         
-        #region "Constructors"
+        #region Constructors
 
         public SearchResultDirectConnection(string lineNumber, TimeOfArrival departureTime, TimeOfArrival arrivalTime) 
         {
@@ -36,7 +37,7 @@ namespace FindingCommunicationRoutes
 
         #endregion
 
-        #region "Private fields"
+        #region Private fields
 
         private string _lineNumber;
         private TimeOfArrival _departureTime;

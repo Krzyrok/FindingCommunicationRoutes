@@ -9,37 +9,34 @@ namespace FindingCommunicationRoutes
     public class CommunicationRoutesController
     {
         #region Constructors
+
         public CommunicationRoutesController(ICommunicationRoutesGui communicationRoutesGui, CommunicationRoutesModel communicationRoutesModel)
         {
             _communicationRoutesGui = communicationRoutesGui;
             _communicationRoutesModel = communicationRoutesModel;
-            SetEventHandler();
-            SetDayTypesInGui();
-            SetBusStops();
-            SetDelagete();
-
-            
+            SetEventHandlers();
+            SetDelagetes();
+            SetCurrentDateAndTime();
+            SetBusStops();                    
         }
+
         #endregion
 
         #region Private fields
+
         private UpdateInformationAboutActualization ShowNewTimeForActualization = null;
         private ICommunicationRoutesGui _communicationRoutesGui;
         private CommunicationRoutesModel _communicationRoutesModel;
+
         #endregion
 
         #region Private methods
-        private void SetEventHandler()
+
+        private void SetEventHandlers()
         {
         }
 
-        private void SetDayTypesInGui()
-        {
-            Data.GeneratorOfDayTypes generatorOfDataTypes = new Data.GeneratorOfDayTypes();
-            _communicationRoutesGui.DisplayDayTypes(generatorOfDataTypes.GenerateListOfDayTypes());
-        }
-
-        private void SetDelagete()
+        private void SetDelagetes()
         {
             ShowNewTimeForActualization += ShowNewTime;
         }
@@ -47,6 +44,12 @@ namespace FindingCommunicationRoutes
         private void ShowNewTime(double value)
         {
             // here will be update for gui
+        }
+
+        private void SetCurrentDateAndTime()
+        {
+            DateTime actualDateTime = DateTime.Now;
+            _communicationRoutesGui.SetDateAndTime(actualDateTime);
         }
 
         private void SetBusStops()
@@ -58,6 +61,7 @@ namespace FindingCommunicationRoutes
         {
             _communicationRoutesModel.ActualizeRepository(ShowNewTime);
         }
+
         #endregion
 
     }
