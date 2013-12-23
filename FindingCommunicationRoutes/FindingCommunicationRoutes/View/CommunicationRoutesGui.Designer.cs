@@ -13,6 +13,14 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            foreach (System.Threading.Thread thread in _threadsList)
+            {
+                if (thread.ThreadState == System.Threading.ThreadState.Running)
+                {
+                    thread.Abort();
+                }
+            }
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -353,6 +361,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.upperMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "CommunicationRoutesGui";
             this.Text = "Communication Routes";
             this.upperMenuStrip.ResumeLayout(false);

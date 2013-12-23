@@ -21,7 +21,8 @@ namespace FindingCommunicationRoutes
             SetCurrentDateAndTime();
 
             Thread setBusStopsThread = new Thread(new ThreadStart(SetBusStops));
-            setBusStopsThread.Start();               
+            setBusStopsThread.Start();
+            _communicationRoutesGui.SaveThread(setBusStopsThread);
         }
 
         #endregion
@@ -97,8 +98,10 @@ namespace FindingCommunicationRoutes
             {
                 string pathToChm = openFileDialog.FileName;
                 ActualizeRepositoryArgs args = new ActualizeRepositoryArgs(ShowNewTimeForActualization, pathToChm);
+                System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
                 Thread actualizeRepositoryThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.ActualizeRepository));
                 actualizeRepositoryThread.Start(args);
+                _communicationRoutesGui.SaveThread(actualizeRepositoryThread);
             }
         }
 

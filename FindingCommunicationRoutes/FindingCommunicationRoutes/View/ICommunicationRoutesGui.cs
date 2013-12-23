@@ -11,5 +11,6 @@ namespace FindingCommunicationRoutes
         void UpdateInformationAndTimeForLoadingNewSchedule(string information, int valueOfProgressBar);
         object Invoke(Delegate method, params object[] args);
         bool CheckIfInvokeRequired();
+        void SaveThread(System.Threading.Thread threadName);
     }
 }

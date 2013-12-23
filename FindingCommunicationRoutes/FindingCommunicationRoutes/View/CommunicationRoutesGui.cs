@@ -16,6 +16,7 @@ namespace FindingCommunicationRoutes
         public CommunicationRoutesGui()
         {
             InitializeComponent();
+            _threadsList = new List<System.Threading.Thread>();
         }
 
         #endregion
@@ -31,6 +32,11 @@ namespace FindingCommunicationRoutes
         public bool CheckIfInvokeRequired()
         {
             return this.InvokeRequired;
+        }
+
+        public void SaveThread(System.Threading.Thread threadName)
+        {
+            _threadsList.Add(threadName);
         }
 
         public void DisplayBusStops(List<string> listOfBusStopsNames)
@@ -69,7 +75,7 @@ namespace FindingCommunicationRoutes
 
         #region Private fields
 
-        
+        List<System.Threading.Thread> _threadsList;
 
         #endregion
 
@@ -77,7 +83,7 @@ namespace FindingCommunicationRoutes
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose(true);
         }
 
         private void updateScheduleToolStripMenuItem_Click(object sender, EventArgs e)
