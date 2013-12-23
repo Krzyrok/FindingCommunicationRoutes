@@ -57,7 +57,9 @@ namespace FindingCommunicationRoutes
             }
             else if (value == 100.0)
             {
-                _communicationRoutesGui.Invoke(updateTime, "Completed. New schedules loaded.", 100); 
+                _communicationRoutesGui.Invoke(updateTime, "Displaying new bus stops.", 99);
+                SetBusStops();
+                _communicationRoutesGui.Invoke(updateTime, "Completed. New schedules loaded.", 100);
             }
         }
 
@@ -69,7 +71,21 @@ namespace FindingCommunicationRoutes
 
         private void SetBusStops()
         {
-            //_communicationRoutesGui.DisplayBusStops(_communicationRoutesModel.GiveListOfBusStopsNames());
+            List<string> busStopsNamesList = _communicationRoutesModel.GiveListOfBusStopsNames();
+            if (busStopsNamesList == null)
+            {
+                return;
+            }
+            if (_communicationRoutesGui.CheckIfInvokeRequired())
+            {
+                Action<List<string>> displayBusStops = new Action<List<string>>((list) => _communicationRoutesGui.DisplayBusStops(list));
+                _communicationRoutesGui.Invoke(displayBusStops, busStopsNamesList);
+            }
+            else
+            {
+                _communicationRoutesGui.DisplayBusStops(busStopsNamesList);
+            }
+
         }
 
         private void UpdateScheduleWasPressed()

@@ -28,6 +28,11 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
+        public bool CheckIfInvokeRequired()
+        {
+            return this.InvokeRequired;
+        }
+
         public void DisplayBusStops(List<string> listOfBusStopsNames)
         {
             foreach (string busStopName in listOfBusStopsNames)

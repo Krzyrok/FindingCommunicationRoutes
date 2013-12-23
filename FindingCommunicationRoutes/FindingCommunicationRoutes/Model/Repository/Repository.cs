@@ -56,6 +56,7 @@ namespace FindingCommunicationRoutes
             chm.Decompile();
             ReaderHTML html = new ReaderHTML(chm.GetIndexFileFromOutputPath().First());
             SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines(updateDelegate)));
+            updateDelegate(100.0);
         }
 
         #endregion

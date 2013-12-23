@@ -22,6 +22,11 @@ namespace FindingCommunicationRoutes
         {
             List<string> listOfBusStopsNames = new List<string>();
 
+            if (_repository.BusStops == null)
+            {
+                return null;
+            }
+
             foreach (BusStop busStop in _repository.BusStops)
             {
                 listOfBusStopsNames.Add(busStop.BusStopName);

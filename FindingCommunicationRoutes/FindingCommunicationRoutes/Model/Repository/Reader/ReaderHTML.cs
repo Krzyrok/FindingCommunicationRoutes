@@ -118,7 +118,7 @@ namespace FindingCommunicationRoutes
                 ChangeSite(linksAndNames[0][i]);
                 // from line tracks site
                 Line tmpline = GetBusLine(_htmlSitePath, linksAndNames[1][i]);
-                updateDelegate((double)((i + 1) * 100.0 / linksAndNames[0].Count));
+                updateDelegate((double)(i  * 100.0 / linksAndNames[0].Count));
                 if (tmpline != null)
                     lines.Add(tmpline);
             }

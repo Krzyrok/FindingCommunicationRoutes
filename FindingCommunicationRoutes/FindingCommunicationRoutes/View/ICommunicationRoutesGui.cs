@@ -10,5 +10,6 @@ namespace FindingCommunicationRoutes
         void SetDateAndTime(DateTime dateTime);
         void UpdateInformationAndTimeForLoadingNewSchedule(string information, int valueOfProgressBar);
         object Invoke(Delegate method, params object[] args);
+        bool CheckIfInvokeRequired();
     }
 }
