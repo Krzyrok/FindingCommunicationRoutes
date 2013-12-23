@@ -19,7 +19,9 @@ namespace FindingCommunicationRoutes
             SetEventHandlers();
             SetDelagetes();
             SetCurrentDateAndTime();
-            SetBusStops();                    
+
+            Thread setBusStopsThread = new Thread(new ThreadStart(SetBusStops));
+            setBusStopsThread.Start();               
         }
 
         #endregion
@@ -71,21 +73,19 @@ namespace FindingCommunicationRoutes
 
         private void SetBusStops()
         {
+            Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForLoadingNewSchedule(valueString, valueInt));
+            _communicationRoutesGui.Invoke(updateTime, "Loading bus stops.", 0); 
+
             List<string> busStopsNamesList = _communicationRoutesModel.GiveListOfBusStopsNames();
             if (busStopsNamesList == null)
             {
                 return;
             }
-            if (_communicationRoutesGui.CheckIfInvokeRequired())
-            {
-                Action<List<string>> displayBusStops = new Action<List<string>>((list) => _communicationRoutesGui.DisplayBusStops(list));
-                _communicationRoutesGui.Invoke(displayBusStops, busStopsNamesList);
-            }
-            else
-            {
-                _communicationRoutesGui.DisplayBusStops(busStopsNamesList);
-            }
 
+            Action<List<string>> displayBusStops = new Action<List<string>>((list) => _communicationRoutesGui.DisplayBusStops(list));
+            _communicationRoutesGui.Invoke(displayBusStops, busStopsNamesList);
+
+            _communicationRoutesGui.Invoke(updateTime, "Bus stops are loaded.", 100); 
         }
 
         private void UpdateScheduleWasPressed()

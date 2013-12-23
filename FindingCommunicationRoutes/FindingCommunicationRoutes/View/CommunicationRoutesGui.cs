@@ -56,10 +56,12 @@ namespace FindingCommunicationRoutes
             if (valueOfProgressBar != 100)
             {
                 searchButton.Enabled = false;
+                upperMenuStrip.Enabled = false;
             }
             else
             {
                 searchButton.Enabled = true;
+                upperMenuStrip.Enabled = true;
             }
         }
 
