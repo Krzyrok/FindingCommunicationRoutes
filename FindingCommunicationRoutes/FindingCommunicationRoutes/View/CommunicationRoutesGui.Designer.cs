@@ -55,6 +55,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.informationAboutActualizationProgressBar = new System.Windows.Forms.ProgressBar();
             this.dateOfJourneyDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.informationLabel = new System.Windows.Forms.Label();
             this.upperMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hourTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minuteTimeNumericUpDown)).BeginInit();
@@ -67,7 +69,7 @@
             this.fileToolStripMenuItem});
             this.upperMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.upperMenuStrip.Name = "upperMenuStrip";
-            this.upperMenuStrip.Size = new System.Drawing.Size(412, 24);
+            this.upperMenuStrip.Size = new System.Drawing.Size(475, 24);
             this.upperMenuStrip.TabIndex = 1;
             this.upperMenuStrip.Text = "upperMenuStrip";
             // 
@@ -289,11 +291,11 @@
             // 
             // informationAboutActualizationProgressBar
             // 
-            this.informationAboutActualizationProgressBar.Location = new System.Drawing.Point(274, 218);
+            this.informationAboutActualizationProgressBar.Location = new System.Drawing.Point(207, 218);
             this.informationAboutActualizationProgressBar.Name = "informationAboutActualizationProgressBar";
-            this.informationAboutActualizationProgressBar.Size = new System.Drawing.Size(100, 23);
+            this.informationAboutActualizationProgressBar.Size = new System.Drawing.Size(95, 23);
             this.informationAboutActualizationProgressBar.TabIndex = 28;
-            this.informationAboutActualizationProgressBar.Visible = false;
+            this.informationAboutActualizationProgressBar.Value = 100;
             // 
             // dateOfJourneyDateTimePicker
             // 
@@ -302,11 +304,31 @@
             this.dateOfJourneyDateTimePicker.Size = new System.Drawing.Size(147, 20);
             this.dateOfJourneyDateTimePicker.TabIndex = 29;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(204, 195);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(62, 13);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Information:";
+            // 
+            // informationLabel
+            // 
+            this.informationLabel.AutoSize = true;
+            this.informationLabel.Location = new System.Drawing.Point(271, 195);
+            this.informationLabel.Name = "informationLabel";
+            this.informationLabel.Size = new System.Drawing.Size(31, 13);
+            this.informationLabel.TabIndex = 31;
+            this.informationLabel.Text = "none";
+            // 
             // CommunicationRoutesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 264);
+            this.ClientSize = new System.Drawing.Size(475, 264);
+            this.Controls.Add(this.informationLabel);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.dateOfJourneyDateTimePicker);
             this.Controls.Add(this.informationAboutActualizationProgressBar);
             this.Controls.Add(this.textBox3);
@@ -370,6 +392,8 @@
         private System.Windows.Forms.ProgressBar informationAboutActualizationProgressBar;
         private System.Windows.Forms.ToolStripMenuItem updateScheduleToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dateOfJourneyDateTimePicker;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label informationLabel;
 
     }
 }

@@ -99,7 +99,7 @@ namespace FindingCommunicationRoutes
         /// Gets the bus lines.
         /// </summary>
         /// <returns>List of bus lines</returns>
-        public List<Line> GetBusLines(UpdateInformationAboutActualization updateDelegate)
+        public List<Line> GetBusLines(Delegates.UpdateInformationAboutActualization updateDelegate)
         {
             string indexSite = _htmlSitePath;
             List<Line> lines = new List<Line>();
@@ -118,7 +118,7 @@ namespace FindingCommunicationRoutes
                 ChangeSite(linksAndNames[0][i]);
                 // from line tracks site
                 Line tmpline = GetBusLine(_htmlSitePath, linksAndNames[1][i]);
-                updateDelegate(i / linksAndNames[0].Count);
+                updateDelegate((double)((i + 1) * 100.0 / linksAndNames[0].Count));
                 if (tmpline != null)
                     lines.Add(tmpline);
             }

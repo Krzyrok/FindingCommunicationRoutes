@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace FindingCommunicationRoutes
 {
-    public delegate void UpdateInformationAboutActualization(double value);
+    
     public class CommunicationRoutesController
     {
         #region Constructors
@@ -24,7 +25,7 @@ namespace FindingCommunicationRoutes
 
         #region Private fields
 
-        private UpdateInformationAboutActualization ShowNewTimeForActualization = null;
+        private Delegates.UpdateInformationAboutActualization ShowNewTimeForActualization = null;
         private ICommunicationRoutesGui _communicationRoutesGui;
         private CommunicationRoutesModel _communicationRoutesModel;
 
@@ -34,16 +35,29 @@ namespace FindingCommunicationRoutes
 
         private void SetEventHandlers()
         {
+            _communicationRoutesGui.LoadNewScheduleFromFile += UpdateScheduleWasPressed;
         }
 
         private void SetDelagetes()
         {
-            ShowNewTimeForActualization += ShowNewTime;
+            ShowNewTimeForActualization += ActualizeTime;
         }
 
-        private void ShowNewTime(double value)
+        private void ActualizeTime(double value)
         {
-            // here will be update for gui
+            Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForLoadingNewSchedule(valueString, valueInt));
+            if (value == 0.0)
+            {      
+                _communicationRoutesGui.Invoke(updateTime, "Decompilation is running, please wait", 0); 
+            }
+            else if (value < 100.0)
+            {
+                _communicationRoutesGui.Invoke(updateTime, "Loading new schedules, please wait", (int)value); 
+            }
+            else if (value == 100.0)
+            {
+                _communicationRoutesGui.Invoke(updateTime, "Completed. New schedules loaded.", 100); 
+            }
         }
 
         private void SetCurrentDateAndTime()
@@ -59,7 +73,8 @@ namespace FindingCommunicationRoutes
 
         private void UpdateScheduleWasPressed()
         {
-            _communicationRoutesModel.ActualizeRepository(ShowNewTime);
+            Thread actualizeRepositoryThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.ActualizeRepository));
+            actualizeRepositoryThread.Start(ShowNewTimeForActualization);
         }
 
         #endregion

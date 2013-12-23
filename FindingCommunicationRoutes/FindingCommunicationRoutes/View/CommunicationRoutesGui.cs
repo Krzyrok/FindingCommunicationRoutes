@@ -20,6 +20,12 @@ namespace FindingCommunicationRoutes
 
         #endregion
 
+        #region Public fields
+
+        public event Delegates.LoadNewSchedule LoadNewScheduleFromFile = null;
+
+        #endregion
+
         #region Public methods
 
         public void DisplayBusStops(List<string> listOfBusStopsNames)
@@ -38,6 +44,26 @@ namespace FindingCommunicationRoutes
             minuteTimeNumericUpDown.Value = dateTime.Minute;
         }
 
+        public void UpdateInformationAndTimeForLoadingNewSchedule(string information, int valueOfProgressBar)
+        {
+            informationLabel.Text = information;
+            informationAboutActualizationProgressBar.Value = valueOfProgressBar;
+            if (valueOfProgressBar != 100)
+            {
+                searchButton.Enabled = false;
+            }
+            else
+            {
+                searchButton.Enabled = true;
+            }
+        }
+
+        #endregion
+
+        #region Private fields
+
+        
+
         #endregion
 
         #region Private methods
@@ -49,7 +75,10 @@ namespace FindingCommunicationRoutes
 
         private void updateScheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (LoadNewScheduleFromFile != null)
+            {
+                LoadNewScheduleFromFile();
+            }
         }
 
         #endregion
