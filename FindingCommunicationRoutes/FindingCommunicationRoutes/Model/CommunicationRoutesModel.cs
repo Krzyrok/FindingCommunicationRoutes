@@ -30,11 +30,11 @@ namespace FindingCommunicationRoutes
             return listOfBusStopsNames;
         }
 
-        public void ActualizeRepository(object updateDelegate)
+        public void ActualizeRepository(object args)
         {
-            string path = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
-            path += "\\HtmlSchedule";
-            _repository.ActualizeFromChm(@"2013-12-18.chm", path, (Delegates.UpdateInformationAboutActualization)updateDelegate);
+            string pathForHtmlFiles = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
+            pathForHtmlFiles += "\\HtmlSchedule";
+            _repository.ActualizeFromChm(((ActualizeRepositoryArgs)args).PathToChmFile, pathForHtmlFiles, ((ActualizeRepositoryArgs)args).UpdateTimeAboutActualization);
         }
 
         #endregion
