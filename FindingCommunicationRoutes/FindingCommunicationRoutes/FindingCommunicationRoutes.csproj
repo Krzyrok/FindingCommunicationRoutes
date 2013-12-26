@@ -68,6 +68,7 @@
     <Compile Include="Model\Repository\Reader\ReaderHTML.cs" />
     <Compile Include="Model\Repository\Builder\TemporaryTrackNode.cs" />
     <Compile Include="Model\Repository\Builder\TrackBuilder.cs" />
+    <Compile Include="Model\Data\DayTypes\TypeOfDayRecognizer.cs" />
     <Compile Include="View\CommunicationRoutesGui.cs">
       <SubType>Form</SubType>
     </Compile>

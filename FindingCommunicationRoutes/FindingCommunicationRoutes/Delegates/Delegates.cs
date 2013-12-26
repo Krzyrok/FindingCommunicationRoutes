@@ -8,6 +8,5 @@ namespace FindingCommunicationRoutes
     public class Delegates
     {
         public delegate void UpdateInformationAboutActualization(double value);
-        public delegate void LoadNewSchedule();
     }
 }

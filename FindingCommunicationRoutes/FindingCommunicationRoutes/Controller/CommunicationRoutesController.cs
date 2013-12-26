@@ -21,6 +21,7 @@ namespace FindingCommunicationRoutes
             SetCurrentDateAndTime();
 
             Thread setBusStopsThread = new Thread(new ThreadStart(SetBusStops));
+            setBusStopsThread.Name = "Initialize Bus Stops Names";
             setBusStopsThread.Start();
             _communicationRoutesGui.SaveThread(setBusStopsThread);
         }
@@ -40,6 +41,7 @@ namespace FindingCommunicationRoutes
         private void SetEventHandlers()
         {
             _communicationRoutesGui.LoadNewScheduleFromFile += UpdateScheduleWasPressed;
+            _communicationRoutesGui.SearchRoute += SearchRoute;
         }
 
         private void SetDelagetes()
@@ -58,9 +60,12 @@ namespace FindingCommunicationRoutes
             {
                 _communicationRoutesGui.Invoke(updateTime, "Loading new schedules, please wait.", (int)value); 
             }
-            else if (value == 100.0)
+            else if (value == 99.0)
             {
                 _communicationRoutesGui.Invoke(updateTime, "Displaying new bus stops.", 99);
+            }
+            else if (value == 100.0)
+            {
                 SetBusStops();
                 _communicationRoutesGui.Invoke(updateTime, "Completed. New schedules loaded.", 100);
             }
@@ -89,7 +94,7 @@ namespace FindingCommunicationRoutes
             _communicationRoutesGui.Invoke(updateTime, "Bus stops are loaded.", 100); 
         }
 
-        private void UpdateScheduleWasPressed()
+        private void UpdateScheduleWasPressed(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Schedule file|*.chm";
@@ -100,9 +105,20 @@ namespace FindingCommunicationRoutes
                 ActualizeRepositoryArgs args = new ActualizeRepositoryArgs(ShowNewTimeForActualization, pathToChm);
                 System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
                 Thread actualizeRepositoryThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.ActualizeRepository));
+                actualizeRepositoryThread.Name = "Actualize Repository Thread";
                 actualizeRepositoryThread.Start(args);
                 _communicationRoutesGui.SaveThread(actualizeRepositoryThread);
             }
+        }
+
+        private void SearchRoute(object sender, SoughtConnection arg)
+        {
+            if (arg.StartBusStop == "" || arg.EndBusStop == "" || arg.StartBusStop.Equals(arg.EndBusStop))
+            {
+                _communicationRoutesGui.ShowMessage("Wrong data. You have to choose proper bus stops");
+                return;
+            }
+            _communicationRoutesModel.SearchRoute(arg);
         }
 
         #endregion

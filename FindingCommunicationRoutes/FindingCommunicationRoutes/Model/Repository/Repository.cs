@@ -25,7 +25,17 @@ namespace FindingCommunicationRoutes
         /// </value>
         public List<BusStop> BusStops
         {
-            get { return LoadDataAboutBusStops(); }
+            get 
+            {
+                if (_busStopsList == null)
+                {
+                    return LoadDataAboutBusStops();
+                }
+                else
+                {
+                    return _busStopsList;
+                }
+            }
         }
 
         #endregion
@@ -56,6 +66,8 @@ namespace FindingCommunicationRoutes
             chm.Decompile();
             ReaderHTML html = new ReaderHTML(chm.GetIndexFileFromOutputPath().First());
             SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines(updateDelegate)));
+            updateDelegate(99.0);
+            LoadDataAboutBusStops();
             updateDelegate(100.0);
         }
 
@@ -92,12 +104,16 @@ namespace FindingCommunicationRoutes
             BinaryFormatter bf = new BinaryFormatter();
             List<BusStop> busStopsList = (List<BusStop>)bf.Deserialize(_fs);
             _fs.Close();
+
+            _busStopsList = busStopsList;
             return busStopsList;
         }
 
         #endregion
 
         #region private fields
+
+        private List<BusStop> _busStopsList;
 
         /// <summary>
         /// The path to the binary file with repository data.

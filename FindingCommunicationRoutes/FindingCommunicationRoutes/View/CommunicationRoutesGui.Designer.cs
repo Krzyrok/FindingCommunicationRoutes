@@ -132,6 +132,7 @@
             this.startBusStopComboBox.Name = "startBusStopComboBox";
             this.startBusStopComboBox.Size = new System.Drawing.Size(148, 21);
             this.startBusStopComboBox.TabIndex = 4;
+            this.startBusStopComboBox.SelectedIndexChanged += new System.EventHandler(this.startBusStopComboBox_SelectedIndexChanged);
             // 
             // destinationBusStopComboBox
             // 
@@ -141,6 +142,7 @@
             this.destinationBusStopComboBox.Name = "destinationBusStopComboBox";
             this.destinationBusStopComboBox.Size = new System.Drawing.Size(148, 21);
             this.destinationBusStopComboBox.TabIndex = 5;
+            this.destinationBusStopComboBox.SelectedIndexChanged += new System.EventHandler(this.destinationBusStopComboBox_SelectedIndexChanged);
             // 
             // directConnectionsCheckBox
             // 
@@ -230,12 +232,14 @@
             // 
             // searchButton
             // 
+            this.searchButton.Enabled = false;
             this.searchButton.Location = new System.Drawing.Point(50, 218);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 20;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // label6
             // 
@@ -278,7 +282,7 @@
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(327, 65);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(47, 20);
+            this.textBox1.Size = new System.Drawing.Size(103, 20);
             this.textBox1.TabIndex = 25;
             // 
             // textBox2
@@ -286,7 +290,7 @@
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(327, 92);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(47, 20);
+            this.textBox2.Size = new System.Drawing.Size(103, 20);
             this.textBox2.TabIndex = 26;
             // 
             // textBox3
@@ -294,7 +298,7 @@
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(327, 118);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(47, 20);
+            this.textBox3.Size = new System.Drawing.Size(103, 20);
             this.textBox3.TabIndex = 27;
             // 
             // informationAboutActualizationProgressBar

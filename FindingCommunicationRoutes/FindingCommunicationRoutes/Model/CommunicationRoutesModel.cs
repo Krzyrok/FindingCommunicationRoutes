@@ -31,8 +31,19 @@ namespace FindingCommunicationRoutes
             {
                 listOfBusStopsNames.Add(busStop.BusStopName);
             }
-
+            listOfBusStopsNames.Sort();
             return listOfBusStopsNames;
+        }
+
+        public SearchResultDirectConnection SearchRoute(SoughtConnection soughtConnection)
+        {
+            SearcherOfRoutes searcher = new SearcherOfRoutes();
+            if (soughtConnection.IsDirectConnection)
+            {
+                return searcher.FindDirectConnection(_repository, soughtConnection);
+            }
+
+            return null;
         }
 
         public void ActualizeRepository(object args)

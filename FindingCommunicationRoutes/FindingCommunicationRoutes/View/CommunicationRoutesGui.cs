@@ -23,7 +23,8 @@ namespace FindingCommunicationRoutes
 
         #region Public fields
 
-        public event Delegates.LoadNewSchedule LoadNewScheduleFromFile = null;
+        public event EventHandler LoadNewScheduleFromFile = null;
+        public event EventHandler<SoughtConnection> SearchRoute = null;
 
         #endregion
 
@@ -55,6 +56,11 @@ namespace FindingCommunicationRoutes
             minuteTimeNumericUpDown.Value = dateTime.Minute;
         }
 
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
         public void UpdateInformationAndTimeForLoadingNewSchedule(string information, int valueOfProgressBar)
         {
             informationLabel.Text = information;
@@ -66,8 +72,11 @@ namespace FindingCommunicationRoutes
             }
             else
             {
-                searchButton.Enabled = true;
                 upperMenuStrip.Enabled = true;
+                if (startBusStopComboBox.Text != "" && destinationBusStopComboBox.Text != "")
+                {
+                    searchButton.Enabled = true;                 
+                }
             }
         }
 
@@ -90,10 +99,46 @@ namespace FindingCommunicationRoutes
         {
             if (LoadNewScheduleFromFile != null)
             {
-                LoadNewScheduleFromFile();
+                LoadNewScheduleFromFile(sender, e);
+            }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            if (SearchRoute != null)
+            {
+                string startBusStop = startBusStopComboBox.Text;
+                string endBusStop = destinationBusStopComboBox.Text;
+                DateTime day = dateOfJourneyDateTimePicker.Value;
+                int hour = (int)hourTimeNumericUpDown.Value;
+                int minute = (int)minuteTimeNumericUpDown.Value;
+                DateTime dateTime = new DateTime(day.Year, day.Month, day.Day, hour, minute, 0);
+                bool departureChecked = departureRadioButton.Checked;
+                bool directConnection = directConnectionsCheckBox.Checked;
+                
+                SoughtConnection soughtConnection = new SoughtConnection(startBusStop, endBusStop, dateTime, departureChecked, directConnection);
+                SearchRoute(sender, soughtConnection);
+            }
+        }
+
+        private void startBusStopComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (destinationBusStopComboBox.Text != "")
+            {
+                searchButton.Enabled = true;  
+            }
+        }
+
+        private void destinationBusStopComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (startBusStopComboBox.Text != "")
+            {
+                searchButton.Enabled = true;  
             }
         }
 
         #endregion
+
+
     }
 }

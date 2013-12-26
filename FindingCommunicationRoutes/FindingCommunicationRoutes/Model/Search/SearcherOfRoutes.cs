@@ -22,6 +22,27 @@ namespace FindingCommunicationRoutes
             TimeOfArrival time = new TimeOfArrival(0, 0);
             SearchResultDirectConnection result = new SearchResultDirectConnection("", time, time);
 
+            List<BusStop> busStops = repository.BusStops;
+            if (busStops == null)
+            {
+                return null;
+            }
+
+            BusStop startBusStop;
+            BusStop endBusStop;
+
+            foreach (BusStop busStop in busStops)
+            {
+                if (soughtConnection.StartBusStop.Equals(busStop.BusStopName))
+                {
+                    startBusStop = busStop;
+                }
+                else if (soughtConnection.EndBusStop.Equals(busStop.BusStopName))
+                {
+                    endBusStop = busStop;
+                }
+            }
+
             return result;
         }
 

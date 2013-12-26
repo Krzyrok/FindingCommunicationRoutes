@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
-    public class SoughtConnection
+    public class SoughtConnection : EventArgs
     {
         #region Properties
 
@@ -19,14 +19,9 @@ namespace FindingCommunicationRoutes
             get { return _endBusStop; }
         }
 
-        public string TypeOfDay
+        public DateTime DateTime
         {
-            get { return _typeOfDay; }
-        }
-
-        public TimeOfArrival TimeOfArrival
-        {
-            get { return _timeOfArrival; }
+            get { return _dateTime; }
         }
 
         public bool IsDeparture
@@ -43,20 +38,28 @@ namespace FindingCommunicationRoutes
 
         #region Constructors
 
-        public SoughtConnection(string startBusStop, string endBusStop, string typeOfDay,
-            int hour, int minutes, bool isDeparture, bool isDirectConnection) 
-            : this(startBusStop, endBusStop, typeOfDay,
-                    new TimeOfArrival(hour, minutes), isDeparture, isDirectConnection)
+        public SoughtConnection(string startBusStop, string endBusStop, int year, int month, 
+            int day, int hour, int minutes, bool isDeparture, bool isDirectConnection)
+            : this(startBusStop, endBusStop,
+                new DateTime(year, month, day, hour, minutes, 0),
+                isDeparture, isDirectConnection)
         {
         }
 
-        public SoughtConnection(string startBusStop, string endBusStop, string typeOfDay,
-            TimeOfArrival timeOfArrival, bool isDeparture, bool isDirectConnection)
+        public SoughtConnection(string startBusStop, string endBusStop, DateTime date,
+            int hour, int minutes, bool isDeparture, bool isDirectConnection)
+            : this(startBusStop, endBusStop, 
+                    new DateTime(date.Year, date.Month, date.Day, hour, minutes, 0), 
+                    isDeparture, isDirectConnection)
+        {
+        }
+
+        public SoughtConnection(string startBusStop, string endBusStop, DateTime date, 
+            bool isDeparture, bool isDirectConnection)
         {
             _startBusStop = startBusStop;
             _endBusStop = endBusStop;
-            _typeOfDay = typeOfDay;
-            _timeOfArrival = timeOfArrival;
+            _dateTime = date;
             _isDeparture = isDeparture;
             _isDirectConnection = isDirectConnection;
         }
@@ -67,8 +70,7 @@ namespace FindingCommunicationRoutes
 
         private string _startBusStop;
         private string _endBusStop;
-        private string _typeOfDay;
-        private TimeOfArrival _timeOfArrival;
+        private DateTime _dateTime;
         private bool _isDeparture;
         private bool _isDirectConnection;
 
