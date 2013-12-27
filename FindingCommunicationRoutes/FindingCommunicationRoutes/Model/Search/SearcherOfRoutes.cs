@@ -28,6 +28,9 @@ namespace FindingCommunicationRoutes
                 return null;
             }
 
+            TypeOfDayRecognizer dayRecognizer = new TypeOfDayRecognizer();
+            List<string> dayType = dayRecognizer.RecognizeTypeOfDay(soughtConnection.DateTime);
+
             BusStop startBusStop;
             BusStop endBusStop;
 
