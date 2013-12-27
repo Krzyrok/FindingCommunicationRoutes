@@ -98,7 +98,7 @@ namespace FindingCommunicationRoutes
 
             bool isWorkingDay = dayOfWeek == DayOfWeek.Monday || dayOfWeek == DayOfWeek.Tuesday || dayOfWeek == DayOfWeek.Wednesday || dayOfWeek == DayOfWeek.Thursday || dayOfWeek == DayOfWeek.Friday;
             bool isWinterHoliday = (day >= 20 && month == 1) || (day <= 2 && month == 2);
-            bool isBreakInSchool = (day >= 17 && day <= 22 && month == 4);
+            bool isBreakInSchool = (day >= 17 && day <= 22 && month == 4) || (day >= 23 && month == 12);
             if (isWorkingDay && !isHoliday && !isBreakInSchool && !isFreeDayInMall)
             {
                 result.Add("Robocze szkolne i w ferie");
