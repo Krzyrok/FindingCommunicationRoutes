@@ -85,7 +85,7 @@ namespace FindingCommunicationRoutes
             {
                 foreach (List<TemporaryTrackNode> t in _tracksData)
                 {
-                    if (t.First().Hour > tmp)
+                    if (t.First().Hour >= tmp)
                     {
                         tmp = new TimeOfArrival(t.First().Hour);
                         o = t;
