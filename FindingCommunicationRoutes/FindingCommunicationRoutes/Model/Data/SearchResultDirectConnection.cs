@@ -13,17 +13,22 @@ namespace FindingCommunicationRoutes
         public TimeOfArrival DepartureTime { get; private set; }
         public TimeOfArrival ArrivalTime { get; private set; }
         public TimeOfArrival TimeDistanceBetweenBusStops { get; private set; }
+        public string StartBusStopName { get; private set; }
+        public string EndBusStopName { get; private set; }
 
         #endregion
         
         #region Constructors
 
-        public SearchResultDirectConnection(string lineNumber, TimeOfArrival departureTime, TimeOfArrival arrivalTime, TimeOfArrival timeDistanceBetweenBusStops) 
+        public SearchResultDirectConnection(string lineNumber, TimeOfArrival departureTime, TimeOfArrival arrivalTime, TimeOfArrival timeDistanceBetweenBusStops,
+            string startBusStopName, string endBusStopName) 
         {
             LineNumber = lineNumber;
             DepartureTime = departureTime;
             ArrivalTime = arrivalTime;
             TimeDistanceBetweenBusStops = timeDistanceBetweenBusStops;
+            StartBusStopName = startBusStopName;
+            EndBusStopName = endBusStopName;
         }
 
         #endregion

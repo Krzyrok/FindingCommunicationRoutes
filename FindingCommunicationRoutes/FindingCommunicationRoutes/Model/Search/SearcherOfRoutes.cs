@@ -95,13 +95,16 @@ namespace FindingCommunicationRoutes
                             {
                                 if (result == null)
                                 {
-                                    result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop);
+                                    
+                                    result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, 
+                                        timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                 }
                                 else
                                 {
                                     if (result.ArrivalTime > endBusStopTimeOfArrival)
                                     {
-                                        result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop);
+                                        result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
+                                            timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                     }
                                 }
                             }
@@ -113,13 +116,15 @@ namespace FindingCommunicationRoutes
                             {
                                 if (result == null)
                                 {
-                                    result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop);
+                                    result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
+                                        timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                 }
                                 else
                                 {
                                     if (result.DepartureTime < startBusStopTimeOfArrival)
                                     {
-                                        result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop);
+                                        result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
+                                            timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                     }
                                 }
                             }
