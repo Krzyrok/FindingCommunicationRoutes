@@ -9,25 +9,10 @@ namespace FindingCommunicationRoutes
     {
         #region Properties
 
-        public string LineNumber
-        {
-            get { return _lineNumber; }
-        }
-
-        public TimeOfArrival DepartureTime
-        {
-            get { return _departureTime; }
-        }
-
-        public TimeOfArrival ArrivalTime
-        {
-            get { return _arrivalTime; }
-        }
-
-        public TimeOfArrival TimeDistanceBetweenBusStops
-        {
-            get { return _timeDistanceBetweenBusStops; }
-        }
+        public string LineNumber { get; private set; }
+        public TimeOfArrival DepartureTime { get; private set; }
+        public TimeOfArrival ArrivalTime { get; private set; }
+        public TimeOfArrival TimeDistanceBetweenBusStops { get; private set; }
 
         #endregion
         
@@ -35,20 +20,20 @@ namespace FindingCommunicationRoutes
 
         public SearchResultDirectConnection(string lineNumber, TimeOfArrival departureTime, TimeOfArrival arrivalTime, TimeOfArrival timeDistanceBetweenBusStops) 
         {
-            _lineNumber = lineNumber;
-            _departureTime = departureTime;
-            _arrivalTime = arrivalTime;
-            _timeDistanceBetweenBusStops = timeDistanceBetweenBusStops;
+            LineNumber = lineNumber;
+            DepartureTime = departureTime;
+            ArrivalTime = arrivalTime;
+            TimeDistanceBetweenBusStops = timeDistanceBetweenBusStops;
         }
 
         #endregion
 
-        #region Private fields
+        #region Public methods
 
-        private string _lineNumber;
-        private TimeOfArrival _departureTime;
-        private TimeOfArrival _arrivalTime;
-        private TimeOfArrival _timeDistanceBetweenBusStops;
+        public override string ToString()
+        {
+            return LineNumber;
+        }
 
         #endregion
     }

@@ -9,25 +9,10 @@ namespace FindingCommunicationRoutes
     {
         #region Properties
 
-        public string StartBusStop
-        {
-            get { return _startBusStop; }
-        }
-
-        public string EndBusStop
-        {
-            get { return _endBusStop; }
-        }
-
-        public DateTime DateTime
-        {
-            get { return _dateTime; }
-        }
-
-        public bool IsDeparture
-        {
-            get { return _isDeparture; }
-        }
+        public string StartBusStop { get; private set; }
+        public string EndBusStop { get; private set; }
+        public DateTime DateAndTime { get; private set; }
+        public bool IsDeparture { get; private set; }
 
         #endregion
 
@@ -52,20 +37,11 @@ namespace FindingCommunicationRoutes
         public SoughtConnection(string startBusStop, string endBusStop, DateTime date, 
             bool isDeparture)
         {
-            _startBusStop = startBusStop;
-            _endBusStop = endBusStop;
-            _dateTime = date;
-            _isDeparture = isDeparture;
+            StartBusStop = startBusStop;
+            EndBusStop = endBusStop;
+            DateAndTime = date;
+            IsDeparture = isDeparture;
         }
-
-        #endregion
-
-        #region Private fields
-
-        private string _startBusStop;
-        private string _endBusStop;
-        private DateTime _dateTime;
-        private bool _isDeparture;
 
         #endregion
     }

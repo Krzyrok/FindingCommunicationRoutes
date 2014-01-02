@@ -76,7 +76,7 @@
             this.fileToolStripMenuItem});
             this.upperMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.upperMenuStrip.Name = "upperMenuStrip";
-            this.upperMenuStrip.Size = new System.Drawing.Size(475, 24);
+            this.upperMenuStrip.Size = new System.Drawing.Size(529, 24);
             this.upperMenuStrip.TabIndex = 1;
             this.upperMenuStrip.Text = "upperMenuStrip";
             // 
@@ -324,7 +324,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 264);
+            this.ClientSize = new System.Drawing.Size(529, 264);
             this.Controls.Add(this.informationLabel);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dateOfJourneyDateTimePicker);

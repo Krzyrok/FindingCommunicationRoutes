@@ -26,7 +26,7 @@ namespace FindingCommunicationRoutes
             }
 
             TypeOfDayRecognizer dayRecognizer = new TypeOfDayRecognizer();
-            List<string> dayType = dayRecognizer.RecognizeTypeOfDay(soughtConnection.DateTime);
+            List<string> dayType = dayRecognizer.RecognizeTypeOfDay(soughtConnection.DateAndTime);
 
             BusStop startBusStop = null;
             BusStop endBusStop = null;
@@ -91,7 +91,7 @@ namespace FindingCommunicationRoutes
                         TimeOfArrival timeDistanceBetweenStartAndEndBusStop = endBusStopTimeOfArrival - startBusStopTimeOfArrival;
                         if (soughtConnection.IsDeparture)
                         {
-                            if (startBusStopTimeOfArrival >= new TimeOfArrival(soughtConnection.DateTime.Hour, soughtConnection.DateTime.Minute))
+                            if (startBusStopTimeOfArrival >= new TimeOfArrival(soughtConnection.DateAndTime.Hour, soughtConnection.DateAndTime.Minute))
                             {
                                 if (result == null)
                                 {
@@ -109,7 +109,7 @@ namespace FindingCommunicationRoutes
                         }
                         else
                         {
-                            if (endBusStopTimeOfArrival <= new TimeOfArrival(soughtConnection.DateTime.Hour, soughtConnection.DateTime.Minute))
+                            if (endBusStopTimeOfArrival <= new TimeOfArrival(soughtConnection.DateAndTime.Hour, soughtConnection.DateAndTime.Minute))
                             {
                                 if (result == null)
                                 {
