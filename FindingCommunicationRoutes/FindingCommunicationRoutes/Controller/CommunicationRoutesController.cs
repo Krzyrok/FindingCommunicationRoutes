@@ -53,12 +53,12 @@ namespace FindingCommunicationRoutes
         {
             Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForLoadingNewSchedule(valueString, valueInt));
             if (value == 0.0)
-            {      
-                _communicationRoutesGui.Invoke(updateTime, "Decompilation is running, please wait.", 0); 
+            {
+                _communicationRoutesGui.Invoke(updateTime, "Decompilation is running, please wait.", 0);
             }
             else if (value < 100.0)
             {
-                _communicationRoutesGui.Invoke(updateTime, "Loading new schedules, please wait.", (int)value); 
+                _communicationRoutesGui.Invoke(updateTime, "Loading new schedules, please wait.", (int)value);
             }
             else if (value == 99.0)
             {
@@ -80,19 +80,19 @@ namespace FindingCommunicationRoutes
         private void SetBusStops()
         {
             Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForLoadingNewSchedule(valueString, valueInt));
-            _communicationRoutesGui.Invoke(updateTime, "Loading bus stops.", 0); 
+            _communicationRoutesGui.Invoke(updateTime, "Loading bus stops.", 0);
 
             List<string> busStopsNamesList = _communicationRoutesModel.GiveListOfBusStopsNames();
             if (busStopsNamesList == null)
             {
-                _communicationRoutesGui.Invoke(updateTime, "You have to choose the CHM file.", 100); 
+                _communicationRoutesGui.Invoke(updateTime, "You have to choose the CHM file.", 100);
                 return;
             }
 
             Action<List<string>> displayBusStops = new Action<List<string>>((list) => _communicationRoutesGui.DisplayBusStops(list));
             _communicationRoutesGui.Invoke(displayBusStops, busStopsNamesList);
 
-            _communicationRoutesGui.Invoke(updateTime, "Bus stops are loaded.", 100); 
+            _communicationRoutesGui.Invoke(updateTime, "Bus stops are loaded.", 100);
         }
 
         private void UpdateScheduleWasPressed(object sender, EventArgs e)
@@ -104,7 +104,6 @@ namespace FindingCommunicationRoutes
             {
                 string pathToChm = openFileDialog.FileName;
                 ActualizeRepositoryArgs args = new ActualizeRepositoryArgs(ShowNewTimeForActualization, pathToChm);
-                System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
                 Thread actualizeRepositoryThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.ActualizeRepository));
                 actualizeRepositoryThread.Name = "Actualize Repository Thread";
                 actualizeRepositoryThread.Start(args);
