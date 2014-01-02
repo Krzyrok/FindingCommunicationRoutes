@@ -120,6 +120,10 @@ namespace FindingCommunicationRoutes
                 return;
             }
             SearchResultDirectConnection result = _communicationRoutesModel.SearchRoute(arg);
+            if (result == null)
+            {
+                return;
+            }
             _communicationRoutesGui.ShowResultOfSearching(result);
         }
 
