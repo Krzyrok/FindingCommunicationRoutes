@@ -85,6 +85,7 @@ namespace FindingCommunicationRoutes
             List<string> busStopsNamesList = _communicationRoutesModel.GiveListOfBusStopsNames();
             if (busStopsNamesList == null)
             {
+                _communicationRoutesGui.Invoke(updateTime, "You have to choose the CHM file.", 100); 
                 return;
             }
 
@@ -118,7 +119,8 @@ namespace FindingCommunicationRoutes
                 _communicationRoutesGui.ShowMessage("Wrong data. You have to choose proper bus stops");
                 return;
             }
-            _communicationRoutesModel.SearchRoute(arg);
+            SearchResultDirectConnection result = _communicationRoutesModel.SearchRoute(arg);
+            _communicationRoutesGui.ShowResultOfSearching(result);
         }
 
         #endregion

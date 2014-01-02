@@ -45,7 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.startBusStopComboBox = new System.Windows.Forms.ComboBox();
             this.destinationBusStopComboBox = new System.Windows.Forms.ComboBox();
-            this.directConnectionsCheckBox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,9 +57,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lineResultTextBox = new System.Windows.Forms.TextBox();
+            this.timeOfDepartureResultTextBox = new System.Windows.Forms.TextBox();
+            this.timeOfArrivalResultTextBox = new System.Windows.Forms.TextBox();
             this.informationAboutActualizationProgressBar = new System.Windows.Forms.ProgressBar();
             this.dateOfJourneyDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
@@ -143,19 +142,6 @@
             this.destinationBusStopComboBox.Size = new System.Drawing.Size(148, 21);
             this.destinationBusStopComboBox.TabIndex = 5;
             this.destinationBusStopComboBox.SelectedIndexChanged += new System.EventHandler(this.destinationBusStopComboBox_SelectedIndexChanged);
-            // 
-            // directConnectionsCheckBox
-            // 
-            this.directConnectionsCheckBox.AutoSize = true;
-            this.directConnectionsCheckBox.Checked = true;
-            this.directConnectionsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.directConnectionsCheckBox.Enabled = false;
-            this.directConnectionsCheckBox.Location = new System.Drawing.Point(18, 195);
-            this.directConnectionsCheckBox.Name = "directConnectionsCheckBox";
-            this.directConnectionsCheckBox.Size = new System.Drawing.Size(137, 17);
-            this.directConnectionsCheckBox.TabIndex = 6;
-            this.directConnectionsCheckBox.Text = "Only direct connections";
-            this.directConnectionsCheckBox.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -277,29 +263,29 @@
             this.label9.TabIndex = 24;
             this.label9.Text = "Time of arrival:";
             // 
-            // textBox1
+            // lineResultTextBox
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(327, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(103, 20);
-            this.textBox1.TabIndex = 25;
+            this.lineResultTextBox.Enabled = false;
+            this.lineResultTextBox.Location = new System.Drawing.Point(327, 65);
+            this.lineResultTextBox.Name = "lineResultTextBox";
+            this.lineResultTextBox.Size = new System.Drawing.Size(103, 20);
+            this.lineResultTextBox.TabIndex = 25;
             // 
-            // textBox2
+            // timeOfDepartureResultTextBox
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(327, 92);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(103, 20);
-            this.textBox2.TabIndex = 26;
+            this.timeOfDepartureResultTextBox.Enabled = false;
+            this.timeOfDepartureResultTextBox.Location = new System.Drawing.Point(327, 92);
+            this.timeOfDepartureResultTextBox.Name = "timeOfDepartureResultTextBox";
+            this.timeOfDepartureResultTextBox.Size = new System.Drawing.Size(103, 20);
+            this.timeOfDepartureResultTextBox.TabIndex = 26;
             // 
-            // textBox3
+            // timeOfArrivalResultTextBox
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(327, 118);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(103, 20);
-            this.textBox3.TabIndex = 27;
+            this.timeOfArrivalResultTextBox.Enabled = false;
+            this.timeOfArrivalResultTextBox.Location = new System.Drawing.Point(327, 118);
+            this.timeOfArrivalResultTextBox.Name = "timeOfArrivalResultTextBox";
+            this.timeOfArrivalResultTextBox.Size = new System.Drawing.Size(103, 20);
+            this.timeOfArrivalResultTextBox.TabIndex = 27;
             // 
             // informationAboutActualizationProgressBar
             // 
@@ -343,9 +329,9 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dateOfJourneyDateTimePicker);
             this.Controls.Add(this.informationAboutActualizationProgressBar);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.timeOfArrivalResultTextBox);
+            this.Controls.Add(this.timeOfDepartureResultTextBox);
+            this.Controls.Add(this.lineResultTextBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -358,7 +344,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.directConnectionsCheckBox);
             this.Controls.Add(this.destinationBusStopComboBox);
             this.Controls.Add(this.startBusStopComboBox);
             this.Controls.Add(this.label2);
@@ -386,7 +371,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox startBusStopComboBox;
         private System.Windows.Forms.ComboBox destinationBusStopComboBox;
-        private System.Windows.Forms.CheckBox directConnectionsCheckBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -399,9 +383,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox lineResultTextBox;
+        private System.Windows.Forms.TextBox timeOfDepartureResultTextBox;
+        private System.Windows.Forms.TextBox timeOfArrivalResultTextBox;
         private System.Windows.Forms.ProgressBar informationAboutActualizationProgressBar;
         private System.Windows.Forms.ToolStripMenuItem updateScheduleToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dateOfJourneyDateTimePicker;

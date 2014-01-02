@@ -29,39 +29,33 @@ namespace FindingCommunicationRoutes
             get { return _isDeparture; }
         }
 
-        public bool IsDirectConnection
-        {
-            get { return _isDirectConnection; }
-        }
-
         #endregion
 
         #region Constructors
 
         public SoughtConnection(string startBusStop, string endBusStop, int year, int month, 
-            int day, int hour, int minutes, bool isDeparture, bool isDirectConnection)
+            int day, int hour, int minutes, bool isDeparture)
             : this(startBusStop, endBusStop,
                 new DateTime(year, month, day, hour, minutes, 0),
-                isDeparture, isDirectConnection)
+                isDeparture)
         {
         }
 
         public SoughtConnection(string startBusStop, string endBusStop, DateTime date,
-            int hour, int minutes, bool isDeparture, bool isDirectConnection)
+            int hour, int minutes, bool isDeparture)
             : this(startBusStop, endBusStop, 
                     new DateTime(date.Year, date.Month, date.Day, hour, minutes, 0), 
-                    isDeparture, isDirectConnection)
+                    isDeparture)
         {
         }
 
         public SoughtConnection(string startBusStop, string endBusStop, DateTime date, 
-            bool isDeparture, bool isDirectConnection)
+            bool isDeparture)
         {
             _startBusStop = startBusStop;
             _endBusStop = endBusStop;
             _dateTime = date;
             _isDeparture = isDeparture;
-            _isDirectConnection = isDirectConnection;
         }
 
         #endregion
@@ -72,7 +66,6 @@ namespace FindingCommunicationRoutes
         private string _endBusStop;
         private DateTime _dateTime;
         private bool _isDeparture;
-        private bool _isDirectConnection;
 
         #endregion
     }

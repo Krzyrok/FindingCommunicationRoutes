@@ -53,8 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Search\Data\LineForSpecifiedDayType.cs" />
     <Compile Include="Model\Args\ActualizeRepositoryArgs.cs" />
-    <Compile Include="Delegates\Delegates.cs" />
+    <Compile Include="Model\Delegates\Delegates.cs" />
     <Compile Include="Model\Repository\Data\BusStop.cs" />
     <Compile Include="Model\CommunicationRoutesModel.cs" />
     <Compile Include="Model\Data\SoughtConnection.cs" />

@@ -38,12 +38,7 @@ namespace FindingCommunicationRoutes
         public SearchResultDirectConnection SearchRoute(SoughtConnection soughtConnection)
         {
             SearcherOfRoutes searcher = new SearcherOfRoutes();
-            if (soughtConnection.IsDirectConnection)
-            {
-                return searcher.FindDirectConnection(_repository, soughtConnection);
-            }
-
-            return null;
+            return searcher.FindDirectConnection(_repository, soughtConnection);
         }
 
         public void ActualizeRepository(object args)

@@ -80,6 +80,13 @@ namespace FindingCommunicationRoutes
             }
         }
 
+        public void ShowResultOfSearching(SearchResultDirectConnection result)
+        {
+            lineResultTextBox.Text = result.LineNumber;
+            timeOfDepartureResultTextBox.Text = result.DepartureTime.Hour.ToString() + ":" + result.DepartureTime.Minutes.ToString();
+            timeOfArrivalResultTextBox.Text = result.ArrivalTime.Hour.ToString() + ":" + result.ArrivalTime.Minutes.ToString();
+        }
+
         #endregion
 
         #region Private fields
@@ -114,9 +121,8 @@ namespace FindingCommunicationRoutes
                 int minute = (int)minuteTimeNumericUpDown.Value;
                 DateTime dateTime = new DateTime(day.Year, day.Month, day.Day, hour, minute, 0);
                 bool departureChecked = departureRadioButton.Checked;
-                bool directConnection = directConnectionsCheckBox.Checked;
                 
-                SoughtConnection soughtConnection = new SoughtConnection(startBusStop, endBusStop, dateTime, departureChecked, directConnection);
+                SoughtConnection soughtConnection = new SoughtConnection(startBusStop, endBusStop, dateTime, departureChecked);
                 SearchRoute(sender, soughtConnection);
             }
         }
