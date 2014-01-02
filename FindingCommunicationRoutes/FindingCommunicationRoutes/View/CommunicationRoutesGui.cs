@@ -80,11 +80,17 @@ namespace FindingCommunicationRoutes
             }
         }
 
-        public void ShowResultOfSearching(SearchResultDirectConnection result)
+        public void ShowDirectResultOfSearching(SearchResultDirectConnection result)
         {
             lineResultTextBox.Text = result.LineNumber;
             timeOfDepartureResultTextBox.Text = result.DepartureTime.Hour.ToString() + ":" + result.DepartureTime.Minutes.ToString();
             timeOfArrivalResultTextBox.Text = result.ArrivalTime.Hour.ToString() + ":" + result.ArrivalTime.Minutes.ToString();
+            directTravelTimeTextBox.Text = result.TimeDistanceBetweenBusStops.ToString();
+        }
+
+        public void ShowIndirectResultOfSearching(List<SearchResultDirectConnection> results)
+        {
+
         }
 
         #endregion

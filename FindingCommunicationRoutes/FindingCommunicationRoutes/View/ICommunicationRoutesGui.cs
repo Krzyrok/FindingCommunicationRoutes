@@ -14,6 +14,7 @@ namespace FindingCommunicationRoutes
         bool CheckIfInvokeRequired();
         void SaveThread(System.Threading.Thread threadName);
         void ShowMessage(string message);
-        void ShowResultOfSearching(SearchResultDirectConnection result);
+        void ShowDirectResultOfSearching(SearchResultDirectConnection result);
+        void ShowIndirectResultOfSearching(List<SearchResultDirectConnection> results);
     }
 }

@@ -124,7 +124,7 @@ namespace FindingCommunicationRoutes
             {
                 return;
             }
-            _communicationRoutesGui.ShowResultOfSearching(result);
+            _communicationRoutesGui.ShowDirectResultOfSearching(result);
         }
 
         #endregion
