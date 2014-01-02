@@ -27,13 +27,13 @@ namespace FindingCommunicationRoutes
         {
             get 
             {
-                if (_busStopsList == null)
+                if (_busStopsList != null)
                 {
-                    return LoadDataAboutBusStops();
+                    return _busStopsList;
                 }
                 else
                 {
-                    return _busStopsList;
+                    return LoadDataAboutBusStops();
                 }
             }
         }
@@ -59,16 +59,25 @@ namespace FindingCommunicationRoutes
         /// </summary>
         /// <param name="chmFilePath">The CHM file path.</param>
         /// <param name="outputPath">The output path for html files.</param>
-        public void ActualizeFromChm(string chmFilePath, string outputPath, Delegates.UpdateInformationAboutActualization updateDelegate)
+        //public void ActualizeFromChm(string chmFilePath, string outputPath, Delegates.UpdateInformationAboutActualization updateDelegate)
+        //{
+        //    updateDelegate(0.0);
+        //    ReaderCHM chm = new ReaderCHM(chmFilePath, outputPath);
+        //    chm.Decompile();
+        //    ReaderHTML html = new ReaderHTML(chm.GetIndexFileFromOutputPath().First());
+        //    SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines(updateDelegate)));
+        //    updateDelegate(99.0);
+        //    LoadDataAboutBusStops();
+        //    updateDelegate(100.0);
+        //}
+
+        public void ActualizeFromChm(string chmFilePath, string outputPath)
         {
-            updateDelegate(0.0);
             ReaderCHM chm = new ReaderCHM(chmFilePath, outputPath);
             chm.Decompile();
             ReaderHTML html = new ReaderHTML(chm.GetIndexFileFromOutputPath().First());
-            SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines(updateDelegate)));
-            updateDelegate(99.0);
+            SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines()));
             LoadDataAboutBusStops();
-            updateDelegate(100.0);
         }
 
         #endregion
