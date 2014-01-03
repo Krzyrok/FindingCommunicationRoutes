@@ -89,15 +89,15 @@ namespace FindingCommunicationRoutes
             }
             if (directConnection.IsDirectConnection)
             {
-                lineResultTextBox.Text = directConnection.LineNumber;
-                timeOfDepartureResultTextBox.Text = ("0" + directConnection.DepartureTime.Hour.ToString()).GetLastCharacters(2)
+                lineDirectResultTextBox.Text = directConnection.LineNumber;
+                timeOfDepartureDirectResultTextBox.Text = ("0" + directConnection.DepartureTime.Hour.ToString()).GetLastCharacters(2)
                     + ":" + ("0" + directConnection.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
-                timeOfArrivalResultTextBox.Text = ("0" + directConnection.ArrivalTime.Hour.ToString()).GetLastCharacters(2)
+                timeOfArrivalDirectResultTextBox.Text = ("0" + directConnection.ArrivalTime.Hour.ToString()).GetLastCharacters(2)
                     + ":" + ("0" + directConnection.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
-                directTravelTimeTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
+                totalTravelTimeDirectResultTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
                     + ":" + ("0" + directConnection.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
                 results.Remove(directConnection);
-                departureDateTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "." 
+                departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "." 
                     + directConnection.DateOfDeparture.Month.ToString() + "." + directConnection.DateOfDeparture.Year.ToString();
             }
 

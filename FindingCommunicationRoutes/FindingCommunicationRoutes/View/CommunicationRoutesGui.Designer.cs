@@ -57,23 +57,32 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lineResultTextBox = new System.Windows.Forms.TextBox();
-            this.timeOfDepartureResultTextBox = new System.Windows.Forms.TextBox();
-            this.timeOfArrivalResultTextBox = new System.Windows.Forms.TextBox();
+            this.lineDirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.timeOfDepartureDirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.timeOfArrivalDirectResultTextBox = new System.Windows.Forms.TextBox();
             this.informationAboutActualizationProgressBar = new System.Windows.Forms.ProgressBar();
             this.dateOfJourneyDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.informationLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.directTravelTimeTextBox = new System.Windows.Forms.TextBox();
+            this.totalTravelTimeDirectResultTextBox = new System.Windows.Forms.TextBox();
             this.indirectConnectionDetailsListView = new System.Windows.Forms.ListView();
             this.startBusStopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endBusStopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.indirectTotalTravelTimetextBox = new System.Windows.Forms.TextBox();
+            this.totalTravelTimeInderectResultTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.departureDateTextBox = new System.Windows.Forms.TextBox();
+            this.departureDateDirectResultTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.departureDateIndirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.timeOfArrivalIndirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.timeOfDepartureIndirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.lineIndirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.upperMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hourTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minuteTimeNumericUpDown)).BeginInit();
@@ -86,7 +95,7 @@
             this.fileToolStripMenuItem});
             this.upperMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.upperMenuStrip.Name = "upperMenuStrip";
-            this.upperMenuStrip.Size = new System.Drawing.Size(649, 24);
+            this.upperMenuStrip.Size = new System.Drawing.Size(824, 24);
             this.upperMenuStrip.TabIndex = 1;
             this.upperMenuStrip.Text = "upperMenuStrip";
             // 
@@ -273,29 +282,29 @@
             this.label9.TabIndex = 24;
             this.label9.Text = "Time of arrival:";
             // 
-            // lineResultTextBox
+            // lineDirectResultTextBox
             // 
-            this.lineResultTextBox.Enabled = false;
-            this.lineResultTextBox.Location = new System.Drawing.Point(327, 65);
-            this.lineResultTextBox.Name = "lineResultTextBox";
-            this.lineResultTextBox.Size = new System.Drawing.Size(63, 20);
-            this.lineResultTextBox.TabIndex = 25;
+            this.lineDirectResultTextBox.Enabled = false;
+            this.lineDirectResultTextBox.Location = new System.Drawing.Point(327, 65);
+            this.lineDirectResultTextBox.Name = "lineDirectResultTextBox";
+            this.lineDirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.lineDirectResultTextBox.TabIndex = 25;
             // 
-            // timeOfDepartureResultTextBox
+            // timeOfDepartureDirectResultTextBox
             // 
-            this.timeOfDepartureResultTextBox.Enabled = false;
-            this.timeOfDepartureResultTextBox.Location = new System.Drawing.Point(327, 92);
-            this.timeOfDepartureResultTextBox.Name = "timeOfDepartureResultTextBox";
-            this.timeOfDepartureResultTextBox.Size = new System.Drawing.Size(63, 20);
-            this.timeOfDepartureResultTextBox.TabIndex = 26;
+            this.timeOfDepartureDirectResultTextBox.Enabled = false;
+            this.timeOfDepartureDirectResultTextBox.Location = new System.Drawing.Point(327, 92);
+            this.timeOfDepartureDirectResultTextBox.Name = "timeOfDepartureDirectResultTextBox";
+            this.timeOfDepartureDirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.timeOfDepartureDirectResultTextBox.TabIndex = 26;
             // 
-            // timeOfArrivalResultTextBox
+            // timeOfArrivalDirectResultTextBox
             // 
-            this.timeOfArrivalResultTextBox.Enabled = false;
-            this.timeOfArrivalResultTextBox.Location = new System.Drawing.Point(327, 118);
-            this.timeOfArrivalResultTextBox.Name = "timeOfArrivalResultTextBox";
-            this.timeOfArrivalResultTextBox.Size = new System.Drawing.Size(63, 20);
-            this.timeOfArrivalResultTextBox.TabIndex = 27;
+            this.timeOfArrivalDirectResultTextBox.Enabled = false;
+            this.timeOfArrivalDirectResultTextBox.Location = new System.Drawing.Point(327, 118);
+            this.timeOfArrivalDirectResultTextBox.Name = "timeOfArrivalDirectResultTextBox";
+            this.timeOfArrivalDirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.timeOfArrivalDirectResultTextBox.TabIndex = 27;
             // 
             // informationAboutActualizationProgressBar
             // 
@@ -333,52 +342,57 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(259, 147);
+            this.label11.Location = new System.Drawing.Point(259, 173);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 32;
             this.label11.Text = "Travel time:";
             // 
-            // directTravelTimeTextBox
+            // totalTravelTimeDirectResultTextBox
             // 
-            this.directTravelTimeTextBox.Enabled = false;
-            this.directTravelTimeTextBox.Location = new System.Drawing.Point(327, 144);
-            this.directTravelTimeTextBox.Name = "directTravelTimeTextBox";
-            this.directTravelTimeTextBox.Size = new System.Drawing.Size(63, 20);
-            this.directTravelTimeTextBox.TabIndex = 33;
+            this.totalTravelTimeDirectResultTextBox.Enabled = false;
+            this.totalTravelTimeDirectResultTextBox.Location = new System.Drawing.Point(327, 170);
+            this.totalTravelTimeDirectResultTextBox.Name = "totalTravelTimeDirectResultTextBox";
+            this.totalTravelTimeDirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.totalTravelTimeDirectResultTextBox.TabIndex = 33;
             // 
             // indirectConnectionDetailsListView
             // 
             this.indirectConnectionDetailsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.startBusStopColumnHeader,
             this.endBusStopColumnHeader});
-            this.indirectConnectionDetailsListView.Location = new System.Drawing.Point(396, 65);
+            this.indirectConnectionDetailsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.indirectConnectionDetailsListView.HideSelection = false;
+            this.indirectConnectionDetailsListView.Location = new System.Drawing.Point(572, 63);
             this.indirectConnectionDetailsListView.MultiSelect = false;
             this.indirectConnectionDetailsListView.Name = "indirectConnectionDetailsListView";
             this.indirectConnectionDetailsListView.Size = new System.Drawing.Size(241, 97);
             this.indirectConnectionDetailsListView.TabIndex = 34;
             this.indirectConnectionDetailsListView.UseCompatibleStateImageBehavior = false;
+            this.indirectConnectionDetailsListView.View = System.Windows.Forms.View.Details;
             // 
             // startBusStopColumnHeader
             // 
             this.startBusStopColumnHeader.Text = "Start Bus Stop";
+            this.startBusStopColumnHeader.Width = 127;
             // 
             // endBusStopColumnHeader
             // 
             this.endBusStopColumnHeader.Text = "End Bus Stop";
+            this.endBusStopColumnHeader.Width = 107;
             // 
-            // indirectTotalTravelTimetextBox
+            // totalTravelTimeInderectResultTextBox
             // 
-            this.indirectTotalTravelTimetextBox.Enabled = false;
-            this.indirectTotalTravelTimetextBox.Location = new System.Drawing.Point(590, 168);
-            this.indirectTotalTravelTimetextBox.Name = "indirectTotalTravelTimetextBox";
-            this.indirectTotalTravelTimetextBox.Size = new System.Drawing.Size(47, 20);
-            this.indirectTotalTravelTimetextBox.TabIndex = 36;
+            this.totalTravelTimeInderectResultTextBox.Enabled = false;
+            this.totalTravelTimeInderectResultTextBox.Location = new System.Drawing.Point(765, 173);
+            this.totalTravelTimeInderectResultTextBox.Name = "totalTravelTimeInderectResultTextBox";
+            this.totalTravelTimeInderectResultTextBox.Size = new System.Drawing.Size(47, 20);
+            this.totalTravelTimeInderectResultTextBox.TabIndex = 36;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(522, 171);
+            this.label12.Location = new System.Drawing.Point(697, 176);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(62, 13);
             this.label12.TabIndex = 35;
@@ -387,49 +401,135 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(393, 42);
+            this.label13.Location = new System.Drawing.Point(569, 42);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(101, 13);
             this.label13.TabIndex = 37;
             this.label13.Text = "Indirect connection:";
             // 
-            // departureDateTextBox
+            // departureDateDirectResultTextBox
             // 
-            this.departureDateTextBox.Enabled = false;
-            this.departureDateTextBox.Location = new System.Drawing.Point(327, 170);
-            this.departureDateTextBox.Name = "departureDateTextBox";
-            this.departureDateTextBox.Size = new System.Drawing.Size(63, 20);
-            this.departureDateTextBox.TabIndex = 38;
+            this.departureDateDirectResultTextBox.Enabled = false;
+            this.departureDateDirectResultTextBox.Location = new System.Drawing.Point(327, 144);
+            this.departureDateDirectResultTextBox.Name = "departureDateDirectResultTextBox";
+            this.departureDateDirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.departureDateDirectResultTextBox.TabIndex = 38;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(228, 173);
+            this.label14.Location = new System.Drawing.Point(228, 147);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(93, 13);
             this.label14.TabIndex = 39;
             this.label14.Text = "Date of departure:";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(404, 147);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(93, 13);
+            this.label15.TabIndex = 49;
+            this.label15.Text = "Date of departure:";
+            // 
+            // departureDateIndirectResultTextBox
+            // 
+            this.departureDateIndirectResultTextBox.Enabled = false;
+            this.departureDateIndirectResultTextBox.Location = new System.Drawing.Point(503, 144);
+            this.departureDateIndirectResultTextBox.Name = "departureDateIndirectResultTextBox";
+            this.departureDateIndirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.departureDateIndirectResultTextBox.TabIndex = 48;
+            // 
+            // timeOfArrivalIndirectResultTextBox
+            // 
+            this.timeOfArrivalIndirectResultTextBox.Enabled = false;
+            this.timeOfArrivalIndirectResultTextBox.Location = new System.Drawing.Point(502, 118);
+            this.timeOfArrivalIndirectResultTextBox.Name = "timeOfArrivalIndirectResultTextBox";
+            this.timeOfArrivalIndirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.timeOfArrivalIndirectResultTextBox.TabIndex = 45;
+            // 
+            // timeOfDepartureIndirectResultTextBox
+            // 
+            this.timeOfDepartureIndirectResultTextBox.Enabled = false;
+            this.timeOfDepartureIndirectResultTextBox.Location = new System.Drawing.Point(502, 92);
+            this.timeOfDepartureIndirectResultTextBox.Name = "timeOfDepartureIndirectResultTextBox";
+            this.timeOfDepartureIndirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.timeOfDepartureIndirectResultTextBox.TabIndex = 44;
+            // 
+            // lineIndirectResultTextBox
+            // 
+            this.lineIndirectResultTextBox.Enabled = false;
+            this.lineIndirectResultTextBox.Location = new System.Drawing.Point(502, 65);
+            this.lineIndirectResultTextBox.Name = "lineIndirectResultTextBox";
+            this.lineIndirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.lineIndirectResultTextBox.TabIndex = 43;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(420, 121);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(76, 13);
+            this.label17.TabIndex = 42;
+            this.label17.Text = "Time of arrival:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(403, 95);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(93, 13);
+            this.label18.TabIndex = 41;
+            this.label18.Text = "Time of departure:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(466, 68);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(30, 13);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "Line:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(428, 42);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(134, 13);
+            this.label20.TabIndex = 50;
+            this.label20.Text = "Indirect connection details:";
+            // 
             // CommunicationRoutesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 264);
+            this.ClientSize = new System.Drawing.Size(824, 269);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.departureDateIndirectResultTextBox);
+            this.Controls.Add(this.timeOfArrivalIndirectResultTextBox);
+            this.Controls.Add(this.timeOfDepartureIndirectResultTextBox);
+            this.Controls.Add(this.lineIndirectResultTextBox);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.departureDateTextBox);
+            this.Controls.Add(this.departureDateDirectResultTextBox);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.indirectTotalTravelTimetextBox);
+            this.Controls.Add(this.totalTravelTimeInderectResultTextBox);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.indirectConnectionDetailsListView);
-            this.Controls.Add(this.directTravelTimeTextBox);
+            this.Controls.Add(this.totalTravelTimeDirectResultTextBox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.informationLabel);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dateOfJourneyDateTimePicker);
             this.Controls.Add(this.informationAboutActualizationProgressBar);
-            this.Controls.Add(this.timeOfArrivalResultTextBox);
-            this.Controls.Add(this.timeOfDepartureResultTextBox);
-            this.Controls.Add(this.lineResultTextBox);
+            this.Controls.Add(this.timeOfArrivalDirectResultTextBox);
+            this.Controls.Add(this.timeOfDepartureDirectResultTextBox);
+            this.Controls.Add(this.lineDirectResultTextBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -481,24 +581,33 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox lineResultTextBox;
-        private System.Windows.Forms.TextBox timeOfDepartureResultTextBox;
-        private System.Windows.Forms.TextBox timeOfArrivalResultTextBox;
+        private System.Windows.Forms.TextBox lineDirectResultTextBox;
+        private System.Windows.Forms.TextBox timeOfDepartureDirectResultTextBox;
+        private System.Windows.Forms.TextBox timeOfArrivalDirectResultTextBox;
         private System.Windows.Forms.ProgressBar informationAboutActualizationProgressBar;
         private System.Windows.Forms.ToolStripMenuItem updateScheduleToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dateOfJourneyDateTimePicker;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label informationLabel;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox directTravelTimeTextBox;
+        private System.Windows.Forms.TextBox totalTravelTimeDirectResultTextBox;
         private System.Windows.Forms.ListView indirectConnectionDetailsListView;
         private System.Windows.Forms.ColumnHeader startBusStopColumnHeader;
         private System.Windows.Forms.ColumnHeader endBusStopColumnHeader;
-        private System.Windows.Forms.TextBox indirectTotalTravelTimetextBox;
+        private System.Windows.Forms.TextBox totalTravelTimeInderectResultTextBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox departureDateTextBox;
+        private System.Windows.Forms.TextBox departureDateDirectResultTextBox;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox departureDateIndirectResultTextBox;
+        private System.Windows.Forms.TextBox timeOfArrivalIndirectResultTextBox;
+        private System.Windows.Forms.TextBox timeOfDepartureIndirectResultTextBox;
+        private System.Windows.Forms.TextBox lineIndirectResultTextBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
 
     }
 }
