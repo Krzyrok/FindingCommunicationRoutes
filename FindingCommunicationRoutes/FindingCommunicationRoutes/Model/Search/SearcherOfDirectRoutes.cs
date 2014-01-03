@@ -5,11 +5,11 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
-    public class SearcherOfRoutes
+    public class SearcherOfDirectRoutes
     {
         #region Constructors
 
-        public SearcherOfRoutes()
+        public SearcherOfDirectRoutes()
         {
         }
 
@@ -17,7 +17,7 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
-        public SearchResultDirectConnection FindDirectConnection(Repository repository, SoughtConnection soughtConnection)
+        public SearchResultConnection FindDirectConnection(Repository repository, SoughtConnection soughtConnection)
         {
             List<BusStop> busStops = repository.BusStops;
             if (busStops == null)
@@ -79,7 +79,7 @@ namespace FindingCommunicationRoutes
                 }
             }
 
-            SearchResultDirectConnection result = null;
+            SearchResultConnection result = null;
             foreach (LineForSpecifiedDayType line in allTracksFromStartToEndBusStopInSpecifiedDayType)
             {
                 foreach(Track track in line.TracksForSpecifiedDayType)
@@ -96,14 +96,14 @@ namespace FindingCommunicationRoutes
                                 if (result == null)
                                 {
                                     
-                                    result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, 
+                                    result = new SearchResultConnection(true, line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival, 
                                         timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                 }
                                 else
                                 {
                                     if (result.ArrivalTime > endBusStopTimeOfArrival)
                                     {
-                                        result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
+                                        result = new SearchResultConnection(true, line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
                                             timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                     }
                                 }
@@ -116,14 +116,14 @@ namespace FindingCommunicationRoutes
                             {
                                 if (result == null)
                                 {
-                                    result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
+                                    result = new SearchResultConnection(true, line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
                                         timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                 }
                                 else
                                 {
                                     if (result.DepartureTime < startBusStopTimeOfArrival)
                                     {
-                                        result = new SearchResultDirectConnection(line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
+                                        result = new SearchResultConnection(true, line.Number, startBusStopTimeOfArrival, endBusStopTimeOfArrival,
                                             timeDistanceBetweenStartAndEndBusStop, startBusStop.BusStopName, endBusStop.BusStopName);
                                     }
                                 }

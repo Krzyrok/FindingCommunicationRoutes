@@ -35,10 +35,25 @@ namespace FindingCommunicationRoutes
             return listOfBusStopsNames;
         }
 
-        public SearchResultDirectConnection SearchRoute(SoughtConnection soughtConnection)
+        public void SearchRoute(object args)
         {
-            SearcherOfRoutes searcher = new SearcherOfRoutes();
-            return searcher.FindDirectConnection(_repository, soughtConnection);
+            Delegates.UpdateInformationAboutSearching updateInformation = ((SearchRouteArgs)args).DelegateToUpdatingInformationAboutSearching;
+            updateInformation("Searching direct connection", 0);
+            
+            List<SearchResultConnection> result = new List<SearchResultConnection>();
+            
+            SoughtConnection soughtConnection = ((SearchRouteArgs)args).UserSoughtConnection;      
+            SearcherOfDirectRoutes searcher = new SearcherOfDirectRoutes();
+            SearchResultConnection directConnection = searcher.FindDirectConnection(_repository, soughtConnection);
+            if (directConnection != null)
+            {
+                result.Add(directConnection);
+            }
+            
+            updateInformation("Searching indirect connection", 50);
+
+            Delegates.DeliverResults deliverResults = ((SearchRouteArgs)args).DelegateToDeliverResultsToView;
+            deliverResults(result);
         }
 
         public void ActualizeRepository(object args)

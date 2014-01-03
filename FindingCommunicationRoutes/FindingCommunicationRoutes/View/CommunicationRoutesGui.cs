@@ -61,7 +61,7 @@ namespace FindingCommunicationRoutes
             MessageBox.Show(message);
         }
 
-        public void UpdateInformationAndTimeForLoadingNewSchedule(string information, int valueOfProgressBar)
+        public void UpdateInformationAndTimeForProgressBar(string information, int valueOfProgressBar)
         {
             informationLabel.Text = information;
             informationAboutActualizationProgressBar.Value = valueOfProgressBar;
@@ -80,19 +80,30 @@ namespace FindingCommunicationRoutes
             }
         }
 
-        public void ShowDirectResultOfSearching(SearchResultDirectConnection result)
+        public void ShowResultsOfSearching(List<SearchResultConnection> results)
         {
-            lineResultTextBox.Text = result.LineNumber;
-            timeOfDepartureResultTextBox.Text = ("0" + result.DepartureTime.Hour.ToString()).GetLastCharacters(2) 
-                + ":" + ("0" + result.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
-            timeOfArrivalResultTextBox.Text = ("0" + result.ArrivalTime.Hour.ToString()).GetLastCharacters(2) 
-                + ":" + ("0" + result.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
-            directTravelTimeTextBox.Text = ("0" + result.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2) 
-                + ":" + ("0" + result.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
-        }
+            SearchResultConnection directConnection = results.First();
+            if (directConnection == null)
+            {
+                return;
+            }
+            if (directConnection.IsDirectConnection)
+            {
+                lineResultTextBox.Text = directConnection.LineNumber;
+                timeOfDepartureResultTextBox.Text = ("0" + directConnection.DepartureTime.Hour.ToString()).GetLastCharacters(2)
+                    + ":" + ("0" + directConnection.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
+                timeOfArrivalResultTextBox.Text = ("0" + directConnection.ArrivalTime.Hour.ToString()).GetLastCharacters(2)
+                    + ":" + ("0" + directConnection.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
+                directTravelTimeTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
+                    + ":" + ("0" + directConnection.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
+                results.Remove(directConnection);
+            }
 
-        public void ShowIndirectResultOfSearching(List<SearchResultDirectConnection> results)
-        {
+            for (int i = 0; i < results.Count; i++)
+            {
+                // Display indirect connection
+            }
+
 
         }
 
@@ -155,6 +166,7 @@ namespace FindingCommunicationRoutes
         #endregion
     }
 
+    #region Extension for 'string'
 
     public static class ExtensionForString
     {
@@ -169,4 +181,6 @@ namespace FindingCommunicationRoutes
             return sourceString.Substring(sourceString.Length - howManyCharactersFromTheLastPosition);
         }
     }
+
+    #endregion
 }

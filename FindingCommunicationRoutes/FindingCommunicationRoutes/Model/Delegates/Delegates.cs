@@ -8,5 +8,7 @@ namespace FindingCommunicationRoutes
     public class Delegates
     {
         public delegate void UpdateInformationAboutActualization(double value);
+        public delegate void UpdateInformationAboutSearching(string information, double value);
+        public delegate void DeliverResults(List<SearchResultConnection> results);
     }
 }

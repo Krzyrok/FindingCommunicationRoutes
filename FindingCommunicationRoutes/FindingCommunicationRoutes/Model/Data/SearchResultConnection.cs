@@ -5,10 +5,11 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
-    public class SearchResultDirectConnection
+    public class SearchResultConnection
     {
         #region Properties
 
+        public bool IsDirectConnection { get; private set; }
         public string LineNumber { get; private set; }
         public TimeOfArrival DepartureTime { get; private set; }
         public TimeOfArrival ArrivalTime { get; private set; }
@@ -20,9 +21,10 @@ namespace FindingCommunicationRoutes
         
         #region Constructors
 
-        public SearchResultDirectConnection(string lineNumber, TimeOfArrival departureTime, TimeOfArrival arrivalTime, TimeOfArrival timeDistanceBetweenBusStops,
-            string startBusStopName, string endBusStopName) 
+        public SearchResultConnection(bool isDirectConnection, string lineNumber, TimeOfArrival departureTime, TimeOfArrival arrivalTime, 
+            TimeOfArrival timeDistanceBetweenBusStops, string startBusStopName, string endBusStopName) 
         {
+            IsDirectConnection = isDirectConnection;
             LineNumber = lineNumber;
             DepartureTime = departureTime;
             ArrivalTime = arrivalTime;

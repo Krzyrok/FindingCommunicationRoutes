@@ -9,12 +9,11 @@ namespace FindingCommunicationRoutes
         event EventHandler<SoughtConnection> SearchRoute;
         void DisplayBusStops(List<string> listOfBusStopsNames);
         void SetDateAndTime(DateTime dateTime);
-        void UpdateInformationAndTimeForLoadingNewSchedule(string information, int valueOfProgressBar);
+        void UpdateInformationAndTimeForProgressBar(string information, int valueOfProgressBar);
         object Invoke(Delegate method, params object[] args);
         bool CheckIfInvokeRequired();
         void SaveThread(System.Threading.Thread threadName);
         void ShowMessage(string message);
-        void ShowDirectResultOfSearching(SearchResultDirectConnection result);
-        void ShowIndirectResultOfSearching(List<SearchResultDirectConnection> results);
+        void ShowResultsOfSearching(List<SearchResultConnection> results);
     }
 }

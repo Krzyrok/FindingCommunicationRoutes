@@ -30,7 +30,9 @@ namespace FindingCommunicationRoutes
 
         #region Private fields
 
-        private Delegates.UpdateInformationAboutActualization ShowNewTimeForActualization = null;
+        private Delegates.UpdateInformationAboutActualization _ShowTimeForActualizationOfSchedule = null;
+        private Delegates.UpdateInformationAboutSearching _ShowTimeForSearchingRoute = null;
+        private Delegates.DeliverResults _DeliverResultsToView = null;
         private ICommunicationRoutesGui _communicationRoutesGui;
         private CommunicationRoutesModel _communicationRoutesModel;
 
@@ -46,17 +48,41 @@ namespace FindingCommunicationRoutes
 
         private void SetDelagetes()
         {
-            ShowNewTimeForActualization += ActualizeTime;
+            _ShowTimeForActualizationOfSchedule += ActualizeTimeForLoadingNewSchedule;
+            _ShowTimeForSearchingRoute += ActualizeTimeForSearchingRoute;
+            _DeliverResultsToView += DeliverResultOfSearchingToTheView;
         }
 
-        private void ActualizeTime(double value)
+        private void DeliverResultOfSearchingToTheView(List<SearchResultConnection> results)
         {
-            Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForLoadingNewSchedule(valueString, valueInt));
+            if (results == null || results.Count == 0)
+            {
+                Action<string, int> updateTimeAndInformationAboutNoResults = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
+                _communicationRoutesGui.Invoke(updateTimeAndInformationAboutNoResults, "No results", 100);
+                return;
+            }
+
+            Action<List<SearchResultConnection>> showResults = new Action<List<SearchResultConnection>>((list) => _communicationRoutesGui.ShowResultsOfSearching(list));
+            _communicationRoutesGui.Invoke(showResults, results);
+            
+            Action<string, int> updateTimeAndInformation = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
+            _communicationRoutesGui.Invoke(updateTimeAndInformation, "Found route", 100);
+        }
+
+        private void ActualizeTimeForSearchingRoute(string information, double value)
+        {
+            Action<string, int> updateTimeAndInformation = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
+            _communicationRoutesGui.Invoke(updateTimeAndInformation, information, (int)value);
+        }
+
+        private void ActualizeTimeForLoadingNewSchedule(double value)
+        {
+            Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
             if (value == 0.0)
             {
                 _communicationRoutesGui.Invoke(updateTime, "Decompilation is running, please wait.", 0);
             }
-            else if (value < 100.0)
+            else if (value < 99.0)
             {
                 _communicationRoutesGui.Invoke(updateTime, "Loading new schedules, please wait.", (int)value);
             }
@@ -79,7 +105,7 @@ namespace FindingCommunicationRoutes
 
         private void SetBusStops()
         {
-            Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForLoadingNewSchedule(valueString, valueInt));
+            Action<string, int> updateTime = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
             _communicationRoutesGui.Invoke(updateTime, "Loading bus stops.", 0);
 
             List<string> busStopsNamesList = _communicationRoutesModel.GiveListOfBusStopsNames();
@@ -103,7 +129,7 @@ namespace FindingCommunicationRoutes
             if (result == DialogResult.OK)
             {
                 string pathToChm = openFileDialog.FileName;
-                ActualizeRepositoryArgs args = new ActualizeRepositoryArgs(ShowNewTimeForActualization, pathToChm);
+                ActualizeRepositoryArgs args = new ActualizeRepositoryArgs(_ShowTimeForActualizationOfSchedule, pathToChm);
                 Thread actualizeRepositoryThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.ActualizeRepository));
                 actualizeRepositoryThread.Name = "Actualize Repository Thread";
                 actualizeRepositoryThread.Start(args);
@@ -118,12 +144,11 @@ namespace FindingCommunicationRoutes
                 _communicationRoutesGui.ShowMessage("Wrong data. You have to choose proper bus stops");
                 return;
             }
-            SearchResultDirectConnection result = _communicationRoutesModel.SearchRoute(arg);
-            if (result == null)
-            {
-                return;
-            }
-            _communicationRoutesGui.ShowDirectResultOfSearching(result);
+
+            SearchRouteArgs argsForSearching = new SearchRouteArgs(_ShowTimeForSearchingRoute, _DeliverResultsToView, arg);
+            Thread searchingRoutesThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.SearchRoute));
+            searchingRoutesThread.Name = "Searching routes - thread";
+            searchingRoutesThread.Start(argsForSearching);
         }
 
         #endregion
