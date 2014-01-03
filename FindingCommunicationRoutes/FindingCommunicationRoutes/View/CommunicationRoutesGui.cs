@@ -97,6 +97,8 @@ namespace FindingCommunicationRoutes
                 directTravelTimeTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
                     + ":" + ("0" + directConnection.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
                 results.Remove(directConnection);
+                departureDateTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "." 
+                    + directConnection.DateOfDeparture.Month.ToString() + "." + directConnection.DateOfDeparture.Year.ToString();
             }
 
             for (int i = 0; i < results.Count; i++)
