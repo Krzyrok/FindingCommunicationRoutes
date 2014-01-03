@@ -413,7 +413,10 @@ namespace FindingCommunicationRoutes
         {
             HtmlNodeCollection[] daysTypeNamesAndHours = new HtmlNodeCollection[2];
             
-            doc.Load(_htmlSitePath);
+            doc.Load(new StreamReader
+                    (WebRequest.Create(_htmlSitePath).GetResponse().GetResponseStream(),
+                    Encoding.UTF8));
+
             HtmlNode busStopTable = doc.DocumentNode.SelectSingleNode("//table[contains(@id, 'tabliczka_przystankowo')]"); // there is no typo here!
 
             if (busStopTable != null)
