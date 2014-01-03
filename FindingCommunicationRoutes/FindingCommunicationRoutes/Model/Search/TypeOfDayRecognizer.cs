@@ -33,11 +33,11 @@ namespace FindingCommunicationRoutes
             }
             else if (day == 1 && month == 11)
             {
-                result.Add("Wszystkich ĹšwiÄ™tych");
+                result.Add("Wszystkich Świętych");
             }
             else if (day == 24 && month == 12)
             {
-                result.Add("Wigilia BoĹĽego Narodzenia");
+                result.Add("Wigilia Bożego Narodzenia");
             }
             else if (day == 31 && month == 12)
             {
@@ -54,7 +54,7 @@ namespace FindingCommunicationRoutes
             if (isFreeDayInMall && dayOfWeek != DayOfWeek.Sunday)
             {
                 result.Add("Dni wolne od pracy w centrach handlowych");
-                result.Add("Niedziele i ĹšwiÄ™ta");
+                result.Add("Niedziele i Święta");
                 result.Add("Dni Wolne");
             }
             else if (isFreeDayInMall && dayOfWeek == DayOfWeek.Sunday)
@@ -66,7 +66,7 @@ namespace FindingCommunicationRoutes
             bool isHoliday = (month == 7) || (month == 8) || ((day >= 28) && (month == 6));
             if ((dayOfWeek == DayOfWeek.Sunday) && (isHoliday))
             {
-                result.Add("Niedziele i ĹšwiÄ™ta w wakacje");
+                result.Add("Niedziele i Święta w wakacje");
                 
             }
             else if ((dayOfWeek == DayOfWeek.Sunday) && (!isHoliday) && (!isFreeDayInMall))
@@ -76,7 +76,7 @@ namespace FindingCommunicationRoutes
 
             if (dayOfWeek == DayOfWeek.Sunday)
             {
-                result.Add("Niedziele i ĹšwiÄ™ta");
+                result.Add("Niedziele i Święta");
                 result.Add("Dni Wolne");
             }
 
@@ -122,6 +122,7 @@ namespace FindingCommunicationRoutes
                 result.Add("Robocze");
             }
 
+            result.Add("Codziennie");
             return result;
         }
 
