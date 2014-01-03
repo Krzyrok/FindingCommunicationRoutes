@@ -83,9 +83,12 @@ namespace FindingCommunicationRoutes
         public void ShowDirectResultOfSearching(SearchResultDirectConnection result)
         {
             lineResultTextBox.Text = result.LineNumber;
-            timeOfDepartureResultTextBox.Text = result.DepartureTime.Hour.ToString() + ":" + result.DepartureTime.Minutes.ToString();
-            timeOfArrivalResultTextBox.Text = result.ArrivalTime.Hour.ToString() + ":" + result.ArrivalTime.Minutes.ToString();
-            directTravelTimeTextBox.Text = result.TimeDistanceBetweenBusStops.ToString();
+            timeOfDepartureResultTextBox.Text = ("0" + result.DepartureTime.Hour.ToString()).GetLastCharacters(2) 
+                + ":" + ("0" + result.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
+            timeOfArrivalResultTextBox.Text = ("0" + result.ArrivalTime.Hour.ToString()).GetLastCharacters(2) 
+                + ":" + ("0" + result.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
+            directTravelTimeTextBox.Text = ("0" + result.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2) 
+                + ":" + ("0" + result.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
         }
 
         public void ShowIndirectResultOfSearching(List<SearchResultDirectConnection> results)
@@ -150,5 +153,20 @@ namespace FindingCommunicationRoutes
         }
 
         #endregion
+    }
+
+
+    public static class ExtensionForString
+    {
+        public static string GetLastCharacters(this string sourceString, int howManyCharactersFromTheLastPosition)
+        {
+            if (howManyCharactersFromTheLastPosition >= sourceString.Length)
+                return sourceString;
+            if (howManyCharactersFromTheLastPosition < 0)
+            {
+                throw new ArgumentException("Negative value of 'howManyCharactersFromTheLastPosition'");
+            }
+            return sourceString.Substring(sourceString.Length - howManyCharactersFromTheLastPosition);
+        }
     }
 }
