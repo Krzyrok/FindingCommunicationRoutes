@@ -17,6 +17,7 @@ namespace FindingCommunicationRoutes
         {
             InitializeComponent();
             _threadsList = new List<System.Threading.Thread>();
+            _actualValueOfProgressBar = informationAboutActualizationProgressBar.Value;
         }
 
         #endregion
@@ -65,6 +66,7 @@ namespace FindingCommunicationRoutes
         {
             informationLabel.Text = information;
             informationAboutActualizationProgressBar.Value = valueOfProgressBar;
+            _actualValueOfProgressBar = valueOfProgressBar;
             if (valueOfProgressBar != 100)
             {
                 searchButton.Enabled = false;
@@ -90,15 +92,6 @@ namespace FindingCommunicationRoutes
             if (directConnection.IsDirectConnection)
             {
                 lineDirectResultTextBox.Text = directConnection.LineNumber;
-                //timeOfDepartureDirectResultTextBox.Text = ("0" + directConnection.DepartureTime.Hour.ToString()).GetLastCharacters(2)
-                //    + ":" + ("0" + directConnection.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
-                //timeOfArrivalDirectResultTextBox.Text = ("0" + directConnection.ArrivalTime.Hour.ToString()).GetLastCharacters(2)
-                //    + ":" + ("0" + directConnection.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
-                //totalTravelTimeDirectResultTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
-                //    + ":" + ("0" + directConnection.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
-                //departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "." 
-                //    + directConnection.DateOfDeparture.Month.ToString() + "." + directConnection.DateOfDeparture.Year.ToString();
-
                 timeOfDepartureDirectResultTextBox.Text = directConnection.DepartureTime.ToString();
                 timeOfArrivalDirectResultTextBox.Text = directConnection.ArrivalTime.ToString();
                 totalTravelTimeDirectResultTextBox.Text = directConnection.TimeDistanceBetweenBusStops.ToString();
@@ -109,17 +102,17 @@ namespace FindingCommunicationRoutes
             }
 
 
-            //if (results.Count > 0)
-            //{
-            //    SearchResultConnection firstSearchResult = results.First();
-            //    SearchResultConnection lastSearchResult = results.Last();
-            //    //totalTravelTimeInderectResultTextBox.Text = (lastSearchResult.ArrivalTime - firstSearchResult.DepartureTime)
+            if (results.Count > 0)
+            {
+                SearchResultConnection firstSearchResult = results.First();
+                SearchResultConnection lastSearchResult = results.Last();
+                //totalTravelTimeInderectResultTextBox.Text = (lastSearchResult.ArrivalTime - firstSearchResult.DepartureTime)
 
-            //    for (int i = 0; i < results.Count; i++)
-            //    {
-            //        //ListViewItem singleDirectItemOfIndirectConnection
-            //    }
-            //}
+                for (int i = 0; i < results.Count; i++)
+                {
+                    //ListViewItem singleDirectItemOfIndirectConnection
+                }
+            }
 
 
 
@@ -129,6 +122,7 @@ namespace FindingCommunicationRoutes
 
         #region Private fields
 
+        int _actualValueOfProgressBar;
         List<System.Threading.Thread> _threadsList;
 
         #endregion
@@ -168,7 +162,7 @@ namespace FindingCommunicationRoutes
 
         private void startBusStopComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (destinationBusStopComboBox.Text != "")
+            if (destinationBusStopComboBox.Text != "" && _actualValueOfProgressBar == 100)
             {
                 searchButton.Enabled = true;  
             }
@@ -176,7 +170,7 @@ namespace FindingCommunicationRoutes
 
         private void destinationBusStopComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (startBusStopComboBox.Text != "")
+            if (startBusStopComboBox.Text != "" && _actualValueOfProgressBar == 100)
             {
                 searchButton.Enabled = true;  
             }
