@@ -351,7 +351,7 @@ namespace FindingCommunicationRoutes
 
             // building tracks and loading them into track lists
 
-            for (int i = 0; i < greaterThenDayTypesQuantity * 2; ++i)
+            for (int i = 0; i < greaterThenDayTypesQuantity; ++i)
             {
                 tracks[i] = trackBuilders[i].BuildTracks();
                 tracks[i].AddRange(trackBuilders2[i].BuildTracks());
