@@ -69,7 +69,7 @@
             this.indirectConnectionDetailsListView = new System.Windows.Forms.ListView();
             this.startBusStopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endBusStopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.totalTravelTimeInderectResultTextBox = new System.Windows.Forms.TextBox();
+            this.totalTravelTimeIndirectResultTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.departureDateDirectResultTextBox = new System.Windows.Forms.TextBox();
@@ -381,13 +381,13 @@
             this.endBusStopColumnHeader.Text = "End Bus Stop";
             this.endBusStopColumnHeader.Width = 107;
             // 
-            // totalTravelTimeInderectResultTextBox
+            // totalTravelTimeIndirectResultTextBox
             // 
-            this.totalTravelTimeInderectResultTextBox.Enabled = false;
-            this.totalTravelTimeInderectResultTextBox.Location = new System.Drawing.Point(765, 173);
-            this.totalTravelTimeInderectResultTextBox.Name = "totalTravelTimeInderectResultTextBox";
-            this.totalTravelTimeInderectResultTextBox.Size = new System.Drawing.Size(47, 20);
-            this.totalTravelTimeInderectResultTextBox.TabIndex = 36;
+            this.totalTravelTimeIndirectResultTextBox.Enabled = false;
+            this.totalTravelTimeIndirectResultTextBox.Location = new System.Drawing.Point(765, 173);
+            this.totalTravelTimeIndirectResultTextBox.Name = "totalTravelTimeIndirectResultTextBox";
+            this.totalTravelTimeIndirectResultTextBox.Size = new System.Drawing.Size(47, 20);
+            this.totalTravelTimeIndirectResultTextBox.TabIndex = 36;
             // 
             // label12
             // 
@@ -518,7 +518,7 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.departureDateDirectResultTextBox);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.totalTravelTimeInderectResultTextBox);
+            this.Controls.Add(this.totalTravelTimeIndirectResultTextBox);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.indirectConnectionDetailsListView);
             this.Controls.Add(this.totalTravelTimeDirectResultTextBox);
@@ -594,7 +594,7 @@
         private System.Windows.Forms.ListView indirectConnectionDetailsListView;
         private System.Windows.Forms.ColumnHeader startBusStopColumnHeader;
         private System.Windows.Forms.ColumnHeader endBusStopColumnHeader;
-        private System.Windows.Forms.TextBox totalTravelTimeInderectResultTextBox;
+        private System.Windows.Forms.TextBox totalTravelTimeIndirectResultTextBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox departureDateDirectResultTextBox;

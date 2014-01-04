@@ -141,6 +141,11 @@ namespace FindingCommunicationRoutes
                     {
                         TimeOfArrival startBusStopTimeOfArrival = track.TimeOfArrivalOnBusStops[startBusStopName];
                         TimeOfArrival endBusStopTimeOfArrival = track.TimeOfArrivalOnBusStops[endBusStopName];
+                        TimeOfArrival tmp = endBusStopTimeOfArrival - startBusStopTimeOfArrival;
+                        if (endBusStopTimeOfArrival - startBusStopTimeOfArrival > new TimeOfArrival(8, 0))
+                        {
+                            continue;
+                        }
                         TimeOfArrival timeDistanceBetweenStartAndEndBusStop = endBusStopTimeOfArrival - startBusStopTimeOfArrival;
                         TimeOfArrival timeSpecifiedByUser = new TimeOfArrival(soughtConnection.DateAndTime.Hour, soughtConnection.DateAndTime.Minute);
                         if (soughtConnection.IsDeparture)

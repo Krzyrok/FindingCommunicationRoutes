@@ -150,6 +150,7 @@ namespace FindingCommunicationRoutes
 
         private void searchButton_Click(object sender, EventArgs e)
         {
+            ResetTextBoxes();
             if (SearchRoute != null)
             {
                 string startBusStop = startBusStopComboBox.Text;
@@ -179,6 +180,23 @@ namespace FindingCommunicationRoutes
             {
                 searchButton.Enabled = true;  
             }
+        }
+
+        private void ResetTextBoxes()
+        {
+            lineDirectResultTextBox.Text = "";
+            timeOfDepartureDirectResultTextBox.Text = "";
+            timeOfArrivalDirectResultTextBox.Text = "";
+            departureDateDirectResultTextBox.Text = "";
+            totalTravelTimeDirectResultTextBox.Text = "";
+
+            lineIndirectResultTextBox.Text = "";
+            timeOfDepartureIndirectResultTextBox.Text = "";
+            timeOfArrivalIndirectResultTextBox.Text = "";
+            departureDateIndirectResultTextBox.Text = "";
+            totalTravelTimeIndirectResultTextBox.Text = "";
+
+            indirectConnectionDetailsListView.Clear();
         }
 
         #endregion
