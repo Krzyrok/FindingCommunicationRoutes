@@ -83,6 +83,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.travelTimeIndirectResultTextBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.upperMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hourTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minuteTimeNumericUpDown)).BeginInit();
@@ -361,15 +363,18 @@
             this.indirectConnectionDetailsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.startBusStopColumnHeader,
             this.endBusStopColumnHeader});
+            this.indirectConnectionDetailsListView.FullRowSelect = true;
+            this.indirectConnectionDetailsListView.GridLines = true;
             this.indirectConnectionDetailsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.indirectConnectionDetailsListView.HideSelection = false;
             this.indirectConnectionDetailsListView.Location = new System.Drawing.Point(572, 63);
             this.indirectConnectionDetailsListView.MultiSelect = false;
             this.indirectConnectionDetailsListView.Name = "indirectConnectionDetailsListView";
-            this.indirectConnectionDetailsListView.Size = new System.Drawing.Size(241, 97);
+            this.indirectConnectionDetailsListView.Size = new System.Drawing.Size(241, 127);
             this.indirectConnectionDetailsListView.TabIndex = 34;
             this.indirectConnectionDetailsListView.UseCompatibleStateImageBehavior = false;
             this.indirectConnectionDetailsListView.View = System.Windows.Forms.View.Details;
+            this.indirectConnectionDetailsListView.SelectedIndexChanged += new System.EventHandler(this.indirectConnectionDetailsListView_SelectedIndexChanged);
             // 
             // startBusStopColumnHeader
             // 
@@ -384,7 +389,7 @@
             // totalTravelTimeIndirectResultTextBox
             // 
             this.totalTravelTimeIndirectResultTextBox.Enabled = false;
-            this.totalTravelTimeIndirectResultTextBox.Location = new System.Drawing.Point(765, 173);
+            this.totalTravelTimeIndirectResultTextBox.Location = new System.Drawing.Point(765, 196);
             this.totalTravelTimeIndirectResultTextBox.Name = "totalTravelTimeIndirectResultTextBox";
             this.totalTravelTimeIndirectResultTextBox.Size = new System.Drawing.Size(47, 20);
             this.totalTravelTimeIndirectResultTextBox.TabIndex = 36;
@@ -392,7 +397,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(674, 176);
+            this.label12.Location = new System.Drawing.Point(674, 199);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(85, 13);
             this.label12.TabIndex = 35;
@@ -501,11 +506,30 @@
             this.label20.TabIndex = 50;
             this.label20.Text = "Indirect connection details:";
             // 
+            // travelTimeIndirectResultTextBox
+            // 
+            this.travelTimeIndirectResultTextBox.Enabled = false;
+            this.travelTimeIndirectResultTextBox.Location = new System.Drawing.Point(503, 170);
+            this.travelTimeIndirectResultTextBox.Name = "travelTimeIndirectResultTextBox";
+            this.travelTimeIndirectResultTextBox.Size = new System.Drawing.Size(63, 20);
+            this.travelTimeIndirectResultTextBox.TabIndex = 51;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(435, 173);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 52;
+            this.label16.Text = "Travel time:";
+            // 
             // CommunicationRoutesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 269);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.travelTimeIndirectResultTextBox);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.departureDateIndirectResultTextBox);
@@ -608,6 +632,8 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox travelTimeIndirectResultTextBox;
+        private System.Windows.Forms.Label label16;
 
     }
 }
