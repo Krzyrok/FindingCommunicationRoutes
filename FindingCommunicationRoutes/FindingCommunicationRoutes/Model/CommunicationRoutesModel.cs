@@ -43,14 +43,17 @@ namespace FindingCommunicationRoutes
             List<SearchResultConnection> result = new List<SearchResultConnection>();
             
             SoughtConnection soughtConnection = ((SearchRouteArgs)args).UserSoughtConnection;      
-            SearcherOfDirectRoutes searcher = new SearcherOfDirectRoutes();
-            SearchResultConnection directConnection = searcher.FindDirectConnection(_repository, soughtConnection);
+            SearcherOfDirectRoutes searcherDirectRoutes = new SearcherOfDirectRoutes();
+            SearchResultConnection directConnection = searcherDirectRoutes.FindDirectConnection(_repository, soughtConnection);
             if (directConnection != null)
             {
                 result.Add(directConnection);
             }
             
             updateInformation("Searching indirect connection", 50);
+            SearcherOfIndirectRoutes searcherOfIndirectRoutes = new SearcherOfIndirectRoutes();
+            List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection);
+            result.AddRange(indirectConnection);
 
             Delegates.DeliverResults deliverResults = ((SearchRouteArgs)args).DelegateToDeliverResultsToView;
             deliverResults(result);

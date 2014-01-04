@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Extensions\ExtensionForString.cs" />
     <Compile Include="Model\Search\Data\LineForSpecifiedDayType.cs" />
     <Compile Include="Model\Args\ActualizeRepositoryArgs.cs" />
     <Compile Include="Model\Delegates\Delegates.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Model\Repository\Builder\TrackBuilder.cs" />
     <Compile Include="Model\Search\TypeOfDayRecognizer.cs" />
     <Compile Include="Model\Args\SearchRouteArgs.cs" />
+    <Compile Include="Model\Search\SearcherOfIndirectRoutes.cs" />
     <Compile Include="View\CommunicationRoutesGui.cs">
       <SubType>Form</SubType>
     </Compile>

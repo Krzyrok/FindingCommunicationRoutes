@@ -40,6 +40,11 @@ namespace FindingCommunicationRoutes
             }
         }
 
+        public override string ToString()
+        {
+            return ("0" + Hour.ToString()).GetLastCharacters(2) + ":" + ("0" + Minutes.ToString()).GetLastCharacters(2);
+        }
+
         public static bool operator >(TimeOfArrival arg1, TimeOfArrival arg2)
         {
             if (arg1.Hour > arg2.Hour)

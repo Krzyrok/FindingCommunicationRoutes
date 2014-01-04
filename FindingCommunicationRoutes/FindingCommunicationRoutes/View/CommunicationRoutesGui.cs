@@ -90,21 +90,37 @@ namespace FindingCommunicationRoutes
             if (directConnection.IsDirectConnection)
             {
                 lineDirectResultTextBox.Text = directConnection.LineNumber;
-                timeOfDepartureDirectResultTextBox.Text = ("0" + directConnection.DepartureTime.Hour.ToString()).GetLastCharacters(2)
-                    + ":" + ("0" + directConnection.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
-                timeOfArrivalDirectResultTextBox.Text = ("0" + directConnection.ArrivalTime.Hour.ToString()).GetLastCharacters(2)
-                    + ":" + ("0" + directConnection.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
-                totalTravelTimeDirectResultTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
-                    + ":" + ("0" + directConnection.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
-                results.Remove(directConnection);
-                departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "." 
+                //timeOfDepartureDirectResultTextBox.Text = ("0" + directConnection.DepartureTime.Hour.ToString()).GetLastCharacters(2)
+                //    + ":" + ("0" + directConnection.DepartureTime.Minutes.ToString()).GetLastCharacters(2);
+                //timeOfArrivalDirectResultTextBox.Text = ("0" + directConnection.ArrivalTime.Hour.ToString()).GetLastCharacters(2)
+                //    + ":" + ("0" + directConnection.ArrivalTime.Minutes.ToString()).GetLastCharacters(2);
+                //totalTravelTimeDirectResultTextBox.Text = ("0" + directConnection.TimeDistanceBetweenBusStops.Hour.ToString()).GetLastCharacters(2)
+                //    + ":" + ("0" + directConnection.TimeDistanceBetweenBusStops.Minutes.ToString()).GetLastCharacters(2);
+                //departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "." 
+                //    + directConnection.DateOfDeparture.Month.ToString() + "." + directConnection.DateOfDeparture.Year.ToString();
+
+                timeOfDepartureDirectResultTextBox.Text = directConnection.DepartureTime.ToString();
+                timeOfArrivalDirectResultTextBox.Text = directConnection.ArrivalTime.ToString();
+                totalTravelTimeDirectResultTextBox.Text = directConnection.TimeDistanceBetweenBusStops.ToString();
+                departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "."
                     + directConnection.DateOfDeparture.Month.ToString() + "." + directConnection.DateOfDeparture.Year.ToString();
+                
+                results.Remove(directConnection);
             }
 
-            for (int i = 0; i < results.Count; i++)
-            {
-                // Display indirect connection
-            }
+
+            //if (results.Count > 0)
+            //{
+            //    SearchResultConnection firstSearchResult = results.First();
+            //    SearchResultConnection lastSearchResult = results.Last();
+            //    //totalTravelTimeInderectResultTextBox.Text = (lastSearchResult.ArrivalTime - firstSearchResult.DepartureTime)
+
+            //    for (int i = 0; i < results.Count; i++)
+            //    {
+            //        //ListViewItem singleDirectItemOfIndirectConnection
+            //    }
+            //}
+
 
 
         }
@@ -167,22 +183,4 @@ namespace FindingCommunicationRoutes
 
         #endregion
     }
-
-    #region Extension for 'string'
-
-    public static class ExtensionForString
-    {
-        public static string GetLastCharacters(this string sourceString, int howManyCharactersFromTheLastPosition)
-        {
-            if (howManyCharactersFromTheLastPosition >= sourceString.Length)
-                return sourceString;
-            if (howManyCharactersFromTheLastPosition < 0)
-            {
-                throw new ArgumentException("Negative value of 'howManyCharactersFromTheLastPosition'");
-            }
-            return sourceString.Substring(sourceString.Length - howManyCharactersFromTheLastPosition);
-        }
-    }
-
-    #endregion
 }
