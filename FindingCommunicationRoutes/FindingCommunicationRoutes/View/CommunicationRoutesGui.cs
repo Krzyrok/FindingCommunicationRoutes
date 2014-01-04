@@ -95,8 +95,8 @@ namespace FindingCommunicationRoutes
                 timeOfDepartureDirectResultTextBox.Text = directConnection.DepartureTime.ToString();
                 timeOfArrivalDirectResultTextBox.Text = directConnection.ArrivalTime.ToString();
                 totalTravelTimeDirectResultTextBox.Text = directConnection.TimeDistanceBetweenBusStops.ToString();
-                departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day.ToString() + "."
-                    + directConnection.DateOfDeparture.Month.ToString() + "." + directConnection.DateOfDeparture.Year.ToString();
+                departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day + "."
+                    + directConnection.DateOfDeparture.Month + "." + directConnection.DateOfDeparture.Year;
                 
                 results.Remove(directConnection);
             }
@@ -106,16 +106,17 @@ namespace FindingCommunicationRoutes
             {
                 SearchResultConnection firstSearchResult = results.First();
                 SearchResultConnection lastSearchResult = results.Last();
-                //totalTravelTimeInderectResultTextBox.Text = (lastSearchResult.ArrivalTime - firstSearchResult.DepartureTime)
+                totalTravelTimeIndirectResultTextBox.Text = (lastSearchResult.ArrivalTime - firstSearchResult.DepartureTime).ToString();
 
                 for (int i = 0; i < results.Count; i++)
                 {
-                    //ListViewItem singleDirectItemOfIndirectConnection
+                    ListViewItem singleDirectRouteOfIndirectConnection = new ListViewItem();
+                    singleDirectRouteOfIndirectConnection.Text = results[i].StartBusStopName;
+                    singleDirectRouteOfIndirectConnection.SubItems.Add(results[i].EndBusStopName);
+                    indirectConnectionDetailsListView.Items.Add(singleDirectRouteOfIndirectConnection);
                 }
+                _indirectConnection = results;
             }
-
-
-
         }
 
         #endregion
@@ -123,6 +124,7 @@ namespace FindingCommunicationRoutes
         #region Private fields
 
         int _actualValueOfProgressBar;
+        List<SearchResultConnection> _indirectConnection;
         List<System.Threading.Thread> _threadsList;
 
         #endregion
@@ -188,9 +190,28 @@ namespace FindingCommunicationRoutes
             timeOfDepartureIndirectResultTextBox.Text = "";
             timeOfArrivalIndirectResultTextBox.Text = "";
             departureDateIndirectResultTextBox.Text = "";
+            travelTimeIndirectResultTextBox.Text = "";
             totalTravelTimeIndirectResultTextBox.Text = "";
 
-            indirectConnectionDetailsListView.Clear();
+            indirectConnectionDetailsListView.Items.Clear();
+        }
+
+        private void indirectConnectionDetailsListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListView.SelectedIndexCollection selectedIndexCollection = indirectConnectionDetailsListView.SelectedIndices;
+            if (selectedIndexCollection.Count > 0)
+            {
+                int index = selectedIndexCollection[0];
+                SearchResultConnection directFragmentOfConnection = _indirectConnection[index];
+
+                lineIndirectResultTextBox.Text = directFragmentOfConnection.LineNumber;
+                timeOfDepartureIndirectResultTextBox.Text = directFragmentOfConnection.DepartureTime.ToString();
+                timeOfArrivalIndirectResultTextBox.Text = directFragmentOfConnection.ArrivalTime.ToString();
+                departureDateIndirectResultTextBox.Text = directFragmentOfConnection.DateOfDeparture.Day 
+                    + "." + directFragmentOfConnection.DateOfDeparture.Month + "." + directFragmentOfConnection.DateOfDeparture.Year;
+                travelTimeIndirectResultTextBox.Text = directFragmentOfConnection.TimeDistanceBetweenBusStops.ToString();
+            }
+            
         }
 
         #endregion
