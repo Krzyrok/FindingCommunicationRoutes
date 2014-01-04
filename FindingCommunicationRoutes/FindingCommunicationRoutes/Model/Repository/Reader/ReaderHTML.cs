@@ -351,10 +351,10 @@ namespace FindingCommunicationRoutes
 
             // building tracks and loading them into track lists
 
-            for (int i = 0; i < greaterThenDayTypesQuantity * 2; i+=2)
+            for (int i = 0; i < greaterThenDayTypesQuantity * 2; ++i)
             {
-                tracks[i] = trackBuilders[i/2].BuildTracks();
-                tracks[i+1] = trackBuilders2[i/2].BuildTracks();
+                tracks[i] = trackBuilders[i].BuildTracks();
+                tracks[i].AddRange(trackBuilders2[i].BuildTracks());
             }
 
             return new Line(lineNumber, tracks);
