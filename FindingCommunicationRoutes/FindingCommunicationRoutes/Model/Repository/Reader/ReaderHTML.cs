@@ -118,7 +118,7 @@ namespace FindingCommunicationRoutes
                 ChangeSite(linksAndNames[0][i]);
                 // from line tracks site
                 Line tmpline = GetBusLine(_htmlSitePath, linksAndNames[1][i]);
-                updateDelegate((double)(i * 100.0 / linksAndNames[0].Count));
+                //updateDelegate((double)(i * 100.0 / linksAndNames[0].Count));
                 if (tmpline != null)
                     lines.Add(tmpline);
             }
@@ -337,7 +337,8 @@ namespace FindingCommunicationRoutes
             CollectDataToPrerepository(list[1], lineNumber);
             CollectDataToPrerepository(list[3], lineNumber);
 
-            TrackBuilder[] trackBuilders = InitializeTrackBuilders(greaterThenDayTypesQuantity*2);
+            TrackBuilder[] trackBuilders = InitializeTrackBuilders(greaterThenDayTypesQuantity);
+            TrackBuilder[] trackBuilders2 = InitializeTrackBuilders(greaterThenDayTypesQuantity);
 
             // preparing track lists
             List<Track>[] tracks = new List<Track>[greaterThenDayTypesQuantity*2];
@@ -345,13 +346,15 @@ namespace FindingCommunicationRoutes
             trackBuilders = LoadDataFromBusStops(trackBuilders, list[0],
                                         list[1], lineNumber);
 
-            trackBuilders.ToList().AddRange(LoadDataFromBusStops(trackBuilders, list[2],
-                                        list[3], lineNumber));
+            trackBuilders2 = LoadDataFromBusStops(trackBuilders2, list[2],
+                                        list[3], lineNumber);
 
             // building tracks and loading them into track lists
-            for (int i = 0; i < greaterThenDayTypesQuantity*2; ++i)
+
+            for (int i = 0; i < greaterThenDayTypesQuantity * 2; i+=2)
             {
-                tracks[i] = trackBuilders[i].BuildTracks();
+                tracks[i] = trackBuilders[i/2].BuildTracks();
+                tracks[i+1] = trackBuilders2[i/2].BuildTracks();
             }
 
             return new Line(lineNumber, tracks);
