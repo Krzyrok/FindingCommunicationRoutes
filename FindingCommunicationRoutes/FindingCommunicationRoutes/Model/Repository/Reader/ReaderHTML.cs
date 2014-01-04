@@ -337,16 +337,19 @@ namespace FindingCommunicationRoutes
             CollectDataToPrerepository(list[1], lineNumber);
             CollectDataToPrerepository(list[3], lineNumber);
 
-            TrackBuilder[] trackBuilders = InitializeTrackBuilders(greaterThenDayTypesQuantity);
-
-            trackBuilders = LoadDataFromBusStops (trackBuilders, list[0], 
-                                                    list[1], lineNumber);
+            TrackBuilder[] trackBuilders = InitializeTrackBuilders(greaterThenDayTypesQuantity*2);
 
             // preparing track lists
-            List<Track>[] tracks = new List<Track>[greaterThenDayTypesQuantity];
+            List<Track>[] tracks = new List<Track>[greaterThenDayTypesQuantity*2];
+
+            trackBuilders = LoadDataFromBusStops(trackBuilders, list[0],
+                                        list[1], lineNumber);
+
+            trackBuilders.ToList().AddRange(LoadDataFromBusStops(trackBuilders, list[2],
+                                        list[3], lineNumber));
 
             // building tracks and loading them into track lists
-            for (int i = 0; i < greaterThenDayTypesQuantity; ++i)
+            for (int i = 0; i < greaterThenDayTypesQuantity*2; ++i)
             {
                 tracks[i] = trackBuilders[i].BuildTracks();
             }
