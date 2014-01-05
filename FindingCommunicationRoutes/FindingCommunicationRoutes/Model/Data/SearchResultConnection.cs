@@ -11,9 +11,8 @@ namespace FindingCommunicationRoutes
 
         public bool IsDirectConnection { get; private set; }
         public string LineNumber { get; private set; }
-        public DateTime DateOfDeparture { get; private set; }
-        public TimeOfArrival DepartureTime { get; private set; }
-        public TimeOfArrival ArrivalTime { get; private set; }
+        public DateTime DepartureDateTime { get; private set; }
+        public DateTime ArrivalDateTime { get; private set; }
         public TimeOfArrival TimeDistanceBetweenBusStops { get; private set; }
         public string StartBusStopName { get; private set; }
         public string EndBusStopName { get; private set; }
@@ -22,14 +21,13 @@ namespace FindingCommunicationRoutes
         
         #region Constructors
 
-        public SearchResultConnection(bool isDirectConnection, string lineNumber, DateTime dateOfDeparture, TimeOfArrival departureTime, TimeOfArrival arrivalTime, 
+        public SearchResultConnection(bool isDirectConnection, string lineNumber, DateTime departureDateTime, DateTime arrivalDateTime, 
             TimeOfArrival timeDistanceBetweenBusStops, string startBusStopName, string endBusStopName) 
         {
             IsDirectConnection = isDirectConnection;
             LineNumber = lineNumber;
-            DateOfDeparture = dateOfDeparture;
-            DepartureTime = departureTime;
-            ArrivalTime = arrivalTime;
+            DepartureDateTime = departureDateTime;
+            ArrivalDateTime = arrivalDateTime;
             TimeDistanceBetweenBusStops = timeDistanceBetweenBusStops;
             StartBusStopName = startBusStopName;
             EndBusStopName = endBusStopName;

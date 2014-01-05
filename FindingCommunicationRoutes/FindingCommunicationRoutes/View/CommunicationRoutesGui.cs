@@ -92,11 +92,13 @@ namespace FindingCommunicationRoutes
             if (directConnection.IsDirectConnection)
             {
                 lineDirectResultTextBox.Text = directConnection.LineNumber;
-                timeOfDepartureDirectResultTextBox.Text = directConnection.DepartureTime.ToString();
-                timeOfArrivalDirectResultTextBox.Text = directConnection.ArrivalTime.ToString();
+                TimeOfArrival timeOfDeparture = new TimeOfArrival(directConnection.DepartureDateTime.Hour, directConnection.DepartureDateTime.Minute);
+                timeOfDepartureDirectResultTextBox.Text = timeOfDeparture.ToString();
+                TimeOfArrival timeOfArrival = new TimeOfArrival(directConnection.ArrivalDateTime.Hour, directConnection.ArrivalDateTime.Minute);
+                timeOfArrivalDirectResultTextBox.Text = timeOfArrival.ToString();
                 totalTravelTimeDirectResultTextBox.Text = directConnection.TimeDistanceBetweenBusStops.ToString();
-                departureDateDirectResultTextBox.Text = directConnection.DateOfDeparture.Day + "."
-                    + directConnection.DateOfDeparture.Month + "." + directConnection.DateOfDeparture.Year;
+                departureDateDirectResultTextBox.Text = directConnection.DepartureDateTime.Day + "."
+                    + directConnection.DepartureDateTime.Month + "." + directConnection.DepartureDateTime.Year;
                 
                 results.Remove(directConnection);
             }
@@ -106,7 +108,9 @@ namespace FindingCommunicationRoutes
             {
                 SearchResultConnection firstSearchResult = results.First();
                 SearchResultConnection lastSearchResult = results.Last();
-                totalTravelTimeIndirectResultTextBox.Text = (lastSearchResult.ArrivalTime - firstSearchResult.DepartureTime).ToString();
+                TimeOfArrival timeOfDepartureFirstResult = new TimeOfArrival(firstSearchResult.DepartureDateTime.Hour, firstSearchResult.DepartureDateTime.Minute);
+                TimeOfArrival timeOfArrivalFLastResult = new TimeOfArrival(lastSearchResult.ArrivalDateTime.Hour, lastSearchResult.ArrivalDateTime.Minute);
+                totalTravelTimeIndirectResultTextBox.Text = (timeOfArrivalFLastResult - timeOfDepartureFirstResult).ToString();
 
                 for (int i = 0; i < results.Count; i++)
                 {
@@ -203,12 +207,14 @@ namespace FindingCommunicationRoutes
             {
                 int index = selectedIndexCollection[0];
                 SearchResultConnection directFragmentOfConnection = _indirectConnection[index];
+                TimeOfArrival timeOfDeparture = new TimeOfArrival(directFragmentOfConnection.DepartureDateTime.Hour, directFragmentOfConnection.DepartureDateTime.Minute);
+                TimeOfArrival timeOfArrival = new TimeOfArrival(directFragmentOfConnection.ArrivalDateTime.Hour, directFragmentOfConnection.ArrivalDateTime.Minute);
 
                 lineIndirectResultTextBox.Text = directFragmentOfConnection.LineNumber;
-                timeOfDepartureIndirectResultTextBox.Text = directFragmentOfConnection.DepartureTime.ToString();
-                timeOfArrivalIndirectResultTextBox.Text = directFragmentOfConnection.ArrivalTime.ToString();
-                departureDateIndirectResultTextBox.Text = directFragmentOfConnection.DateOfDeparture.Day 
-                    + "." + directFragmentOfConnection.DateOfDeparture.Month + "." + directFragmentOfConnection.DateOfDeparture.Year;
+                timeOfDepartureIndirectResultTextBox.Text = timeOfDeparture.ToString();
+                timeOfArrivalIndirectResultTextBox.Text = timeOfArrival.ToString();
+                departureDateIndirectResultTextBox.Text = directFragmentOfConnection.DepartureDateTime.Day
+                    + "." + directFragmentOfConnection.DepartureDateTime.Month + "." + directFragmentOfConnection.DepartureDateTime.Year;
                 travelTimeIndirectResultTextBox.Text = directFragmentOfConnection.TimeDistanceBetweenBusStops.ToString();
             }
             

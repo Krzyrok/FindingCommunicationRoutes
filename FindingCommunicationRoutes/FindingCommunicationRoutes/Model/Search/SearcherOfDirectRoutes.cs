@@ -147,6 +147,26 @@ namespace FindingCommunicationRoutes
                             continue;
                         }
                         
+                        DateTime startBusStopDateTime = new DateTime();
+                        DateTime endBusStopDateTime = new DateTime();
+                        if (endBusStopTimeOfArrival >= startBusStopTimeOfArrival)
+                        {
+                            // the same dates                 
+                            startBusStopDateTime = new DateTime(soughtConnection.DateAndTime.Year, soughtConnection.DateAndTime.Month, soughtConnection.DateAndTime.Day,
+                                startBusStopTimeOfArrival.Hour, startBusStopTimeOfArrival.Minutes, 0);
+                            endBusStopDateTime = new DateTime(soughtConnection.DateAndTime.Year, soughtConnection.DateAndTime.Month, soughtConnection.DateAndTime.Day,
+                                endBusStopTimeOfArrival.Hour, endBusStopTimeOfArrival.Minutes, 0);
+                        }
+                        else
+                        {
+                            // end date is one day after start date
+                            startBusStopDateTime = new DateTime(soughtConnection.DateAndTime.Year, soughtConnection.DateAndTime.Month, soughtConnection.DateAndTime.Day,
+                                startBusStopTimeOfArrival.Hour, startBusStopTimeOfArrival.Minutes, 0);
+                            DateTime dayAfterDayInSoughtConnection = soughtConnection.DateAndTime.AddDays(1);
+                            endBusStopDateTime = new DateTime(dayAfterDayInSoughtConnection.Year, dayAfterDayInSoughtConnection.Month, dayAfterDayInSoughtConnection.Day,
+                                endBusStopTimeOfArrival.Hour, endBusStopTimeOfArrival.Minutes, 0);
+                        }
+
                         TimeOfArrival timeSpecifiedByUser = new TimeOfArrival(soughtConnection.DateAndTime.Hour, soughtConnection.DateAndTime.Minute);
                         if (soughtConnection.IsDeparture)
                         {
@@ -155,15 +175,16 @@ namespace FindingCommunicationRoutes
                                 if (foundConnection == null)
                                 {
 
-                                    foundConnection = new SearchResultConnection(true, line.Number, soughtConnection.DateAndTime, startBusStopTimeOfArrival, 
-                                        endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
+                                    foundConnection = new SearchResultConnection(true, line.Number, startBusStopDateTime, 
+                                        endBusStopDateTime, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
                                 }
                                 else
                                 {
-                                    if (foundConnection.ArrivalTime > endBusStopTimeOfArrival)
+                                    TimeOfArrival foundConnectionArrivalTime = new TimeOfArrival(foundConnection.ArrivalDateTime.Hour, foundConnection.ArrivalDateTime.Minute);
+                                    if (foundConnectionArrivalTime > endBusStopTimeOfArrival)
                                     {
-                                        foundConnection = new SearchResultConnection(true, line.Number, soughtConnection.DateAndTime, startBusStopTimeOfArrival, 
-                                            endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
+                                        foundConnection = new SearchResultConnection(true, line.Number, startBusStopDateTime, 
+                                            endBusStopDateTime, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
                                     }
                                 }
                             }
@@ -175,15 +196,16 @@ namespace FindingCommunicationRoutes
                             {
                                 if (foundConnection == null)
                                 {
-                                    foundConnection = new SearchResultConnection(true, line.Number, soughtConnection.DateAndTime, startBusStopTimeOfArrival,
-                                        endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
+                                    foundConnection = new SearchResultConnection(true, line.Number, startBusStopDateTime,
+                                        endBusStopDateTime, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
                                 }
                                 else
                                 {
-                                    if (foundConnection.DepartureTime < startBusStopTimeOfArrival)
+                                    TimeOfArrival foundConnectionArrivalTime = new TimeOfArrival(foundConnection.ArrivalDateTime.Hour, foundConnection.ArrivalDateTime.Minute);
+                                    if (foundConnectionArrivalTime < startBusStopTimeOfArrival)
                                     {
-                                        foundConnection = new SearchResultConnection(true, line.Number, soughtConnection.DateAndTime, startBusStopTimeOfArrival, 
-                                            endBusStopTimeOfArrival, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
+                                        foundConnection = new SearchResultConnection(true, line.Number, startBusStopDateTime, 
+                                            endBusStopDateTime, timeDistanceBetweenStartAndEndBusStop, startBusStopName, endBusStopName);
                                     }
                                 }
                             }
