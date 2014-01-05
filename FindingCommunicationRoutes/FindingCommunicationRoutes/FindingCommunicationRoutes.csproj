@@ -65,12 +65,13 @@
     <Compile Include="Model\Data\DayTypes\GeneratorOfDayTypes.cs" />
     <Compile Include="Model\Data\DayTypes\EnumDescription.cs" />
     <Compile Include="Model\Repository\Reader\ReaderCHM.cs" />
+    <Compile Include="Model\Search\Neighbour Bus Stops\NeighbourBusStopsRecognizer.cs" />
     <Compile Include="Model\Search\SearcherOfDirectRoutes.cs" />
     <Compile Include="Model\Data\SearchResultConnection.cs" />
     <Compile Include="Model\Repository\Reader\ReaderHTML.cs" />
     <Compile Include="Model\Repository\Builder\TemporaryTrackNode.cs" />
     <Compile Include="Model\Repository\Builder\TrackBuilder.cs" />
-    <Compile Include="Model\Search\TypeOfDayRecognizer.cs" />
+    <Compile Include="Model\Search\Type of Day\TypeOfDayRecognizer.cs" />
     <Compile Include="Model\Args\SearchRouteArgs.cs" />
     <Compile Include="Model\Search\SearcherOfIndirectRoutes.cs" />
     <Compile Include="Model\Search\Data\SingleBusStopForIndirectConnection.cs" />
@@ -112,6 +113,7 @@
   <ItemGroup>
     <Content Include="Logo\logo_bus.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

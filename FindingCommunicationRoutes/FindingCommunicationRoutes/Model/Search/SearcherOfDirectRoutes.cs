@@ -27,6 +27,7 @@ namespace FindingCommunicationRoutes
 
             TypeOfDayRecognizer dayRecognizer = new TypeOfDayRecognizer();
             List<string> dayTypes = dayRecognizer.RecognizeTypeOfDay(soughtConnection.DateAndTime);
+            TracksGiverForSpecifiedDayType tracksGiverForSpecfiedDayType = new TracksGiverForSpecifiedDayType();
 
             BusStop startBusStop = null;
             BusStop endBusStop = null;
@@ -34,7 +35,8 @@ namespace FindingCommunicationRoutes
 
             List<Line> linesPlyingThroughBothBusStops = GiveLinesPlyingThroughTwoBusStops(startBusStop, endBusStop);
 
-            List<LineForSpecifiedDayType> allTracksFromStartToEndBusStopInSpecifiedDayType = GiveLinesForSpecifiedDayType(linesPlyingThroughBothBusStops, dayTypes);
+            List<LineForSpecifiedDayType> allTracksFromStartToEndBusStopInSpecifiedDayType = 
+                tracksGiverForSpecfiedDayType.GiveLinesForSpecifiedDayType(linesPlyingThroughBothBusStops, dayTypes);
 
             SearchResultConnection result = GiveDirectConnection(allTracksFromStartToEndBusStopInSpecifiedDayType,
                 startBusStop.BusStopName, endBusStop.BusStopName, soughtConnection);
@@ -57,7 +59,8 @@ namespace FindingCommunicationRoutes
 
             soughtConnection = new SoughtConnection(startBusStop.BusStopName, endBusStop.BusStopName, newDateForSoughtConnection, soughtConnection.IsDeparture);
             dayTypes = dayRecognizer.RecognizeTypeOfDay(newDateForSoughtConnection);
-            allTracksFromStartToEndBusStopInSpecifiedDayType = GiveLinesForSpecifiedDayType(linesPlyingThroughBothBusStops, dayTypes);
+            allTracksFromStartToEndBusStopInSpecifiedDayType =
+                tracksGiverForSpecfiedDayType.GiveLinesForSpecifiedDayType(linesPlyingThroughBothBusStops, dayTypes);
             result = GiveDirectConnection(allTracksFromStartToEndBusStopInSpecifiedDayType,
                 startBusStop.BusStopName, endBusStop.BusStopName, soughtConnection);
             return result;
@@ -101,32 +104,6 @@ namespace FindingCommunicationRoutes
             }
 
             return linesPlyingThroughBothBusStops;
-        }
-
-        private List<LineForSpecifiedDayType> GiveLinesForSpecifiedDayType(List<Line> allLines, List<string> specifiedDayTypes)
-        {
-            List<LineForSpecifiedDayType> allTracksInSpecifiedDayType = new List<LineForSpecifiedDayType>();
-            foreach (Line line in allLines)
-            {
-                for (int i = 0; i < specifiedDayTypes.Count; i++)
-                {
-                    for (int j = 0; j < line.DayTypeTracks.Length; j++)
-                    {
-                        if (line.DayTypeTracks[j].Count == 0)
-                        {
-                            break;
-                        }
-                        if (line.DayTypeTracks[j][0].DayType.Equals(specifiedDayTypes[i]))
-                        {
-                            allTracksInSpecifiedDayType.Add(new LineForSpecifiedDayType(line.Number, line.DayTypeTracks[j]));
-                            i = specifiedDayTypes.Count;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return allTracksInSpecifiedDayType;
         }
 
         private SearchResultConnection GiveDirectConnection(List<LineForSpecifiedDayType> allSpecifiedLines, 

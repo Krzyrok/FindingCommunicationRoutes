@@ -20,95 +20,63 @@ namespace FindingCommunicationRoutes
         public List<SearchResultConnection> FindIndirectConnection(Repository repository, SoughtConnection soughtConnection)
         {
             List<SearchResultConnection> resultList = new List<SearchResultConnection>();
-
-            // ------------
-
             
             // initialize
             SearcherOfDirectRoutes searcherOfDirectConnections = new SearcherOfDirectRoutes();
 
             List<SingleBusStopForIndirectConnection> busStopsToCheckList = new List<SingleBusStopForIndirectConnection>();
-            List<SingleBusStopForIndirectConnection> busStopsToCheckTmpList = new List<SingleBusStopForIndirectConnection>();
             List<SingleBusStopForIndirectConnection> busStopsCheckedList = new List<SingleBusStopForIndirectConnection>();
             int numberOfAllBusStops = repository.BusStops.Count;
             List<BusStop> allBusStops = repository.BusStops;
-            for (int i = 0; i < numberOfAllBusStops; i++)
+            if (soughtConnection.IsDeparture)
             {
-                if (allBusStops[i].BusStopName.Equals(soughtConnection.StartBusStop))
+                for (int i = 0; i < numberOfAllBusStops; i++)
                 {
-                    busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), new DateTime(), new DateTime()));
-                }
-                else
-                {
-                    busStopsToCheckList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", null, new DateTime(), new DateTime()));
+                    if (allBusStops[i].BusStopName.Equals(soughtConnection.StartBusStop))
+                    {
+                        busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), new DateTime(), new DateTime()));
+                    }
+                    else
+                    {
+                        busStopsToCheckList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", null, new DateTime(), new DateTime()));
+                    }
                 }
             }
-            SingleBusStopForIndirectConnection startBusStop = busStopsCheckedList.Last();
-
-            busStopsToCheckTmpList.AddRange(busStopsToCheckList);
-            busStopsToCheckList.Clear();
-            foreach (SingleBusStopForIndirectConnection oneBusStop in busStopsToCheckTmpList)
+            else
             {
-                SoughtConnection tmpSoughtConnection = new SoughtConnection(startBusStop.BusStopName, oneBusStop.BusStopName, 
-                    soughtConnection.DateAndTime, soughtConnection.IsDeparture);
-                SearchResultConnection singleResult = searcherOfDirectConnections.FindDirectConnection(repository, tmpSoughtConnection);
-
-                if (singleResult == null)
+                for (int i = 0; i < numberOfAllBusStops; i++)
                 {
-                    busStopsToCheckList.Add(new SingleBusStopForIndirectConnection(oneBusStop.BusStopName, "", "", null, 
-                        new DateTime(), new DateTime()));
-                }
-                else
-                {
-                    busStopsToCheckList.Add(new SingleBusStopForIndirectConnection(oneBusStop.BusStopName, startBusStop.BusStopName, singleResult.LineNumber,
-                        singleResult.TimeDistanceBetweenBusStops, singleResult.ArrivalDateTime, singleResult.DepartureDateTime));
+                    if (allBusStops[i].BusStopName.Equals(soughtConnection.EndBusStop))
+                    {
+                        busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), new DateTime(), new DateTime()));
+                    }
+                    else
+                    {
+                        busStopsToCheckList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", null, new DateTime(), new DateTime()));
+                    }
                 }
             }
-
-            busStopsToCheckTmpList.Clear();
+            SingleBusStopForIndirectConnection previousBusStop = busStopsCheckedList.Last();
             // end initialize
 
             // main fragments
             do
             {
-                busStopsToCheckTmpList.AddRange(busStopsToCheckList);
-                busStopsToCheckList.Clear();
-
-                int indexOfTheNearestBusStop = -1;
-                TimeOfArrival actualTotalTimeTravel = new TimeOfArrival(23, 59);
-                for (int i = 0; i < busStopsToCheckTmpList.Count; i++)
+                foreach (SingleBusStopForIndirectConnection oneBusStop in busStopsToCheckList)
                 {
-                    if (busStopsToCheckTmpList[i].TotalTimeFromStartBus == null)
+                    SoughtConnection singleSoughtConnection = null;
+                    if (soughtConnection.IsDeparture)
                     {
-                        continue;
+                        singleSoughtConnection = new SoughtConnection(previousBusStop.BusStopName, oneBusStop.BusStopName,
+                            previousBusStop.ArrivalDateTimeAtThisBusStop, soughtConnection.IsDeparture);
                     }
-                    if (busStopsToCheckTmpList[i].TotalTimeFromStartBus < actualTotalTimeTravel)
+                    else
                     {
-                        indexOfTheNearestBusStop = i;
-                        actualTotalTimeTravel = busStopsToCheckTmpList[i].TotalTimeFromStartBus;
+                        singleSoughtConnection = new SoughtConnection(oneBusStop.BusStopName, previousBusStop.BusStopName,
+                            previousBusStop.ArrivalDateTimeAtThisBusStop, soughtConnection.IsDeparture);
                     }
-                }
-                // probably route doesn;t exist
-                if (indexOfTheNearestBusStop == -1)
-                {
-                    break;
-                }
-                // one of the conditions
-                if (busStopsToCheckTmpList[indexOfTheNearestBusStop].BusStopName.Equals(soughtConnection.EndBusStop))
-                {
-                    busStopsCheckedList.Add(busStopsToCheckTmpList[indexOfTheNearestBusStop]);
-                    busStopsToCheckTmpList.RemoveAt(indexOfTheNearestBusStop);
-                    busStopsToCheckList.AddRange(busStopsToCheckTmpList);
-                    break;
-                }
 
-                startBusStop = busStopsToCheckTmpList[indexOfTheNearestBusStop];
-                busStopsToCheckTmpList.RemoveAt(indexOfTheNearestBusStop);
-                foreach (SingleBusStopForIndirectConnection oneBusStop in busStopsToCheckTmpList)
-                {
-                    SoughtConnection tmpSoughtConnection = new SoughtConnection(startBusStop.BusStopName, oneBusStop.BusStopName,
-                        startBusStop.ArrivalTimeAtThisBusStop, true);
-                    SearchResultConnection singleResult = searcherOfDirectConnections.FindDirectConnection(repository, tmpSoughtConnection);
+                    SearchResultConnection singleResult = searcherOfDirectConnections.FindDirectConnection(repository, singleSoughtConnection);
 
                     if (singleResult != null)
                     {
@@ -116,23 +84,51 @@ namespace FindingCommunicationRoutes
                         if (oneBusStop.TotalTimeFromStartBus == null)
                         {
                             // po prostu zapisz
-                            oneBusStop.ChangeFields(startBusStop.BusStopName, singleResult.LineNumber, 
-                                startBusStop.TotalTimeFromStartBus + singleResult.TimeDistanceBetweenBusStops, singleResult.ArrivalDateTime, singleResult.DepartureDateTime);
+                            oneBusStop.ChangeFields(previousBusStop.BusStopName, singleResult.LineNumber,
+                                previousBusStop.TotalTimeFromStartBus + singleResult.TimeDistanceBetweenBusStops, singleResult.ArrivalDateTime, singleResult.DepartureDateTime);
                         }
                         else
                         {
                             // sprawdz czy nowy czss jest mniejszy i zapisz wtedy
-                            if ((startBusStop.TotalTimeFromStartBus + singleResult.TimeDistanceBetweenBusStops) < oneBusStop.TotalTimeFromStartBus) // condition
+                            if ((previousBusStop.TotalTimeFromStartBus + singleResult.TimeDistanceBetweenBusStops) < oneBusStop.TotalTimeFromStartBus) // condition
                             {
-                                oneBusStop.ChangeFields(startBusStop.BusStopName, singleResult.LineNumber, 
-                                    startBusStop.TotalTimeFromStartBus + singleResult.TimeDistanceBetweenBusStops, singleResult.ArrivalDateTime, singleResult.DepartureDateTime);
+                                oneBusStop.ChangeFields(previousBusStop.BusStopName, singleResult.LineNumber,
+                                    previousBusStop.TotalTimeFromStartBus + singleResult.TimeDistanceBetweenBusStops, singleResult.ArrivalDateTime, singleResult.DepartureDateTime);
                             }
                         }
                     }
                 }
+                int indexOfTheNearestBusStop = -1;
+                TimeOfArrival actualTotalTimeTravel = new TimeOfArrival(23, 59);
+                for (int i = 0; i < busStopsToCheckList.Count; i++)
+                {
+                    if (busStopsToCheckList[i].TotalTimeFromStartBus == null)
+                    {
+                        continue;
+                    }
+                    if (busStopsToCheckList[i].TotalTimeFromStartBus < actualTotalTimeTravel)
+                    {
+                        indexOfTheNearestBusStop = i;
+                        actualTotalTimeTravel = busStopsToCheckList[i].TotalTimeFromStartBus;
+                    }
+                }
+                // probably route doesn't exist
+                if (indexOfTheNearestBusStop == -1)
+                {
+                    break;
+                }
+                // one of the conditions - found end bus stop and route to this bus stop
+                if (busStopsToCheckList[indexOfTheNearestBusStop].BusStopName.Equals(soughtConnection.EndBusStop))
+                {
+                    busStopsCheckedList.Add(busStopsToCheckList[indexOfTheNearestBusStop]);
+                    busStopsToCheckList.RemoveAt(indexOfTheNearestBusStop);
+                    break;
+                }
 
-            } while (true);
-
+                previousBusStop = busStopsToCheckList[indexOfTheNearestBusStop];
+                busStopsToCheckList.RemoveAt(indexOfTheNearestBusStop);
+                busStopsCheckedList.Add(previousBusStop);
+            } while (busStopsToCheckList.Count > 0);
             // end main fragments
 
             // -----------

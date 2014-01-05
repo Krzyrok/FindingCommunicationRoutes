@@ -13,22 +13,22 @@ namespace FindingCommunicationRoutes
         public string PreviousBusStopName { get; private set; }
         public string LineNumberWhichLeadToThisBusStop { get; private set; }
         public TimeOfArrival TotalTimeFromStartBus { get; private set; }
-        public DateTime ArrivalTimeAtThisBusStop { get; private set; }
-        public DateTime DepartureTimeFromPreviousBusStop { get; private set; }
+        public DateTime ArrivalDateTimeAtThisBusStop { get; private set; }
+        public DateTime DepartureDateTimeFromPreviousBusStop { get; private set; }
 
         #endregion
 
         #region Constructors
 
         public SingleBusStopForIndirectConnection(string busStopName, string previousBusStopName, string lineNumberWhichLeadToThisBusStop,
-            TimeOfArrival totalTimeFromStartBus, DateTime arrivalTimeAtThisBusStop, DateTime departureTimeFromPreviousBusStop)
+            TimeOfArrival totalTimeFromStartBus, DateTime arrivalDateTimeAtThisBusStop, DateTime departureDateTimeFromPreviousBusStop)
         {
             BusStopName = busStopName;
             PreviousBusStopName = previousBusStopName;
             LineNumberWhichLeadToThisBusStop = lineNumberWhichLeadToThisBusStop;
             TotalTimeFromStartBus = totalTimeFromStartBus;
-            ArrivalTimeAtThisBusStop = arrivalTimeAtThisBusStop;
-            DepartureTimeFromPreviousBusStop = departureTimeFromPreviousBusStop;
+            ArrivalDateTimeAtThisBusStop = arrivalDateTimeAtThisBusStop;
+            DepartureDateTimeFromPreviousBusStop = departureDateTimeFromPreviousBusStop;
         }
 
         #endregion
