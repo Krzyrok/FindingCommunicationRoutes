@@ -73,6 +73,7 @@
     <Compile Include="Model\Search\TypeOfDayRecognizer.cs" />
     <Compile Include="Model\Args\SearchRouteArgs.cs" />
     <Compile Include="Model\Search\SearcherOfIndirectRoutes.cs" />
+    <Compile Include="Model\Search\Data\SingleBusStopForIndirectConnection.cs" />
     <Compile Include="View\CommunicationRoutesGui.cs">
       <SubType>Form</SubType>
     </Compile>
