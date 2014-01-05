@@ -32,5 +32,19 @@ namespace FindingCommunicationRoutes
         }
 
         #endregion
+
+        #region Public methods
+
+        public void ChangeFields(SingleBusStopForIndirectConnection pattern)
+        {
+            this.BusStopName = pattern.BusStopName;
+            this.PreviousBusStopName = pattern.PreviousBusStopName;
+            this.LineNumberWhichLeadToThisBusStop = pattern.LineNumberWhichLeadToThisBusStop;
+            this.TotalTimeFromStartBus = pattern.TotalTimeFromStartBus;
+            this.ArrivalTimeAtThisBusStop = pattern.ArrivalTimeAtThisBusStop;
+            this.DepartureTimeFromPreviousBusStop = pattern.DepartureTimeFromPreviousBusStop;
+        }
+
+        #endregion
     }
 }
