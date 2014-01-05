@@ -35,14 +35,14 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
-        public void ChangeFields(SingleBusStopForIndirectConnection pattern)
+        public void ChangeFields(string newPreviousBusStopName, string newLineNumberWhichLeadToThisBusStop,
+            TimeOfArrival newTotalTimeFromStartBus, DateTime newArrivalTimeAtThisBusStop, DateTime newDepartureTimeFromPreviousBusStop)
         {
-            this.BusStopName = pattern.BusStopName;
-            this.PreviousBusStopName = pattern.PreviousBusStopName;
-            this.LineNumberWhichLeadToThisBusStop = pattern.LineNumberWhichLeadToThisBusStop;
-            this.TotalTimeFromStartBus = pattern.TotalTimeFromStartBus;
-            this.ArrivalTimeAtThisBusStop = pattern.ArrivalTimeAtThisBusStop;
-            this.DepartureTimeFromPreviousBusStop = pattern.DepartureTimeFromPreviousBusStop;
+            this.PreviousBusStopName = newPreviousBusStopName;
+            this.LineNumberWhichLeadToThisBusStop = newLineNumberWhichLeadToThisBusStop;
+            this.TotalTimeFromStartBus = newTotalTimeFromStartBus;
+            this.ArrivalTimeAtThisBusStop = newArrivalTimeAtThisBusStop;
+            this.DepartureTimeFromPreviousBusStop = newDepartureTimeFromPreviousBusStop;
         }
 
         #endregion
