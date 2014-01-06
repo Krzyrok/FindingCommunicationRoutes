@@ -58,7 +58,7 @@ namespace FindingCommunicationRoutes
 
                 // in another way
 
-                for (int j = specifiedTracksInLine.TracksForSpecifiedDayType.Count - 1; j > specifiedTracksInLine.TracksForSpecifiedDayType.Count - 5 && j > 0; j--)
+                for (int j = specifiedTracksInLine.TracksForSpecifiedDayType.Count - 1; j > specifiedTracksInLine.TracksForSpecifiedDayType.Count - 5 && j > 3; j--)
                 {
                     Track lastTrackTrack = specifiedTracksInLine.TracksForSpecifiedDayType[j];
                     int index = -1;

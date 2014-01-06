@@ -53,8 +53,10 @@ namespace FindingCommunicationRoutes
             updateInformation("Searching indirect connection", 50);
             SearcherOfIndirectRoutes searcherOfIndirectRoutes = new SearcherOfIndirectRoutes();
             List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection);
-            result.AddRange(indirectConnection);
-
+            if (indirectConnection != null)
+            {
+                result.AddRange(indirectConnection);
+            }
             Delegates.DeliverResults deliverResults = ((SearchRouteArgs)args).DelegateToDeliverResultsToView;
             deliverResults(result);
         }
