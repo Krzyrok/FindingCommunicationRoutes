@@ -20,6 +20,7 @@ namespace FindingCommunicationRoutes
         public List<SearchResultConnection> FindIndirectConnection(Repository repository, SoughtConnection soughtConnection)
         {
             List<SearchResultConnection> resultList = new List<SearchResultConnection>();
+            //return resultList;
             
             // initialize
             SearcherOfDirectRoutes searcherOfDirectConnections = new SearcherOfDirectRoutes();
@@ -34,7 +35,7 @@ namespace FindingCommunicationRoutes
                 {
                     if (allBusStops[i].BusStopName.Equals(soughtConnection.StartBusStop))
                     {
-                        busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), new DateTime(), new DateTime()));
+                        busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), soughtConnection.DateAndTime, soughtConnection.DateAndTime));
                     }
                     else
                     {
@@ -48,7 +49,7 @@ namespace FindingCommunicationRoutes
                 {
                     if (allBusStops[i].BusStopName.Equals(soughtConnection.EndBusStop))
                     {
-                        busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), new DateTime(), new DateTime()));
+                        busStopsCheckedList.Add(new SingleBusStopForIndirectConnection(allBusStops[i].BusStopName, "", "", new TimeOfArrival(0, 0), soughtConnection.DateAndTime, soughtConnection.DateAndTime));
                     }
                     else
                     {
@@ -62,8 +63,23 @@ namespace FindingCommunicationRoutes
             // main fragments
             do
             {
+                List<string> neighbourBusStopsList = new NeighbourBusStopsRecognizer().RecognizeNeighbourBusStops(previousBusStop.BusStopName,
+                    repository, previousBusStop.ArrivalDateTimeAtThisBusStop);
                 foreach (SingleBusStopForIndirectConnection oneBusStop in busStopsToCheckList)
                 {
+                    bool oneBusStopWasFound = false;
+                    foreach (string neighbourBusStop in neighbourBusStopsList)
+                    {
+                        if (neighbourBusStop.Equals(oneBusStop.BusStopName))
+                        {
+                            oneBusStopWasFound = true;
+                            break;
+                        }
+                    }
+                    if (!oneBusStopWasFound)
+                    {
+                        continue;
+                    }
                     SoughtConnection singleSoughtConnection = null;
                     if (soughtConnection.IsDeparture)
                     {

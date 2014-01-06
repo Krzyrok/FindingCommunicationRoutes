@@ -41,8 +41,8 @@ namespace FindingCommunicationRoutes
             this.PreviousBusStopName = newPreviousBusStopName;
             this.LineNumberWhichLeadToThisBusStop = newLineNumberWhichLeadToThisBusStop;
             this.TotalTimeFromStartBus = newTotalTimeFromStartBus;
-            this.ArrivalTimeAtThisBusStop = newArrivalTimeAtThisBusStop;
-            this.DepartureTimeFromPreviousBusStop = newDepartureTimeFromPreviousBusStop;
+            this.ArrivalDateTimeAtThisBusStop = newArrivalTimeAtThisBusStop;
+            this.DepartureDateTimeFromPreviousBusStop = newDepartureTimeFromPreviousBusStop;
         }
 
         #endregion
