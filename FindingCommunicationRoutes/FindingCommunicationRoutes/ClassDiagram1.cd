@@ -1,2 +1,234 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FindingCommunicationRoutes.CommunicationRoutesController" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAgAgAAAgABFAAiAAAQQAgAAAAAAAQAEAAAA=</HashCode>
+      <FileName>Controller\CommunicationRoutesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SearchArgs" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAACAAAA=</HashCode>
+      <FileName>EventArgs\SearchArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.ActualizeRepositoryArgs" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Model\Args\ActualizeRepositoryArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SearchRouteArgs" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Args\SearchRouteArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.CommunicationRoutesModel" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAABABAAAAAAAAgACAAAAggAAAAAAgAAAABA=</HashCode>
+      <FileName>Model\CommunicationRoutesModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SearchResultConnection" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAABAEAAIIAAAAEAQAAAAwAAAAAAIAAAA=</HashCode>
+      <FileName>Model\Data\SearchResultConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SoughtConnection" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQgAAAAAAIAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Model\Data\SoughtConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Delegates" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Delegates\Delegates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.ExtensionForString" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Extensions\ExtensionForString.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.TemporaryTrackNode" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAQAAAAAJAQBAAAAAAAAA=</HashCode>
+      <FileName>Model\Repository\Builder\TemporaryTrackNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.TrackBuilder" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAIAQQAAAAAAAAAAAAAABAAAJAAA=</HashCode>
+      <FileName>Model\Repository\Builder\TrackBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.BusStop" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAABAAAAAAAAg=</HashCode>
+      <FileName>Model\Repository\Data\BusStop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Line" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Model\Repository\Data\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.TimeOfArrival" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAEQAGAAgAEAAAAAAIAAAAAAAAABQA=</HashCode>
+      <FileName>Model\Repository\Data\TimeOfArrival.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Track" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAACAAAAAAAAACAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Model\Repository\Data\Track.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.ReaderCHM" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAABAAAAEAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Model\Repository\Reader\ReaderCHM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.ReaderHTML" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAYAAEAEAAAAAACQAAAYCGAQIAAACCQAAAgAAAA=</HashCode>
+      <FileName>Model\Repository\Reader\ReaderHTML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Repository" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAABAIEAAAAAAAAABAAAAAAAAIAAAAAAAAAIAAA=</HashCode>
+      <FileName>Model\Repository\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.LineForSpecifiedDayType" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Search\Data\LineForSpecifiedDayType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SingleBusStopForIndirectConnection" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAAAAkAAAAAAAAAAAAAAAgAAQAABAAAAAAAAA=</HashCode>
+      <FileName>Model\Search\Data\SingleBusStopForIndirectConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.TracksGiverForSpecifiedDayType" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Search\Helpers\TracksGiverForSpecifiedDayType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.NeighbourBusStopsRecognizer" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Model\Search\Neighbour Bus Stops\NeighbourBusStopsRecognizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SearcherOfDirectRoutes" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAgAAACAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Search\SearcherOfDirectRoutes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.SearcherOfIndirectRoutes" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAgAAAAAAAAEAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Search\SearcherOfIndirectRoutes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.TypeOfDayRecognizer" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Search\Type of Day\TypeOfDayRecognizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Program" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.CommunicationRoutesGui" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wCRBCsAYSQCABgAAACAEWgCgCgAoIACgmkUBggIQDg=</HashCode>
+      <FileName>View\CommunicationRoutesGui.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Data.DayTypes" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Data\DayTypes\DayTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Data.EnumDescription" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Model\Data\DayTypes\EnumDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Data.GeneratorOfDayTypes" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Data\DayTypes\GeneratorOfDayTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Properties.Resources" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FindingCommunicationRoutes.Properties.Settings" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="FindingCommunicationRoutes.ICommunicationRoutesGui" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAIAAAAAAAAAAgAACAAgAAAACAEAgAIAAA=</HashCode>
+      <FileName>View\ICommunicationRoutesGui.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
