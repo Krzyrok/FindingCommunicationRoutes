@@ -32,7 +32,7 @@ namespace FindingCommunicationRoutes
 
         private Delegates.UpdateInformationAboutActualization _ShowTimeForActualizationOfSchedule = null;
         private Delegates.UpdateInformationAboutSearching _ShowTimeForSearchingRoute = null;
-        private Delegates.DeliverResults _DeliverResultsToView = null;
+        private Delegates.DeliverResults _deliverResultsToView = null;
         private ICommunicationRoutesGui _communicationRoutesGui;
         private CommunicationRoutesModel _communicationRoutesModel;
 
@@ -50,23 +50,13 @@ namespace FindingCommunicationRoutes
         {
             _ShowTimeForActualizationOfSchedule += ActualizeTimeForLoadingNewSchedule;
             _ShowTimeForSearchingRoute += ActualizeTimeForSearchingRoute;
-            _DeliverResultsToView += DeliverResultOfSearchingToTheView;
+            _deliverResultsToView += DeliverResultOfSearchingToTheView;
         }
 
         private void DeliverResultOfSearchingToTheView(List<SearchResultConnection> results)
         {
-            if (results == null || results.Count == 0)
-            {
-                Action<string, int> updateTimeAndInformationAboutNoResults = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
-                _communicationRoutesGui.Invoke(updateTimeAndInformationAboutNoResults, "No results", 100);
-                return;
-            }
-
             Action<List<SearchResultConnection>> showResults = new Action<List<SearchResultConnection>>((list) => _communicationRoutesGui.ShowResultsOfSearching(list));
             _communicationRoutesGui.Invoke(showResults, results);
-            
-            Action<string, int> updateTimeAndInformation = new Action<string, int>((valueString, valueInt) => _communicationRoutesGui.UpdateInformationAndTimeForProgressBar(valueString, valueInt));
-            _communicationRoutesGui.Invoke(updateTimeAndInformation, "Found route", 100);
         }
 
         private void ActualizeTimeForSearchingRoute(string information, double value)
@@ -145,7 +135,7 @@ namespace FindingCommunicationRoutes
                 return;
             }
 
-            SearchRouteArgs argsForSearching = new SearchRouteArgs(_ShowTimeForSearchingRoute, _DeliverResultsToView, arg);
+            SearchRouteArgs argsForSearching = new SearchRouteArgs(_ShowTimeForSearchingRoute, _deliverResultsToView, arg);
             Thread searchingRoutesThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.SearchRoute));
             searchingRoutesThread.Name = "Searching routes - thread";
             searchingRoutesThread.Start(argsForSearching);

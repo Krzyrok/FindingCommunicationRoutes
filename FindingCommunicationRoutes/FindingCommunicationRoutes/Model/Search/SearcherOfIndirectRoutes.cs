@@ -17,21 +17,22 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
-        public List<SearchResultConnection> FindIndirectConnection(Repository repository, SoughtConnection soughtConnection)
+        public List<SearchResultConnection> FindIndirectConnection(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutSearching updateInformationForUserAboutSearching)
         {
-            List<SearchResultConnection> resultList = new List<SearchResultConnection>();
-            List<SingleBusStopForIndirectConnection> unprocessedBusStopsList = FindBusStopsWithLinesWhichAreCloseToTheTarget(repository, soughtConnection);
-            return ProcessBusStopsCheckedList(soughtConnection, unprocessedBusStopsList);
+            List<SingleBusStopForIndirectConnection> unprocessedBusStopsList = FindBusStopsWithLinesWhichAreCloseToTheTarget(repository, soughtConnection, updateInformationForUserAboutSearching);
+            List<SearchResultConnection> resultList = ProcessBusStopsCheckedList(soughtConnection, unprocessedBusStopsList);
+            return resultList;
         }
 
         #endregion
 
         #region Private methods
 
-        private List<SingleBusStopForIndirectConnection> FindBusStopsWithLinesWhichAreCloseToTheTarget(Repository repository, SoughtConnection soughtConnection)
+        private List<SingleBusStopForIndirectConnection> FindBusStopsWithLinesWhichAreCloseToTheTarget(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutSearching updateInformationForUserAboutSearching)
         {
             SearcherOfDirectRoutes searcherOfDirectConnections = new SearcherOfDirectRoutes();
 
+            updateInformationForUserAboutSearching("Indirect searching: Initialize", 10 + 1); // 10 is in model.
             List<SingleBusStopForIndirectConnection> busStopsToCheckList = InitializeBusStopsToCheckList(soughtConnection, repository.BusStops);
             List<SingleBusStopForIndirectConnection> busStopsCheckedList = new List<SingleBusStopForIndirectConnection>();
 
@@ -54,8 +55,11 @@ namespace FindingCommunicationRoutes
             SingleBusStopForIndirectConnection lastBusStop = busStopsToCheckList.Last();
             busStopsToCheckList.RemoveAt(busStopsToCheckList.Count - 1);
             busStopsCheckedList.Add(lastBusStop);
+            int numberOfAllBusStopsToCheck = busStopsToCheckList.Count;
             do
             {
+                double actualProgress = (double)busStopsCheckedList.Count / (double)numberOfAllBusStopsToCheck;
+                updateInformationForUserAboutSearching("Searching of indirect connection", actualProgress * 90.0 + 10.0);
                 DateTime dateTomeForRecognizerOfNeighbourBusStops = new DateTime();
                 if (soughtConnection.IsDeparture)
                 {

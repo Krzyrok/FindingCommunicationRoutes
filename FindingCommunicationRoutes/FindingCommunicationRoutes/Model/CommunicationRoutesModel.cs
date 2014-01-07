@@ -55,17 +55,33 @@ namespace FindingCommunicationRoutes
 
             if (((SearchRouteArgs)args).UserSearchArgs.ShouldSearchOnlyDirectConnections)
             {
-                updateInformation("Searching done", 100);
+                if (directConnection == null)
+                {
+                    updateInformation("No results", 100);
+                }
+                else
+                {
+                    updateInformation("Searching done", 100);
+                }
                 return;
             }
-            updateInformation("Searching indirect connection", 50);
+            updateInformation("Searching indirect connection", 10);
             SearcherOfIndirectRoutes searcherOfIndirectRoutes = new SearcherOfIndirectRoutes();
-            List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection);
+            List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection, updateInformation);
             if (indirectConnection != null)
             {
                 result.AddRange(indirectConnection);
             }
             deliverResults(result);
+
+            if (directConnection == null && (indirectConnection == null || indirectConnection.Count == 0))
+            {
+                updateInformation("No results", 100);
+            }
+            else
+            {
+                updateInformation("Searching done", 100);
+            }
         }
 
         public void ActualizeRepository(object args)
