@@ -37,10 +37,20 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
-        public void ChangeFields(DateTime newDepartureDateTime, string newStartBusStopName)
+        public void ChangeFieldsForDepartureOption(DateTime newDepartureDateTime, string newStartBusStopName)
         {
             DepartureDateTime = newDepartureDateTime;
             StartBusStopName = newStartBusStopName;
+
+            TimeOfArrival departureTime = new TimeOfArrival(DepartureDateTime.Hour, DepartureDateTime.Minute);
+            TimeOfArrival arrivalTime = new TimeOfArrival(ArrivalDateTime.Hour, ArrivalDateTime.Minute);
+            TimeDistanceBetweenBusStops = arrivalTime - departureTime;
+        }
+
+        public void ChangeFieldsForArrivalOption(DateTime newArrivalDateTime, string newEndBusStopName)
+        {
+            ArrivalDateTime = newArrivalDateTime;
+            EndBusStopName = newEndBusStopName;
 
             TimeOfArrival departureTime = new TimeOfArrival(DepartureDateTime.Hour, DepartureDateTime.Minute);
             TimeOfArrival arrivalTime = new TimeOfArrival(ArrivalDateTime.Hour, ArrivalDateTime.Minute);

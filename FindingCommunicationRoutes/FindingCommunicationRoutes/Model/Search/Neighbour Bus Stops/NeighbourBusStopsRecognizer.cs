@@ -7,6 +7,12 @@ namespace FindingCommunicationRoutes
 {
     public class NeighbourBusStopsRecognizer
     {
+        #region Enum
+
+        public enum Direction { Previous = -1, Next = 1 };
+
+        #endregion
+
         #region Constructors
 
         public NeighbourBusStopsRecognizer()
@@ -17,7 +23,17 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
-        public List<string> RecognizeNeighbourBusStops(string busStopName, Repository repository, DateTime date)
+        /// <summary>
+        /// Recognizes the neighbour bus stops in specified direction.
+        /// </summary>
+        /// <param name="busStopName">Name of the bus stop. For this bus stop function will search neighbours.</param>
+        /// <param name="repository">The repository.</param>
+        /// <param name="date">The date for searching (in some days one bus stop is next to another, in another - no).</param>
+        /// <param name="direction">The direction. 
+        /// For 'Next' value, function will search only bus stops which are next to the 'busStopName' in the tracks.
+        /// For 'Previous' value, function will search only bus stops which are before the 'busStopName' in the tracks.</param>
+        /// <returns>List of the names of neighbour bus stops</returns>
+        public List<string> RecognizeNeighbourBusStopsInSpecifiedDirection(string busStopName, Repository repository, DateTime date, Direction direction)
         {
             BusStop busStop = FindBusStop(busStopName, repository.BusStops);
             List<string> dayTypes = new TypeOfDayRecognizer().RecognizeTypeOfDay(date);
@@ -40,14 +56,14 @@ namespace FindingCommunicationRoutes
                     {
                         if (firstTrack.TimeOfArrivalOnBusStops.ElementAt(i).Key == busStopName)
                         {
-                            index = i + 1;
+                            index = i + (int)direction;
                             wasFoundBusStop = true;
                             break;
                         }
                     }
                     if (wasFoundBusStop)
                     {
-                        if (index != -1 && index < firstTrack.TimeOfArrivalOnBusStops.Count)
+                        if (index > -1 && index < firstTrack.TimeOfArrivalOnBusStops.Count)
                         {
                             result.Add(firstTrack.TimeOfArrivalOnBusStops.ElementAt(index).Key);
                         }
@@ -67,14 +83,14 @@ namespace FindingCommunicationRoutes
                     {
                         if (lastTrackTrack.TimeOfArrivalOnBusStops.ElementAt(i).Key == busStopName)
                         {
-                            index = i + 1;
+                            index = i + (int)direction;
                             wasFoundBusStop = true;
                             break;
                         }
                     }
                     if (wasFoundBusStop)
                     {
-                        if (index != -1 && index < lastTrackTrack.TimeOfArrivalOnBusStops.Count)
+                        if (index > -1 && index < lastTrackTrack.TimeOfArrivalOnBusStops.Count)
                         {
                             if (result.Count == 0 || !(result.Last().Equals(lastTrackTrack.TimeOfArrivalOnBusStops.ElementAt(index).Key)))
                             {

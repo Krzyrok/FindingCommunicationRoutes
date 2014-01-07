@@ -10,39 +10,39 @@ namespace FindingCommunicationRoutes
         #region Public fields
 
         public string BusStopName { get; private set; }
-        public string PreviousBusStopName { get; private set; }
+        public string PreviousBusStopNameForDepartureOrNextBusStopForArrival { get; private set; }
         public string LineNumberWhichLeadToThisBusStop { get; private set; }
         public TimeOfArrival TotalTimeFromStartBus { get; private set; }
-        public DateTime ArrivalDateTimeAtThisBusStop { get; private set; }
-        public DateTime DepartureDateTimeFromPreviousBusStop { get; private set; }
+        public DateTime ArrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival { get; private set; }
+        public DateTime DepartureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival { get; private set; }
 
         #endregion
 
         #region Constructors
 
-        public SingleBusStopForIndirectConnection(string busStopName, string previousBusStopName, string lineNumberWhichLeadToThisBusStop,
-            TimeOfArrival totalTimeFromStartBus, DateTime arrivalDateTimeAtThisBusStop, DateTime departureDateTimeFromPreviousBusStop)
+        public SingleBusStopForIndirectConnection(string busStopName, string previousBusStopNameForDepartureOrNextBusStopForArrival, string lineNumberWhichLeadToThisBusStop, TimeOfArrival totalTimeFromStartBus,
+            DateTime arrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival, DateTime departureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival)
         {
             BusStopName = busStopName;
-            PreviousBusStopName = previousBusStopName;
+            PreviousBusStopNameForDepartureOrNextBusStopForArrival = previousBusStopNameForDepartureOrNextBusStopForArrival;
             LineNumberWhichLeadToThisBusStop = lineNumberWhichLeadToThisBusStop;
             TotalTimeFromStartBus = totalTimeFromStartBus;
-            ArrivalDateTimeAtThisBusStop = arrivalDateTimeAtThisBusStop;
-            DepartureDateTimeFromPreviousBusStop = departureDateTimeFromPreviousBusStop;
+            ArrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival = arrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival;
+            DepartureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival = departureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival;
         }
 
         #endregion
 
         #region Public methods
 
-        public void ChangeFields(string newPreviousBusStopName, string newLineNumberWhichLeadToThisBusStop,
-            TimeOfArrival newTotalTimeFromStartBus, DateTime newArrivalTimeAtThisBusStop, DateTime newDepartureTimeFromPreviousBusStop)
+        public void ChangeFields(string newPreviousBusStopNameForDepartureOrNextBusStopForArrival, string newLineNumberWhichLeadToThisBusStop,
+            TimeOfArrival newTotalTimeFromStartBus, DateTime newArrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival, DateTime newDepartureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival)
         {
-            this.PreviousBusStopName = newPreviousBusStopName;
+            this.PreviousBusStopNameForDepartureOrNextBusStopForArrival = newPreviousBusStopNameForDepartureOrNextBusStopForArrival;
             this.LineNumberWhichLeadToThisBusStop = newLineNumberWhichLeadToThisBusStop;
             this.TotalTimeFromStartBus = newTotalTimeFromStartBus;
-            this.ArrivalDateTimeAtThisBusStop = newArrivalTimeAtThisBusStop;
-            this.DepartureDateTimeFromPreviousBusStop = newDepartureTimeFromPreviousBusStop;
+            this.ArrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival = newArrivalDateTimeAtThisBusStopForDepartureOrAtTheNextBusStopForArrival;
+            this.DepartureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival = newDepartureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival;
         }
 
         #endregion
