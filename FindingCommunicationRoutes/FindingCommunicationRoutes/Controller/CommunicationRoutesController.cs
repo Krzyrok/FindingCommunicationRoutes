@@ -149,6 +149,7 @@ namespace FindingCommunicationRoutes
             Thread searchingRoutesThread = new Thread(new ParameterizedThreadStart(_communicationRoutesModel.SearchRoute));
             searchingRoutesThread.Name = "Searching routes - thread";
             searchingRoutesThread.Start(argsForSearching);
+            _communicationRoutesGui.SaveThread(searchingRoutesThread);
         }
 
         #endregion

@@ -145,6 +145,19 @@ namespace FindingCommunicationRoutes
             this.Dispose(true);
         }
 
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            foreach (System.Threading.Thread thread in _threadsList)
+            {
+                if (thread.ThreadState == System.Threading.ThreadState.Running)
+                {
+                    thread.Abort();
+                }
+            }
+            _threadsList = new List<System.Threading.Thread>();
+            UpdateInformationAndTimeForProgressBar("Operation was canceled.", 100);
+        }
+
         private void updateScheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (LoadNewScheduleFromFile != null)

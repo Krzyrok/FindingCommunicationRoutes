@@ -86,6 +86,7 @@
             this.travelTimeIndirectResultTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.onlyDirectConnectionsCheckBox = new System.Windows.Forms.CheckBox();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.upperMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hourTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minuteTimeNumericUpDown)).BeginInit();
@@ -534,11 +535,22 @@
             this.onlyDirectConnectionsCheckBox.Text = "Only direct connections";
             this.onlyDirectConnectionsCheckBox.UseVisualStyleBackColor = true;
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(50, 248);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 54;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // CommunicationRoutesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 269);
+            this.ClientSize = new System.Drawing.Size(824, 283);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.onlyDirectConnectionsCheckBox);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.travelTimeIndirectResultTextBox);
@@ -647,6 +659,7 @@
         private System.Windows.Forms.TextBox travelTimeIndirectResultTextBox;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox onlyDirectConnectionsCheckBox;
+        private System.Windows.Forms.Button cancelButton;
 
     }
 }
