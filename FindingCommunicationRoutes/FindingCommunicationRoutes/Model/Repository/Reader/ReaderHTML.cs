@@ -99,7 +99,7 @@ namespace FindingCommunicationRoutes
         /// Gets the bus lines.
         /// </summary>
         /// <returns>List of bus lines</returns>
-        public List<Line> GetBusLines(Delegates.UpdateInformationAboutActualization updateDelegate)
+        public List<Line> GetBusLines(Delegates.UpdateInformationAboutProgresForTheUser updateDelegate)
         {
             string indexSite = _htmlSitePath;
             List<Line> lines = new List<Line>();

@@ -59,7 +59,7 @@ namespace FindingCommunicationRoutes
         /// </summary>
         /// <param name="chmFilePath">The CHM file path.</param>
         /// <param name="outputPath">The output path for html files.</param>
-        public void ActualizeFromChm(string chmFilePath, string outputPath, Delegates.UpdateInformationAboutActualization updateDelegate)
+        public void ActualizeFromChm(string chmFilePath, string outputPath, Delegates.UpdateInformationAboutProgresForTheUser updateDelegate)
         {
             updateDelegate(0.0);
             ReaderCHM chm = new ReaderCHM(chmFilePath, outputPath);

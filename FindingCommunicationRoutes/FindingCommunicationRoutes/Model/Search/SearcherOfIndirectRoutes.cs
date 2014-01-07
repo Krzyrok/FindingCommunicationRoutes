@@ -17,7 +17,7 @@ namespace FindingCommunicationRoutes
 
         #region Public methods
 
-        public List<SearchResultConnection> FindIndirectConnection(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutSearching updateInformationForUserAboutSearching)
+        public List<SearchResultConnection> FindIndirectConnection(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutProgresForTheUser updateInformationForUserAboutSearching)
         {
             List<SingleBusStopForIndirectConnection> unprocessedBusStopsList = FindBusStopsWithLinesWhichAreCloseToTheTarget(repository, soughtConnection, updateInformationForUserAboutSearching);
             List<SearchResultConnection> resultList = ProcessBusStopsCheckedList(soughtConnection, unprocessedBusStopsList);
@@ -28,11 +28,10 @@ namespace FindingCommunicationRoutes
 
         #region Private methods
 
-        private List<SingleBusStopForIndirectConnection> FindBusStopsWithLinesWhichAreCloseToTheTarget(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutSearching updateInformationForUserAboutSearching)
+        private List<SingleBusStopForIndirectConnection> FindBusStopsWithLinesWhichAreCloseToTheTarget(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutProgresForTheUser updateInformationForUserAboutSearching)
         {
             SearcherOfDirectRoutes searcherOfDirectConnections = new SearcherOfDirectRoutes();
 
-            updateInformationForUserAboutSearching("Indirect searching: Initialize", 10 + 1); // 10 is in model.
             List<SingleBusStopForIndirectConnection> busStopsToCheckList = InitializeBusStopsToCheckList(soughtConnection, repository.BusStops);
             List<SingleBusStopForIndirectConnection> busStopsCheckedList = new List<SingleBusStopForIndirectConnection>();
 
@@ -59,7 +58,7 @@ namespace FindingCommunicationRoutes
             do
             {
                 double actualProgress = (double)busStopsCheckedList.Count / (double)numberOfAllBusStopsToCheck;
-                updateInformationForUserAboutSearching("Searching of indirect connection", actualProgress * 90.0 + 10.0);
+                updateInformationForUserAboutSearching(actualProgress);
                 DateTime dateTomeForRecognizerOfNeighbourBusStops = new DateTime();
                 if (soughtConnection.IsDeparture)
                 {

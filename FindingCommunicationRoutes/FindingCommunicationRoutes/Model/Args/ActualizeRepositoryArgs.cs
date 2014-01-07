@@ -9,14 +9,14 @@ namespace FindingCommunicationRoutes
     {
         #region Public fields
 
-        public Delegates.UpdateInformationAboutActualization UpdateTimeAboutActualization { get; private set; }
+        public Delegates.UpdateInformationAboutProgresForTheUser UpdateTimeAboutActualization { get; private set; }
         public string PathToChmFile { get; private set; }
 
         #endregion
 
         #region Constructors
 
-        public ActualizeRepositoryArgs(Delegates.UpdateInformationAboutActualization updateDelegate, string pathToChmFile)
+        public ActualizeRepositoryArgs(Delegates.UpdateInformationAboutProgresForTheUser updateDelegate, string pathToChmFile)
         {
             UpdateTimeAboutActualization = updateDelegate;
             PathToChmFile = pathToChmFile;

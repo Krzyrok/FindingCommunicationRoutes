@@ -30,7 +30,7 @@ namespace FindingCommunicationRoutes
 
         #region Private fields
 
-        private Delegates.UpdateInformationAboutActualization _ShowTimeForActualizationOfSchedule = null;
+        private Delegates.UpdateInformationAboutProgresForTheUser _ShowTimeForActualizationOfSchedule = null;
         private Delegates.UpdateInformationAboutSearching _ShowTimeForSearchingRoute = null;
         private Delegates.DeliverResults _deliverResultsToView = null;
         private ICommunicationRoutesGui _communicationRoutesGui;

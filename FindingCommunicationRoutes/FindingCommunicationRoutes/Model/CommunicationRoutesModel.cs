@@ -12,6 +12,8 @@ namespace FindingCommunicationRoutes
         public CommunicationRoutesModel(Repository repository)
         {
             _repository = repository;
+            _processInformationAboutIndirectSearchingAndDeliverToTheView += ProcessInformationAboutPogressInIndirectSearchinAndDeliverToController;
+            _progressAfterDirectSearching = 10;
         }
 
         #endregion
@@ -37,8 +39,8 @@ namespace FindingCommunicationRoutes
 
         public void SearchRoute(object args)
         {
-            Delegates.UpdateInformationAboutSearching updateInformation = ((SearchRouteArgs)args).DelegateToUpdatingInformationAboutSearching;
-            updateInformation("Searching direct connection", 0);
+            _updateInformationAboutSearching = ((SearchRouteArgs)args).DelegateToUpdatingInformationAboutSearching;
+            _updateInformationAboutSearching("Searching direct connection", 0);
             Delegates.DeliverResults deliverResults = ((SearchRouteArgs)args).DelegateToDeliverResultsToView;
             
             List<SearchResultConnection> result = new List<SearchResultConnection>();
@@ -57,17 +59,17 @@ namespace FindingCommunicationRoutes
             {
                 if (directConnection == null)
                 {
-                    updateInformation("No results", 100);
+                    _updateInformationAboutSearching("No results", 100);
                 }
                 else
                 {
-                    updateInformation("Searching done", 100);
+                    _updateInformationAboutSearching("Searching done", 100);
                 }
                 return;
             }
-            updateInformation("Searching indirect connection", 10);
+            _updateInformationAboutSearching("Searching indirect connection", 10);
             SearcherOfIndirectRoutes searcherOfIndirectRoutes = new SearcherOfIndirectRoutes();
-            List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection, updateInformation);
+            List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection, _processInformationAboutIndirectSearchingAndDeliverToTheView);
             if (indirectConnection != null)
             {
                 result.AddRange(indirectConnection);
@@ -76,11 +78,11 @@ namespace FindingCommunicationRoutes
 
             if (directConnection == null && (indirectConnection == null || indirectConnection.Count == 0))
             {
-                updateInformation("No results", 100);
+                _updateInformationAboutSearching("No results", 100);
             }
             else
             {
-                updateInformation("Searching done", 100);
+                _updateInformationAboutSearching("Searching done", 100);
             }
         }
 
@@ -94,6 +96,15 @@ namespace FindingCommunicationRoutes
         #endregion
 
         #region Private methods
+
+        private void ProcessInformationAboutPogressInIndirectSearchinAndDeliverToController(double value)
+        {
+            if (_updateInformationAboutSearching != null)
+            {
+                _updateInformationAboutSearching("Searching of indirect connection.", value * (100.0 - _progressAfterDirectSearching) + (double)_progressAfterDirectSearching);
+            }
+        }
+
         private string FindPathForNewSchedule()
         {
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -109,7 +120,10 @@ namespace FindingCommunicationRoutes
 
         #region Private fields
 
-        Repository _repository;
+        private int _progressAfterDirectSearching;
+        private Repository _repository;
+        private Delegates.UpdateInformationAboutSearching _updateInformationAboutSearching = null;
+        private Delegates.UpdateInformationAboutProgresForTheUser _processInformationAboutIndirectSearchingAndDeliverToTheView = null;
 
         #endregion
     }
