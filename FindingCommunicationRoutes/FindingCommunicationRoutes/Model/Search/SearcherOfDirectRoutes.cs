@@ -190,7 +190,6 @@ namespace FindingCommunicationRoutes
                     }
                     catch (Exception)
                     {
-
                     }
                 }
             }

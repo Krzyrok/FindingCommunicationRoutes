@@ -6,7 +6,7 @@ namespace FindingCommunicationRoutes
     public interface ICommunicationRoutesGui
     {
         event EventHandler LoadNewScheduleFromFile;
-        event EventHandler<SoughtConnection> SearchRoute;
+        event EventHandler<SearchArgs> SearchRoute;
         void DisplayBusStops(List<string> listOfBusStopsNames);
         void SetDateAndTime(DateTime dateTime);
         void UpdateInformationAndTimeForProgressBar(string information, int valueOfProgressBar);

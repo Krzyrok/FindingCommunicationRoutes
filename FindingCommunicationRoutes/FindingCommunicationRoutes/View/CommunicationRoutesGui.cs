@@ -25,7 +25,7 @@ namespace FindingCommunicationRoutes
         #region Public fields
 
         public event EventHandler LoadNewScheduleFromFile = null;
-        public event EventHandler<SoughtConnection> SearchRoute = null;
+        public event EventHandler<SearchArgs> SearchRoute = null;
 
         #endregion
 
@@ -84,6 +84,11 @@ namespace FindingCommunicationRoutes
 
         public void ShowResultsOfSearching(List<SearchResultConnection> results)
         {
+            if (results == null)
+            {
+                return;
+            }
+
             SearchResultConnection directConnection = results.First();
             if (directConnection == null)
             {
@@ -162,7 +167,8 @@ namespace FindingCommunicationRoutes
                 bool departureChecked = departureRadioButton.Checked;
                 
                 SoughtConnection soughtConnection = new SoughtConnection(startBusStop, endBusStop, dateTime, departureChecked);
-                SearchRoute(sender, soughtConnection);
+                SearchArgs arg = new SearchArgs(soughtConnection, onlyDirectConnectionsCheckBox.Checked);
+                SearchRoute(sender, arg);
             }
         }
 

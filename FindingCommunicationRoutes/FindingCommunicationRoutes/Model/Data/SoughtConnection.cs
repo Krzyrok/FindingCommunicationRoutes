@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FindingCommunicationRoutes
 {
-    public class SoughtConnection : EventArgs
+    public class SoughtConnection
     {
         #region Properties
 

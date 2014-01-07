@@ -9,7 +9,7 @@ namespace FindingCommunicationRoutes
     {
         #region Public fields
 
-        public SoughtConnection UserSoughtConnection { get; private set; }
+        public SearchArgs UserSearchArgs { get; private set; }
         public Delegates.UpdateInformationAboutSearching DelegateToUpdatingInformationAboutSearching { get; private set; }
         public Delegates.DeliverResults DelegateToDeliverResultsToView { get; private set; }
 
@@ -18,10 +18,10 @@ namespace FindingCommunicationRoutes
         #region Constructors
 
         public SearchRouteArgs(Delegates.UpdateInformationAboutSearching delegateToUpdatingInformationAboutSearching,
-            Delegates.DeliverResults delegateToDeliverResultsToView, SoughtConnection userSoughtConnection)
+            Delegates.DeliverResults delegateToDeliverResultsToView, SearchArgs userSearchArgs)
         {
             DelegateToUpdatingInformationAboutSearching = delegateToUpdatingInformationAboutSearching;
-            UserSoughtConnection = userSoughtConnection;
+            UserSearchArgs = userSearchArgs;
             DelegateToDeliverResultsToView = delegateToDeliverResultsToView;
         }
 

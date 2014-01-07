@@ -85,6 +85,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.travelTimeIndirectResultTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.onlyDirectConnectionsCheckBox = new System.Windows.Forms.CheckBox();
             this.upperMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hourTimeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minuteTimeNumericUpDown)).BeginInit();
@@ -240,7 +241,7 @@
             // searchButton
             // 
             this.searchButton.Enabled = false;
-            this.searchButton.Location = new System.Drawing.Point(50, 218);
+            this.searchButton.Location = new System.Drawing.Point(50, 219);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 20;
@@ -523,11 +524,22 @@
             this.label16.TabIndex = 52;
             this.label16.Text = "Travel time:";
             // 
+            // onlyDirectConnectionsCheckBox
+            // 
+            this.onlyDirectConnectionsCheckBox.AutoSize = true;
+            this.onlyDirectConnectionsCheckBox.Location = new System.Drawing.Point(13, 196);
+            this.onlyDirectConnectionsCheckBox.Name = "onlyDirectConnectionsCheckBox";
+            this.onlyDirectConnectionsCheckBox.Size = new System.Drawing.Size(137, 17);
+            this.onlyDirectConnectionsCheckBox.TabIndex = 53;
+            this.onlyDirectConnectionsCheckBox.Text = "Only direct connections";
+            this.onlyDirectConnectionsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // CommunicationRoutesGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 269);
+            this.Controls.Add(this.onlyDirectConnectionsCheckBox);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.travelTimeIndirectResultTextBox);
             this.Controls.Add(this.label20);
@@ -634,6 +646,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox travelTimeIndirectResultTextBox;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox onlyDirectConnectionsCheckBox;
 
     }
 }

@@ -137,9 +137,9 @@ namespace FindingCommunicationRoutes
             }
         }
 
-        private void SearchRoute(object sender, SoughtConnection arg)
+        private void SearchRoute(object sender, SearchArgs arg)
         {
-            if (arg.StartBusStop == "" || arg.EndBusStop == "" || arg.StartBusStop.Equals(arg.EndBusStop))
+            if (arg.SoughtConnectionByUser.StartBusStop == "" || arg.SoughtConnectionByUser.EndBusStop == "" || arg.SoughtConnectionByUser.StartBusStop.Equals(arg.SoughtConnectionByUser.EndBusStop))
             {
                 _communicationRoutesGui.ShowMessage("Wrong data. You have to choose proper bus stops");
                 return;

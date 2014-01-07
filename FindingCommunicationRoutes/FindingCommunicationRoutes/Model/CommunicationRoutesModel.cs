@@ -39,17 +39,25 @@ namespace FindingCommunicationRoutes
         {
             Delegates.UpdateInformationAboutSearching updateInformation = ((SearchRouteArgs)args).DelegateToUpdatingInformationAboutSearching;
             updateInformation("Searching direct connection", 0);
+            Delegates.DeliverResults deliverResults = ((SearchRouteArgs)args).DelegateToDeliverResultsToView;
             
             List<SearchResultConnection> result = new List<SearchResultConnection>();
             
-            SoughtConnection soughtConnection = ((SearchRouteArgs)args).UserSoughtConnection;      
+            SoughtConnection soughtConnection = ((SearchRouteArgs)args).UserSearchArgs.SoughtConnectionByUser;      
             SearcherOfDirectRoutes searcherDirectRoutes = new SearcherOfDirectRoutes();
             SearchResultConnection directConnection = searcherDirectRoutes.FindDirectConnection(_repository, soughtConnection);
             if (directConnection != null)
             {
                 result.Add(directConnection);
+                deliverResults(result);
+                result.Remove(directConnection);
             }
 
+            if (((SearchRouteArgs)args).UserSearchArgs.ShouldSearchOnlyDirectConnections)
+            {
+                updateInformation("Searching done", 100);
+                return;
+            }
             updateInformation("Searching indirect connection", 50);
             SearcherOfIndirectRoutes searcherOfIndirectRoutes = new SearcherOfIndirectRoutes();
             List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection);
@@ -57,7 +65,6 @@ namespace FindingCommunicationRoutes
             {
                 result.AddRange(indirectConnection);
             }
-            Delegates.DeliverResults deliverResults = ((SearchRouteArgs)args).DelegateToDeliverResultsToView;
             deliverResults(result);
         }
 

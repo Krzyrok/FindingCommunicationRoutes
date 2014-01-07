@@ -51,7 +51,9 @@ namespace FindingCommunicationRoutes
             // lastBusStop is (only in the first step)
             // - start bus stop for departure
             // - end bus stop for arrival
-            SingleBusStopForIndirectConnection lastBusStop = busStopsCheckedList.Last();     
+            SingleBusStopForIndirectConnection lastBusStop = busStopsToCheckList.Last();
+            busStopsToCheckList.RemoveAt(busStopsToCheckList.Count - 1);
+            busStopsCheckedList.Add(lastBusStop);
             do
             {
                 DateTime dateTomeForRecognizerOfNeighbourBusStops = new DateTime();
