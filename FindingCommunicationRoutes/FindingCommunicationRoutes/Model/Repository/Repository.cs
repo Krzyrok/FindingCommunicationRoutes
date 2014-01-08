@@ -65,9 +65,11 @@ namespace FindingCommunicationRoutes
             ReaderCHM chm = new ReaderCHM(chmFilePath, outputPath);
             chm.Decompile();
             ReaderHTML html = new ReaderHTML(chm.GetIndexFileFromOutputPath().First());
-            SaveDataAboutBusStops(html.GetBusStops(html.GetBusLines(updateDelegate)));
+            List<BusStop> busStopsList = html.GetBusStops(html.GetBusLines(updateDelegate));
+            SaveDataAboutBusStops(busStopsList);
             updateDelegate(99.0);
-            LoadDataAboutBusStops();
+            _busStopsList = new List<BusStop>();
+            _busStopsList.AddRange(busStopsList);
             updateDelegate(100.0);
         }
 
