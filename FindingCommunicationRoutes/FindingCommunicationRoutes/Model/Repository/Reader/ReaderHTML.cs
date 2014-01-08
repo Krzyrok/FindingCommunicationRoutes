@@ -112,15 +112,23 @@ namespace FindingCommunicationRoutes
 
             linksAndNames = CollectLinesLinksAndNamesFromIndexSite(doc);
 
-            for (int i = 0; i < linksAndNames[0].Count; ++i)
+            try
             {
-                NavigateTo(indexSite);
-                ChangeSite(linksAndNames[0][i]);
-                // from line tracks site
-                Line tmpline = GetBusLine(_htmlSitePath, linksAndNames[1][i]);
-                updateDelegate((double)(i * 100.0 / linksAndNames[0].Count));
-                if (tmpline != null)
-                    lines.Add(tmpline);
+
+                for (int i = 0; i < linksAndNames[0].Count; ++i)
+                {
+                    NavigateTo(indexSite);
+                    ChangeSite(linksAndNames[0][i]);
+                    // from line tracks site
+                    Line tmpline = GetBusLine(_htmlSitePath, linksAndNames[1][i]);
+                    updateDelegate((double)(i * 100.0 / linksAndNames[0].Count));
+                    if (tmpline != null)
+                        lines.Add(tmpline);
+                }
+            }
+            catch
+            {
+                return null;
             }
 
             return lines;
@@ -243,14 +251,21 @@ namespace FindingCommunicationRoutes
 
             HtmlNodeCollection collection = doc.DocumentNode.SelectNodes("//a[@href]");
 
-            foreach (HtmlNode nd in collection)
+            try
             {
-                string link = nd.Attributes.First(x => x.Name.Equals("href")).Value.Substring(2);
-                link = link.Replace('/', '\\');
-                string[] tmp = nd.Attributes.First(x => x.Name.Equals("href")).Value.Split('/');
-                string name = tmp[1];
-                linksAndNames[0].Add(link);
-                linksAndNames[1].Add(name);
+                foreach (HtmlNode nd in collection)
+                {
+                    string link = nd.Attributes.First(x => x.Name.Equals("href")).Value.Substring(2);
+                    link = link.Replace('/', '\\');
+                    string[] tmp = nd.Attributes.First(x => x.Name.Equals("href")).Value.Split('/');
+                    string name = tmp[1];
+                    linksAndNames[0].Add(link);
+                    linksAndNames[1].Add(name);
+                }
+            }
+            catch
+            {
+                return null;
             }
 
             return linksAndNames;
