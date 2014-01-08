@@ -30,8 +30,7 @@ namespace FindingCommunicationRoutes
 
         private List<SingleBusStopForIndirectConnection> FindBusStopsWithLinesWhichAreCloseToTheTarget(Repository repository, SoughtConnection soughtConnection, Delegates.UpdateInformationAboutProgresForTheUser updateInformationForUserAboutSearching)
         {
-            SearcherOfDirectRoutes searcherOfDirectConnections = new SearcherOfDirectRoutes();
-
+            SearcherOfDirectRoutes searcherOfDirectConnections = new SearcherOfDirectRoutes();            
             List<SingleBusStopForIndirectConnection> busStopsToCheckList = InitializeBusStopsToCheckList(soughtConnection, repository.BusStops);
             List<SingleBusStopForIndirectConnection> busStopsCheckedList = new List<SingleBusStopForIndirectConnection>();
 
@@ -55,6 +54,7 @@ namespace FindingCommunicationRoutes
             busStopsToCheckList.RemoveAt(busStopsToCheckList.Count - 1);
             busStopsCheckedList.Add(lastBusStop);
             int numberOfAllBusStopsToCheck = busStopsToCheckList.Count;
+            TimeOfArrival maxWaitingTime = new TimeOfArrival(2, 0);
             do
             {
                 double actualProgress = (double)busStopsCheckedList.Count / (double)numberOfAllBusStopsToCheck;
@@ -73,6 +73,7 @@ namespace FindingCommunicationRoutes
                 foreach (SingleBusStopForIndirectConnection oneBusStop in busStopsToCheckList)
                 {
                     bool oneBusStopWasFound = false;
+                    
                     foreach (string neighbourBusStop in neighbourBusStopsList)
                     {
                         if (neighbourBusStop.Equals(oneBusStop.BusStopName))
@@ -81,6 +82,7 @@ namespace FindingCommunicationRoutes
                             break;
                         }
                     }
+
                     if (!oneBusStopWasFound)
                     {
                         continue;
@@ -96,8 +98,7 @@ namespace FindingCommunicationRoutes
                         singleSoughtConnection = new SoughtConnection(oneBusStop.BusStopName, lastBusStop.BusStopName,
                             lastBusStop.DepartureDateTimeFromPreviousBusStopForDepartureOrFromCurrentBusStopForArrival, soughtConnection.IsDeparture);
                     }
-
-                    SearchResultConnection singleResult = searcherOfDirectConnections.FindDirectConnection(repository, singleSoughtConnection);
+                    SearchResultConnection singleResult = searcherOfDirectConnections.FindDirectConnectionWitMaxWaitingTime(repository, singleSoughtConnection, maxWaitingTime);
 
                     if (singleResult != null)
                     {
@@ -142,6 +143,7 @@ namespace FindingCommunicationRoutes
                 lastBusStop = busStopsToCheckList[indexOfTheNearestBusStop];
                 busStopsToCheckList.RemoveAt(indexOfTheNearestBusStop);
                 busStopsCheckedList.Add(lastBusStop);
+                maxWaitingTime = new TimeOfArrival(0, 20);
 
                 // one of the conditions - found end bus stop and route to this bus stop
                 if (lastBusStop.BusStopName.Equals(busStopNameStopCondition))

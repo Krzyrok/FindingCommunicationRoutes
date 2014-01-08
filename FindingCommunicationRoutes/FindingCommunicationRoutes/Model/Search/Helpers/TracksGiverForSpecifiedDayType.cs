@@ -18,7 +18,7 @@ namespace FindingCommunicationRoutes
                 {
                     for (int j = 0; j < line.DayTypeTracks.Length; j++)
                     {
-                        if (line.DayTypeTracks[j].Count == 0)
+                        if (line.DayTypeTracks[j] == null || line.DayTypeTracks[j].Count == 0)
                         {
                             break;
                         }

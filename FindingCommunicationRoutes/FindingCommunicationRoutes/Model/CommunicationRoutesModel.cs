@@ -70,10 +70,19 @@ namespace FindingCommunicationRoutes
             _updateInformationAboutSearching("Searching indirect connection", 10);
             SearcherOfIndirectRoutes searcherOfIndirectRoutes = new SearcherOfIndirectRoutes();
             List<SearchResultConnection> indirectConnection = searcherOfIndirectRoutes.FindIndirectConnection(_repository, soughtConnection, _processInformationAboutIndirectSearchingAndDeliverToTheView);
-            if (indirectConnection != null)
+            if (indirectConnection == null)
             {
-                result.AddRange(indirectConnection);
+                if (directConnection == null)
+                {
+                    _updateInformationAboutSearching("No results", 100);
+                }
+                else
+                {
+                    _updateInformationAboutSearching("Searching done", 100);
+                }
+                return;
             }
+            result.AddRange(indirectConnection);
             deliverResults(result);
 
             if (directConnection == null && (indirectConnection == null || indirectConnection.Count == 0))
